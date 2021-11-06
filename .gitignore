@@ -1,0 +1,7 @@
+.idea
+*.iml
+.DS_Store
+target
+
+escapethecastle/*.ctxt
+escapethecastle/*.class
