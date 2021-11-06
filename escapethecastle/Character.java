@@ -36,7 +36,7 @@ public class Character extends Actor {
         else velocity += GRAVITY;
     }
 
-    public void jump() {
+    public void jump(){
         velocity = -20;
     }
 
