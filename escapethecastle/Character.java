@@ -47,7 +47,7 @@ public class Character extends Actor {
 
         if (Greenfoot.isKeyDown("up")) y--;
         if (Greenfoot.isKeyDown("left")) x -= 2;
-        if (Greenfoot.isKeyDown("dowm")) y++;
+        if (Greenfoot.isKeyDown("down")) y++;
         if (Greenfoot.isKeyDown("right")) x += 2;
         setLocation(x, y);
     }
