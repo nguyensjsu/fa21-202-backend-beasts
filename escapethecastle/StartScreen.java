@@ -24,14 +24,19 @@ public class StartScreen extends World
         if(Greenfoot.isKeyDown("Enter"))
             Greenfoot.setWorld(new MyWorld());
     }
+    
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
      */
     private void prepare()
     {
-        ImageFactory imageFactory = new ImageFactory("images/button_start.png");
-        addObject(imageFactory,338,224);
-        imageFactory.onClick(new StartCommand());
+        ButtonFactory buttonFactory = new ButtonFactory();
+
+        Button startButton = buttonFactory.getButton("START");
+        addObject(startButton,350,158);
+
+        Button quitButton = buttonFactory.getButton("QUIT");
+        addObject(quitButton,350,280);
     }
 }

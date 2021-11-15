@@ -6,18 +6,19 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class ImageFactory extends Actor
+public class Button extends Actor implements Invoker
 {
-    Command command;
+    ICommand command;
     
     // constructor
-    public ImageFactory(String imageLocation) {
+    public Button(String imageLocation) {
         // length of text image, unknown
         GreenfootImage img = new GreenfootImage(imageLocation);
         setImage(img);
     }
-    
-    public void onClick(Command command) {
+
+    @Override
+    public void onClick(ICommand command) {
         this.command = command;
     }
     
