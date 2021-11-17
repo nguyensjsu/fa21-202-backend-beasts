@@ -7,7 +7,7 @@ import greenfoot.GreenfootImage;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Brick extends Actor {
+public class Brick extends DisplayComponent {
     /**
      * Act - do whatever the Brick wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -15,7 +15,7 @@ public class Brick extends Actor {
 
     private final int GRAVITY = 1;
     private int velocity;
-
+    
     public Brick() {
         GreenfootImage img = new GreenfootImage(getImage());
         img.scale(img.getWidth() / 5, img.getHeight() / 5);

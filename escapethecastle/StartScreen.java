@@ -1,12 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Landing screen of the game.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class StartScreen extends World
+public class StartScreen extends Screen
 {
 
     /**
@@ -34,9 +28,9 @@ public class StartScreen extends World
         ButtonFactory buttonFactory = new ButtonFactory();
 
         Button startButton = buttonFactory.getButton("START");
-        addObject(startButton,350,158);
+        addComponent(startButton,350,158);
 
         Button quitButton = buttonFactory.getButton("QUIT");
-        addObject(quitButton,350,280);
+        addComponent(quitButton,350,280);
     }
 }
