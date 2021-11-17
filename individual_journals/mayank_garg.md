@@ -11,3 +11,15 @@
 ### Tasks Planned Next Week
 * Design a basic CRC and Class Diagram
 * Code implementation
+
+## Week 2 (08/11/2021 - 14/11/2021)
+
+### Tasks completed this week
+* Created CRCs for brainstorming
+* Created the Class Diagram based on CRCs
+* Decided on the design patterns to implement
+* Refactored of the class diagram
+* Divided work and created issue for code implementation
+
+### Tasks Planned Next Week
+* Code implementation
