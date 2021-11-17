@@ -4,7 +4,8 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-public interface Invoker
+public interface IInvoker
 {
-    public void onClick(ICommand command);
+    void setCommand(ICommand command);
+    void invoke();
 }

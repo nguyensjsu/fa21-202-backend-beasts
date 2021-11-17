@@ -2,6 +2,11 @@
 *.iml
 .DS_Store
 target
+.classpath
+.project
+.settings
+
+*.lock
 
 escapethecastle/*.ctxt
 escapethecastle/*.class

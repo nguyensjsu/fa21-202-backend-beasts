@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Button extends Actor implements Invoker
+public class Button extends DisplayComponent implements IInvoker
 {
     ICommand command;
     
@@ -17,9 +17,12 @@ public class Button extends Actor implements Invoker
         setImage(img);
     }
 
-    @Override
-    public void onClick(ICommand command) {
+    public void setCommand(ICommand command) {
         this.command = command;
+    }
+    
+    public void invoke() {
+        command.execute();
     }
     
     /**
@@ -31,7 +34,7 @@ public class Button extends Actor implements Invoker
         // Add your action code here.
         if(Greenfoot.mouseClicked(this)) {
             if(command != null)
-                command.execute();
+                invoke();
         }
     }
 }
