@@ -25,6 +25,16 @@ public class StartScreen extends Screen
      */
     private void prepare()
     {
+        PlayerFactory playerFactory = new PlayerFactory();
+        
+        Player mario = playerFactory.getPlayer(PlayerType.MARIO);
+        Player wario = playerFactory.getPlayer(PlayerType.WARIO);
+        Player luigi = playerFactory.getPlayer(PlayerType.LUIGI);
+        
+        addObject(mario, 250, 80);
+        addObject(wario, 320, 80);
+        addObject(luigi, 390, 80);
+
         ButtonFactory buttonFactory = new ButtonFactory();
 
         Button startButton = buttonFactory.getButton("START");
