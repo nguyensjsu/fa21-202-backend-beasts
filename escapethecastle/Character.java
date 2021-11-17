@@ -8,7 +8,7 @@ import greenfoot.GreenfootImage;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Character extends Actor {
+public class Character extends DisplayComponent {
     private final int GRAVITY = 1;
     private int velocity;
 

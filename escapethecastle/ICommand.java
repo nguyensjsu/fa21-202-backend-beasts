@@ -6,5 +6,6 @@
  */
 public interface ICommand  
 {
-    public void execute();
+    void execute();
+    void setReceiver(IReceiver target);
 }

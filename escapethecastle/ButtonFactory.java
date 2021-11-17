@@ -1,27 +1,45 @@
 import java.util.HashMap;
-/**
- * Write a description of class ButtonFactory here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
+import greenfoot.*;
+
 public class ButtonFactory  
 {
-    HashMap<String, Button> buttonMap;
+    private HashMap<String, String> buttonImageMap;
+    private HashMap<String, ICommand> buttonCommandMap;
+    private ICommand startCommand;
+    private ICommand quitCommand;
     
     public ButtonFactory() {
-        buttonMap = new HashMap<>();
-        // define start button
-        Button startButton = new Button("images/button_start.png");
-        startButton.onClick(new StartCommand());
-        buttonMap.put("START", startButton);
-        // define quit button
-        Button quitButton = new Button("images/button_quit.png");
-        quitButton.onClick(new QuitCommand());
-        buttonMap.put("QUIT", quitButton);
+        buttonImageMap = new HashMap<>();
+        buttonCommandMap = new HashMap<>();
+        
+        buttonImageMap.put("START", "images/button_start.png");
+        buttonImageMap.put("QUIT", "images/button_quit.png");
+        
+        startCommand = new Command();
+        startCommand.setReceiver(new IReceiver() {
+            public void doAction() {
+                 Greenfoot.setWorld(new MyWorld());
+            }
+        });
+        buttonCommandMap.put("START", startCommand);
+        
+        quitCommand = new Command();
+        quitCommand.setReceiver(new IReceiver() {
+            public void doAction() {
+                 Greenfoot.stop();
+            }
+        });
+        buttonCommandMap.put("QUIT", quitCommand);
+        
     }
     
     public Button getButton(String buttonType) {
-        return buttonMap.getOrDefault(buttonType, null);
+        String imagePath = buttonImageMap.get(buttonType);
+        ICommand cmd = buttonCommandMap.get(buttonType);
+        
+        Button button = new Button(imagePath);
+        button.setCommand(cmd);
+        
+        return button;
     }
 }
