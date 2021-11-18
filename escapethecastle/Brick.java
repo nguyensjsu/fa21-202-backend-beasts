@@ -16,11 +16,11 @@ public class Brick extends DisplayComponent {
     private final int GRAVITY = 1;
     private int velocity;
     
-    public Brick() {
+    public Brick(int velocity) {
         GreenfootImage img = new GreenfootImage(getImage());
         img.scale(img.getWidth() / 5, img.getHeight() / 5);
         setImage(img);
-        velocity = 4;
+        this.velocity = velocity;
     }
 
     public void act() {

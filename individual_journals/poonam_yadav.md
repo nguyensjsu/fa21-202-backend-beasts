@@ -14,3 +14,14 @@
 * Design a basic CRC and Class Diagram
 * Code implementation
 * Graphic design
+
+## Week 2 (08/11/2021 - 14/11/2021)
+
+### Tasks completed this week
+* Created the Class Diagram and did refactor
+* Finalized design patterns based on requirement
+* Created issues for code development
+* Divide the development task
+
+### Tasks Planned Next Week
+* Code implementation
