@@ -23,14 +23,14 @@ public class StartScreen extends Screen {
      */
     private void prepare() {
 
-        Player mario = PlayerFactory.getPlayer(PlayerType.MARIO);
-        Player wario = PlayerFactory.getPlayer(PlayerType.WARIO);
-        Player luigi = PlayerFactory.getPlayer(PlayerType.LUIGI);
-
-
-        addObject(mario, 250, 80);
-        addObject(wario, 320, 80);
-        addObject(luigi, 390, 80);
+        // Adding different characters for the game
+        PlayerFactory playerFactory = new PlayerFactory();
+        Player mario = playerFactory.getPlayer(PlayerType.MARIO);
+        addComponent(mario, 250, 110);
+        Player wario = playerFactory.getPlayer(PlayerType.WARIO);
+        addComponent(wario, 330, 110);
+        Player luigi = playerFactory.getPlayer(PlayerType.LUIGI);
+        addComponent(luigi, 420, 110);
 
         //Adding the easy medium and difficult levels.
         EasyLevelButton easyLevel = new EasyLevelButton();

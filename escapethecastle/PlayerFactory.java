@@ -1,5 +1,5 @@
 public class PlayerFactory {
-    public static Player getPlayer(PlayerType playerType) {
+    public Player getPlayer(PlayerType playerType) {
         switch(playerType) {
             case MARIO: 
                 return new Mario("images/Mario.jpeg");
