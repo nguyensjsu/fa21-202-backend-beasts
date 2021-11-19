@@ -8,7 +8,6 @@ public class PlayerOption extends DisplayComponent {
         this.playerType = playerType;
         Player player = PlayerFactory.getPlayer(playerType);
         setImage(player.getImage());
-        setTransparency(170);
     }
 
     public static PlayerOption createForPlayer(PlayerType type) {

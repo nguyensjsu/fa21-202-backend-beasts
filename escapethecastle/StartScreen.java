@@ -26,9 +26,9 @@ public class StartScreen extends Screen {
         PlayerOption wario = PlayerOption.createForPlayer(PlayerType.WARIO);
         PlayerOption luigi = PlayerOption.createForPlayer(PlayerType.LUIGI);
 
-        addObject(mario, 260, 110);
-        addObject(wario, 335, 105);
-        addObject(luigi, 420, 100);
+        addComponent(mario, 260, 110);
+        addComponent(wario, 335, 105);
+        addComponent(luigi, 420, 100);
 
         //Adding the easy medium and difficult levels.
         EasyLevelButton easyLevel = new EasyLevelButton();

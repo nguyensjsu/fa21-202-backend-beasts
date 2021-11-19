@@ -4,6 +4,7 @@ class Luigi extends Player {
     private String img;
     
     public Luigi(String img) {
+        super();
         setPlayerImage(img);
     }
     
