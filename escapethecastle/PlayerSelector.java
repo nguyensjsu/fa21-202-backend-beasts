@@ -1,15 +1,11 @@
 public class PlayerSelector {
-    private static PlayerType playerType = PlayerType.MARIO;
+    private static Player player;
 
-    public static Player getPlayer() {
-        return PlayerFactory.getPlayer(playerType);
+    public static Player getChosenPlayer() {
+        return player;
     }
 
-    public static void choosePlayer(PlayerType type) {
-        playerType = type;
-    }
-
-    public static PlayerType getPlayerType() {
-        return playerType;
+    public static void choosePlayer(Player chosen) {
+        player = chosen;
     }
 }

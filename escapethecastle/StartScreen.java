@@ -22,13 +22,17 @@ public class StartScreen extends Screen {
      * That is: create the initial objects and add them to the world.
      */
     private void prepare() {
-        PlayerOption mario = PlayerOption.createForPlayer(PlayerType.MARIO);
-        PlayerOption wario = PlayerOption.createForPlayer(PlayerType.WARIO);
-        PlayerOption luigi = PlayerOption.createForPlayer(PlayerType.LUIGI);
+        Player mario = PlayerFactory.getPlayer(PlayerType.MARIO);
+        Player wario = PlayerFactory.getPlayer(PlayerType.WARIO);
+        Player luigi = PlayerFactory.getPlayer(PlayerType.LUIGI);
+        PlayerSelector.choosePlayer(mario); // Choose mario by default.
 
-        addObject(mario, 260, 110);
-        addObject(wario, 335, 105);
-        addObject(luigi, 420, 100);
+        PlayerOptionDecorator marioOption = PlayerOptionDecorator.wrapAround(mario);
+        PlayerOptionDecorator warioOption = PlayerOptionDecorator.wrapAround(wario);
+        PlayerOptionDecorator luigiOption = PlayerOptionDecorator.wrapAround(luigi);
+        addObject(marioOption, 260, 110);
+        addObject(warioOption, 335, 105);
+        addObject(luigiOption, 420, 100);
 
         //Adding the easy medium and difficult levels.
         EasyLevelButton easyLevel = new EasyLevelButton();

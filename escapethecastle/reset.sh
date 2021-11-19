@@ -1,0 +1,2 @@
+rm *.class
+rm *.ctxt
