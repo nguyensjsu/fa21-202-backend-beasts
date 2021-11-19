@@ -4,6 +4,7 @@ class Mario extends Player {
     private String img;
     
     public Mario(String img) {
+        super();
         getPlayerImage(img);
     }
     

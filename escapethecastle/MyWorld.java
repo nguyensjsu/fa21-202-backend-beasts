@@ -22,7 +22,8 @@ public class MyWorld extends World {
      * That is: create the initial objects and add them to the world.
      */
     private void prepare() {
-        Character character = new Character();
+        Player character = PlayerSelector.getPlayer();
+//        Character character = new Character();
         addObject(character, 140, 228);
         character.setLocation(69, 445);
         IGameStrategy currentStrategy = GameStrategyProvider.getGameStrategy();

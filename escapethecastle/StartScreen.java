@@ -23,9 +23,9 @@ public class StartScreen extends Screen {
      */
     private void prepare() {
 
-        Player mario = PlayerFactory.getPlayer(PlayerType.MARIO);
-        Player wario = PlayerFactory.getPlayer(PlayerType.WARIO);
-        Player luigi = PlayerFactory.getPlayer(PlayerType.LUIGI);
+        PlayerOption mario = PlayerOption.createForPlayer(PlayerType.MARIO);
+        PlayerOption wario = PlayerOption.createForPlayer(PlayerType.WARIO);
+        PlayerOption luigi = PlayerOption.createForPlayer(PlayerType.LUIGI);
 
 
         addObject(mario, 250, 80);

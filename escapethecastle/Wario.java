@@ -4,6 +4,7 @@ class Wario extends Player {
     private String img;
     
     public Wario(String img) {
+        super();
         getPlayerImage(img);
     }
     
