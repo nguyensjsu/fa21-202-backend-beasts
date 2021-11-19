@@ -1,4 +1,5 @@
 public class PlayerFactory {
+
     public static Player getPlayer(PlayerType playerType) {
         switch (playerType) {
             case MARIO:
