@@ -9,7 +9,7 @@ public abstract class Player extends DisplayComponent {
         velocity = 0;
     }
 
-    public abstract void getPlayerImage(String img);
+    public abstract void setPlayerImage(String img);
 
     /**
      * Act - do whatever the Character wants to do. This method is called whenever

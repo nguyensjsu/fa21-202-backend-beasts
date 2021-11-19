@@ -5,10 +5,10 @@ class Mario extends Player {
     
     public Mario(String img) {
         super();
-        getPlayerImage(img);
+        setPlayerImage(img);
     }
     
-    public void getPlayerImage(String img) {
+    public void setPlayerImage(String img) {
         GreenfootImage image = new GreenfootImage(img);
         image.scale(image.getWidth() / 5, image.getHeight() / 5);
         setImage(image);
