@@ -8,6 +8,10 @@ import greenfoot.*;
 public class ScoreDisplay extends DisplayComponent implements IScoreUpdateObserver {
     private int score;
 
+    public int getScore() {
+        return this.score;    
+    }
+    
     /**
      * Constructor for objects of class ScoreDisplay
      */
