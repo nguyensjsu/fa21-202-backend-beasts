@@ -31,6 +31,6 @@ public class MyWorld extends World {
         addObject(brick, 268, 76);
         brick.setLocation(271, 22);
         ScoreDisplay scoreDisplay = new ScoreDisplay();
-        addObject(scoreDisplay, 30, getHeight() - 10);
+        addObject(scoreDisplay, 650, 10);
     }
 }
