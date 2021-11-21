@@ -7,18 +7,27 @@ import greenfoot.Greenfoot;
  */
 public class GameOverScreen extends Screen {
     ScoreBoardButton scoreBoardButton;
+    private int score;
     /**
      * Constructor for objects of class GameOverScreen
      */
-    public GameOverScreen() {
+    public GameOverScreen(int score) {
         super(700, 500, 1);
+        this.score = score;
         prepare();
     }
     
     public void act() {
         if (Greenfoot.mouseClicked(scoreBoardButton)) {
-            Greenfoot.setWorld(new MyWorld());
+            Greenfoot.setWorld(new StartScreen());
         }
+    }
+
+    private String getResult(int score) {
+        if(score > 50) {
+            return "Congratulations!! You Win!";
+        }
+        return "Sorry... You Lose!";
     }
 
     /**
@@ -29,9 +38,14 @@ public class GameOverScreen extends Screen {
         ScoreBoardBackground scoreBoardBackground = new ScoreBoardBackground();
         ScoreBoardTitle scoreBoardTitle = new ScoreBoardTitle();
         scoreBoardButton = new ScoreBoardButton();
+        String result = getResult(this.score);
+        ScoreBoardResult scoreBoardResult = new ScoreBoardResult(result);
+        Score userScore = new Score(this.score);
         
-        addObject(scoreBoardBackground, 0, 0);
+        addObject(scoreBoardBackground, getHeight(), getWidth());
         addObject(scoreBoardTitle, 250, 50);
-        addObject(scoreBoardButton, 250, 400);
+        addObject(scoreBoardResult, 280, 200);
+        addObject(userScore, 230, 350);
+        addObject(scoreBoardButton, 250, 450);
     }
 }
