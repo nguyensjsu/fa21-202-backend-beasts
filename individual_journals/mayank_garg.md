@@ -29,8 +29,9 @@
 ### Tasks completed this week
 * Implemented Factory Method Pattern for creating Players (Characters)
 * Created Game Over screen
-* Implemented classes for Observer Pattern for displaying score on the screen
+* Implemented Observer Pattern for displaying score on the screen
 * Refactored the code
 
 ### Tasks Planned Next Week
 * Implement score calculation logic
+* Implement Observer Pattern for brick for score calculation
