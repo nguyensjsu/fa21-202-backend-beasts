@@ -18,8 +18,19 @@
 * Created CRCs for brainstorming
 * Created the Class Diagram based on CRCs
 * Decided on the design patterns to implement
-* Refactored of the class diagram
+* Refactored the class diagram
 * Divided work and created issue for code implementation
 
 ### Tasks Planned Next Week
 * Code implementation
+
+## Week 3 (15/11/2021 - 21/11/2021)
+
+### Tasks completed this week
+* Implemented Factory Method Pattern for creating Players (Characters)
+* Created Game Over screen
+* Implemented classes for Observer Pattern for displaying score on the screen
+* Refactored the code
+
+### Tasks Planned Next Week
+* Implement score calculation logic

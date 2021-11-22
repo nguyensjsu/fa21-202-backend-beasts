@@ -1,5 +1,4 @@
 import greenfoot.Greenfoot;
-import greenfoot.GreenfootImage;
 import greenfoot.GreenfootSound;
 
 public abstract class Player extends DisplayComponent {
