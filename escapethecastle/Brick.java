@@ -9,7 +9,7 @@ import greenfoot.GreenfootImage;
  */
 public class Brick extends DisplayComponent {
     private int vSpeed = 0;
-    private int gravity = 2;
+    private int gravity = 3;
 
     public Brick(int velocity) {
         GreenfootImage img = new GreenfootImage(getImage());
@@ -23,12 +23,10 @@ public class Brick extends DisplayComponent {
     public void act() {
         fall();
         // Added for testing Gameover screen
-        MyWorld myWorld = (MyWorld) getWorld();
-        ScoreDisplay scoreDisplay = myWorld.getScoreDisplay();
-        if (isTouching(Player.class)) {
-            GameOverScreen gameover = new GameOverScreen(scoreDisplay.getScore());
-            Greenfoot.setWorld(gameover);
-        }
+        // if (isTouching(Player.class)) {
+        //    GameOverScreen gameover = new GameOverScreen(scoreDisplay.getScore());
+        //    Greenfoot.setWorld(gameover);
+        // }
     }
 
     public void fall() {

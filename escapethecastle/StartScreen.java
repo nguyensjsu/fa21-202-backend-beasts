@@ -20,7 +20,7 @@ public class StartScreen extends Screen {
 
     public void act() {
         if (Greenfoot.isKeyDown("Enter"))
-            Greenfoot.setWorld(new MyWorld());
+            Greenfoot.setWorld(new GameScreen());
     }
 
 

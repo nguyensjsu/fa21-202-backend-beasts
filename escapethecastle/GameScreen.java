@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class MyWorld extends World {
+public class GameScreen extends Screen {
 
     private Brick currentBrick;
     private ScoreCalculator scoreCalculator;
@@ -17,7 +17,7 @@ public class MyWorld extends World {
     /**
      * Constructor for objects of class MyWorld.
      */
-    public MyWorld() {
+    public GameScreen() {
         // Create a new world with 700x500 cells with a cell size of 1x1 pixels.
         // Change the brick's size too if you change this.
         super(700, 500, 1);

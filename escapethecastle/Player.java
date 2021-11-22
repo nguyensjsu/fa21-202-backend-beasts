@@ -18,6 +18,7 @@ public abstract class Player extends DisplayComponent {
     
     public void act() {
         move();
+        push();
     }
     
     public void moveLeft() {
@@ -70,6 +71,18 @@ public abstract class Player extends DisplayComponent {
                 setLocation(getX(), getWorld().getHeight() - (getImage().getHeight()/2));
             }
         }
+    }
+    
+    public void push() {
+        Brick upRight = (Brick) getOneObjectAtOffset(getImage().getWidth() / -2, getImage().getHeight() / -2, Brick.class);
+        Brick upLeft = (Brick) getOneObjectAtOffset(getImage().getWidth() / 2, getImage().getHeight() / -2, Brick.class);
+        if(upRight != null || upLeft != null) {
+           GameScreen myWorld = (GameScreen) getWorld();
+           ScoreDisplay scoreDisplay = myWorld.getScoreDisplay();
+           GameOverScreen gameover = new GameOverScreen(scoreDisplay.getScore());
+           Greenfoot.setWorld(gameover);
+        }
+            
     }
 
     public boolean isOnSolidGround() {
