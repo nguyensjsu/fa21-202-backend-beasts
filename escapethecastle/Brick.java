@@ -14,7 +14,7 @@ public class Brick extends DisplayComponent {
     public Brick(int velocity) {
         GreenfootImage img = new GreenfootImage(getImage());
         // Width should be a divisor of the world's width (700) to allow dropping the bricks at all places.
-        // If width changes, MyWork.addNewBricks should change accordingly.
+        // If width changes, MyWorld.addNewBricks should change accordingly.
         img.scale(50, img.getHeight() / 5);
         setImage(img);
         this.vSpeed = velocity;
@@ -23,8 +23,10 @@ public class Brick extends DisplayComponent {
     public void act() {
         fall();
         // Added for testing Gameover screen
+        MyWorld myWorld = (MyWorld) getWorld();
+        ScoreDisplay scoreDisplay = myWorld.getScoreDisplay();
         if (isTouching(Player.class)) {
-            GameOverScreen gameover = new GameOverScreen(60);
+            GameOverScreen gameover = new GameOverScreen(scoreDisplay.getScore());
             Greenfoot.setWorld(gameover);
         }
     }

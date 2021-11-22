@@ -11,6 +11,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class MyWorld extends World {
 
     private Brick currentBrick;
+    private ScoreCalculator scoreCalculator;
+    private ScoreDisplay scoreDisplay;
 
     /**
      * Constructor for objects of class MyWorld.
@@ -31,8 +33,14 @@ public class MyWorld extends World {
 //        Character character = new Character();
         addObject(character, 140, 228);
         character.setLocation(69, 445);
-        ScoreDisplay scoreDisplay = new ScoreDisplay();
+        this.scoreDisplay = new ScoreDisplay();
+        this.scoreCalculator = new ScoreCalculator();
+        this.scoreCalculator.attachObserver(this.scoreDisplay);
         addObject(scoreDisplay, 650, 10);
+    }
+    
+    public ScoreDisplay getScoreDisplay() {
+        return scoreDisplay;
     }
 
     @Override
