@@ -1,4 +1,5 @@
 import greenfoot.*;
+import java.util.ArrayList;
 
 /**
  * Write a description of class Brick here.
@@ -6,15 +7,32 @@ import greenfoot.*;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Brick extends DisplayComponent {
+public class Brick extends DisplayComponent implements IBrickSubject {
     private int vSpeed = 0;
     private int gravity = 3;
     private boolean bricksTouching = false;
+    
+    static ArrayList<IBrickObserver> observers = new ArrayList<>();
+    
+    public void setScore(int score) {
+        notifyObservers(score);
+    }
+    public void attachObserver(IBrickObserver observer) {
+        observers.add(observer);
+    }
+    public void removeObserver(IBrickObserver observer) {
+        observers.remove(observer);
+    }
+    public void notifyObservers(int score) {
+        for (IBrickObserver bo: observers) {
+            bo.setScore(score);
+        }
+    }
 
     public Brick(int velocity) {
         GreenfootImage img = new GreenfootImage(getImage());
         // Width should be a divisor of the world's width (700) to allow dropping the bricks at all places.
-        // If width changes, MyWorld.addNewBricks should change accordingly.
+        // If width changes, GameScreen.addNewBricks should change accordingly.
         img.scale(50, img.getHeight() / 5);
         setImage(img);
         this.vSpeed = velocity;
@@ -24,7 +42,6 @@ public class Brick extends DisplayComponent {
         if(!bricksTouching) {
             fall();
             hitWall();
-            // Added for testing Gameover screen
             Brick below = (Brick) getOneObjectAtOffset(0, getImage().getHeight()/2, Brick.class);
             if(below != null) {
                 setLocation(getX(), below.getY() - below.getImage().getHeight()/2 - getImage().getHeight()/2);
@@ -61,6 +78,9 @@ public class Brick extends DisplayComponent {
 
     public void fall() {
         setLocation(getX(), getY() + vSpeed);
-        if (getY() >= getWorld().getHeight() - getImage().getHeight() / 2) vSpeed = 0;
+        if (getY() >= getWorld().getHeight() - getImage().getHeight() / 2) {
+            vSpeed = 0;
+            setScore(10);   
+        }
     }
 }

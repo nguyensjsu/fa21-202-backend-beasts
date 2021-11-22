@@ -1,6 +1,6 @@
 import greenfoot.*;
 /**
- * Write a description of class ScoreDisplay here.
+ * Display the current score of the player
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -20,8 +20,11 @@ public class ScoreDisplay extends DisplayComponent implements IScoreUpdateObserv
         setImage(new GreenfootImage("Score: " + this.score, 20, Color.WHITE, Color.BLACK));
     }
 
+    /**
+     * Update the current score by updateScore
+     */
     public void updateScore(int updateScore) {
-        this.score += updateScore;
+        this.score = updateScore;
         setImage(new GreenfootImage("Score: " + this.score, 20, Color.WHITE, Color.BLACK));
     }
 }
