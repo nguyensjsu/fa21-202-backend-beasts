@@ -78,9 +78,6 @@ public class Brick extends DisplayComponent implements IBrickSubject {
 
     public void fall() {
         setLocation(getX(), getY() + vSpeed);
-        if (getY() >= getWorld().getHeight() - getImage().getHeight() / 2) {
-            vSpeed = 0;
-            setScore(10);   
-        }
+        if (getY() >= getWorld().getHeight() - getImage().getHeight() / 2) vSpeed = 0;   
     }
 }

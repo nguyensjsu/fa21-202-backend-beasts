@@ -15,7 +15,16 @@ public class ScoreCalculator implements IScoreUpdateSubject, IBrickObserver
     }
     
     public void setScore(int score) {
-        this.updateScore += score;
+        IGameStrategy currentStrategy = GameStrategyProvider.getGameStrategy();
+        int brickSpeed = currentStrategy.getBrickSpeed();
+        switch(brickSpeed) {
+            case 1: this.updateScore += score * 10;
+            break;
+            case 2: this.updateScore += score * 25;
+            break;
+            case 4: this.updateScore += score * 50;
+            break;
+        }
         notifyObservers(this.updateScore);
     }
     
