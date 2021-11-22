@@ -11,7 +11,6 @@ public abstract class Player extends DisplayComponent {
     private static GreenfootSound jumpSound = new GreenfootSound("sounds/jump.wav");
 
     protected Player() {
-        velocity = 0;
         jumpSound.setVolume(90);
     }
 
