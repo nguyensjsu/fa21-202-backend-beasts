@@ -19,3 +19,12 @@
 * Divided work and created issues for further development
 ### Planned Next Week
 * Start code implementation
+
+## Week 3 (15/11/2021 - 21/11/2021)
+
+### Finished This Week
+* Implemented base classes for composite pattern to display screen components.
+* Refactored commmand pattern to add receiver for buttons.
+* Fix logic to land properly on block after jump.
+### Planned Next Week
+* Implement block push logic.
