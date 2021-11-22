@@ -1,4 +1,5 @@
-import greenfoot.*;
+import greenfoot.Greenfoot;
+import greenfoot.GreenfootImage;
 
 /**
  * Write a description of class Brick here.
@@ -14,10 +15,11 @@ public class Brick extends DisplayComponent {
 
     private final int GRAVITY = 1;
     private int velocity;
-    
+
     public Brick(int velocity) {
         GreenfootImage img = new GreenfootImage(getImage());
-        img.scale(img.getWidth() / 5, img.getHeight() / 5);
+        // Width should be a divisor of the world's width (700) to allow dropping the bricks at all places.
+        img.scale(50, img.getHeight() / 5);
         setImage(img);
         this.velocity = velocity;
     }
@@ -25,7 +27,7 @@ public class Brick extends DisplayComponent {
     public void act() {
         fall();
         // Added for testing Gameover screen
-        if(isTouching(Player.class)) {
+        if (isTouching(Player.class)) {
             GameOverScreen gameover = new GameOverScreen(60);
             Greenfoot.setWorld(gameover);
         }
