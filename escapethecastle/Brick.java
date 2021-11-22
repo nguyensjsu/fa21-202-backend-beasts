@@ -23,6 +23,7 @@ public class Brick extends DisplayComponent {
     public void act() {
         fall();
         // Added for testing Gameover screen
+        
         // if (isTouching(Player.class)) {
         //    GameOverScreen gameover = new GameOverScreen(scoreDisplay.getScore());
         //    Greenfoot.setWorld(gameover);

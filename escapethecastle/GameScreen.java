@@ -30,7 +30,6 @@ public class GameScreen extends Screen {
      */
     private void prepare() {
         Player character = PlayerSelector.getChosenPlayer();
-//        Character character = new Character();
         addObject(character, 140, 228);
         character.setLocation(69, 445);
         this.scoreDisplay = new ScoreDisplay();

@@ -55,16 +55,11 @@ public abstract class Player extends DisplayComponent {
             fall();
         } else {
             vSpeed = 0;
-            Brick rightBrick = (Brick) getOneObjectAtOffset(getImage().getWidth() / -2, getImage().getHeight() / 2, Brick.class);
-            Brick leftBrick = (Brick) getOneObjectAtOffset(getImage().getWidth() / 2, getImage().getHeight() / 2, Brick.class);
+            Brick down = (Brick) getOneObjectAtOffset(0, getImage().getHeight() / 2, Brick.class);
             
-            if(rightBrick != null) {
+            if(down != null) {
                 // land on brick
-                int brickTopLoc = rightBrick.getY() - (rightBrick.getImage().getHeight()/2);
-                setLocation(getX(), brickTopLoc - getImage().getHeight()/2);
-            } else if(leftBrick != null) {
-                // land on brick
-                int brickTopLoc = leftBrick.getY() - (leftBrick.getImage().getHeight()/2);
+                int brickTopLoc = down.getY() - (down.getImage().getHeight()/2);
                 setLocation(getX(), brickTopLoc - getImage().getHeight()/2);
             } else {
                 // land on ground
@@ -74,13 +69,22 @@ public abstract class Player extends DisplayComponent {
     }
     
     public void push() {
-        Brick upRight = (Brick) getOneObjectAtOffset(getImage().getWidth() / -2, getImage().getHeight() / -2, Brick.class);
-        Brick upLeft = (Brick) getOneObjectAtOffset(getImage().getWidth() / 2, getImage().getHeight() / -2, Brick.class);
-        if(upRight != null || upLeft != null) {
+        Brick up = (Brick) getOneObjectAtOffset(0, getImage().getHeight() / -2, Brick.class);
+        if(up != null) {
            GameScreen myWorld = (GameScreen) getWorld();
            ScoreDisplay scoreDisplay = myWorld.getScoreDisplay();
            GameOverScreen gameover = new GameOverScreen(scoreDisplay.getScore());
            Greenfoot.setWorld(gameover);
+        }
+        
+        Brick right = (Brick) getOneObjectAtOffset(getImage().getWidth()/2, 0, Brick.class);
+        if(right != null) {
+            right.setLocation(getX() + getImage().getWidth()/2 + right.getImage().getWidth()/2, right.getY());
+        }
+        
+        Brick left = (Brick) getOneObjectAtOffset(getImage().getWidth()/-2, 0, Brick.class);
+        if(left != null) {
+            left.setLocation(getX() - getImage().getWidth()/2 - left.getImage().getWidth()/2, left.getY());
         }
             
     }
