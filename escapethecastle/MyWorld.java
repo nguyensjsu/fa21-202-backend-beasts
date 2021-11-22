@@ -63,7 +63,7 @@ public class MyWorld extends World {
             Brick brick = new Brick(currentStrategy.getBrickSpeed());
             currentBrick = brick;
             addObject(brick, 268, 76);
-            brick.setLocation(random.nextInt(0, bucketSize) * 50 + brick.getWidth() / 2, 22);
+            brick.setLocation(random.nextInt(0, bucketSize) * brick.getWidth() + brick.getWidth() / 2, 22);
         }
     }
 }
