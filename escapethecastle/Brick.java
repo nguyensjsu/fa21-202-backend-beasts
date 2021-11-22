@@ -33,9 +33,9 @@ public class Brick extends DisplayComponent {
 
     public void fall() {
         setLocation(getX(), getY() + velocity);
-        if (getY() > getWorld().getHeight() - getImage().getHeight() / 2 - 1) {
-            Greenfoot.playSound("sounds/brick-hit-ground.wav");
+        if (velocity != 0 && getY() > getWorld().getHeight() - getImage().getHeight() / 2 - 1) {
             velocity = 0;
+            Greenfoot.playSound("sounds/brick-hit-ground.wav");
         }
     }
 }
