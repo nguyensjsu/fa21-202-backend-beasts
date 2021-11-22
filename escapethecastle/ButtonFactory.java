@@ -19,6 +19,7 @@ public class ButtonFactory
         startCommand.setReceiver(new IReceiver() {
             public void doAction() {
                  Greenfoot.setWorld(new MyWorld());
+                 Greenfoot.playSound("sounds/button-click.wav");
             }
         });
         buttonCommandMap.put("START", startCommand);
