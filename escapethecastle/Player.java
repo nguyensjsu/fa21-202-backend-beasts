@@ -3,8 +3,11 @@ import greenfoot.GreenfootImage;
 import greenfoot.GreenfootSound;
 
 public abstract class Player extends DisplayComponent {
-    private final int GRAVITY = 1;
-    private int velocity;
+    private int speed = 7;
+    private int vSpeed = 0;
+    private int gravity = 2;
+    private int jumpStrength = 30;
+
     private static GreenfootSound jumpSound = new GreenfootSound("sounds/jump.wav");
 
     protected Player() {
@@ -13,51 +16,72 @@ public abstract class Player extends DisplayComponent {
     }
 
     public abstract void setPlayerImage(String img);
-
-    /**
-     * Act - do whatever the Character wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    
     public void act() {
-        // Add your action code here.
-        fall();
-        if (Greenfoot.isKeyDown("up") && isOnSolidGround()) jump();
         move();
+    }
+    
+    public void moveLeft() {
+        setLocation(getX() - speed, getY());
+    }
+    
+    public void moveRight() {
+        setLocation(getX() + speed, getY());
     }
 
     public void fall() {
-        setLocation(getX(), getY() + velocity);
-        if (isOnSolidGround()) velocity = 0;
-        else velocity += GRAVITY;
+        setLocation(getX(), getY() + vSpeed);
+        vSpeed = vSpeed + gravity;
     }
 
     public void jump() {
+        vSpeed = -jumpStrength;
+        fall();
         jumpSound.play();
-        velocity = -20;
     }
 
 
     public void move() {
-        int x = getX();
-        int y = getY();
-
-        if (Greenfoot.isKeyDown("up")) y--;
-        if (Greenfoot.isKeyDown("left")) x -= 2;
-        if (Greenfoot.isKeyDown("down")) y++;
-        if (Greenfoot.isKeyDown("right")) x += 2;
-        setLocation(x, y);
+         if(Greenfoot.isKeyDown("left")){
+            moveLeft();
+        }
+        if(Greenfoot.isKeyDown("right")){
+            moveRight();
+        }
+        if(Greenfoot.isKeyDown("up") && isOnSolidGround()){
+            jump();
+        }
+        if(!isOnSolidGround()) {
+            fall();
+        } else {
+            vSpeed = 0;
+            Brick rightBrick = (Brick) getOneObjectAtOffset(getImage().getWidth() / -2, getImage().getHeight() / 2, Brick.class);
+            Brick leftBrick = (Brick) getOneObjectAtOffset(getImage().getWidth() / 2, getImage().getHeight() / 2, Brick.class);
+            
+            if(rightBrick != null) {
+                // land on brick
+                int brickTopLoc = rightBrick.getY() - (rightBrick.getImage().getHeight()/2);
+                setLocation(getX(), brickTopLoc - getImage().getHeight()/2);
+            } else if(leftBrick != null) {
+                // land on brick
+                int brickTopLoc = leftBrick.getY() - (leftBrick.getImage().getHeight()/2);
+                setLocation(getX(), brickTopLoc - getImage().getHeight()/2);
+            } else {
+                // land on ground
+                setLocation(getX(), getWorld().getHeight() - (getImage().getHeight()/2));
+            }
+        }
     }
 
     public boolean isOnSolidGround() {
-        boolean isOnGround = false;
-        if (getY() > getWorld().getHeight() - getImage().getHeight() / 2 - 1) isOnGround = true;
+        if (getY() >= getWorld().getHeight() - (getImage().getHeight() / 2)) return true;
 
         int imageWidth = getImage().getWidth();
         int imageHeight = getImage().getHeight();
 
         if (getOneObjectAtOffset(imageWidth / -2, imageHeight / 2, Brick.class) != null || getOneObjectAtOffset(imageWidth / 2, imageHeight / 2, Brick.class) != null) {
-            isOnGround = true;
+            return true;
         }
-        return isOnGround;
+        return false;
     }
 }

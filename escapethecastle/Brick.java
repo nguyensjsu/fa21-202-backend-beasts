@@ -7,19 +7,14 @@ import greenfoot.*;
  * @version (a version number or a date)
  */
 public class Brick extends DisplayComponent {
-    /**
-     * Act - do whatever the Brick wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-
-    private final int GRAVITY = 1;
-    private int velocity;
+    private int vSpeed = 0;
+    private int gravity = 2;
     
     public Brick(int velocity) {
         GreenfootImage img = new GreenfootImage(getImage());
         img.scale(img.getWidth() / 5, img.getHeight() / 5);
         setImage(img);
-        this.velocity = velocity;
+        this.vSpeed = velocity;
     }
 
     public void act() {
@@ -32,10 +27,7 @@ public class Brick extends DisplayComponent {
     }
 
     public void fall() {
-        setLocation(getX(), getY() + velocity);
-        if (velocity != 0 && getY() > getWorld().getHeight() - getImage().getHeight() / 2 - 1) {
-            velocity = 0;
-            Greenfoot.playSound("sounds/brick-hit-ground.wav");
-        }
+        setLocation(getX(), getY() + vSpeed);
+        if (getY() >= getWorld().getHeight() - getImage().getHeight() / 2) vSpeed = 0;
     }
 }
