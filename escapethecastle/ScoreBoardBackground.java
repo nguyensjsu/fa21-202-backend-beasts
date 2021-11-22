@@ -12,7 +12,7 @@ public class ScoreBoardBackground  extends DisplayComponent {
      */
     public ScoreBoardBackground()
     {
-        GreenfootImage backgroundImage = new GreenfootImage("brick.jpg");
+        GreenfootImage backgroundImage = new GreenfootImage("background.jpeg");
         backgroundImage.scale(1000, 1000);
         setImage(backgroundImage);
     }

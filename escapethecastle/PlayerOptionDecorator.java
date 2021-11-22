@@ -1,8 +1,10 @@
 import greenfoot.Greenfoot;
 import greenfoot.GreenfootImage;
+import greenfoot.GreenfootSound;
 
 public class PlayerOptionDecorator extends DisplayComponent {
     private final Player wrappedPlayer;
+    private static GreenfootSound clickSound = new GreenfootSound("sounds/button-click.wav");
 
     private PlayerOptionDecorator(Player wrapped) {
         this.wrappedPlayer = wrapped;
@@ -20,6 +22,7 @@ public class PlayerOptionDecorator extends DisplayComponent {
             setTransparency(255);
         }
         if (Greenfoot.mouseClicked(this)) {
+            clickSound.play();
             PlayerSelector.choosePlayer(wrappedPlayer);
             setTransparency(170);
         }
