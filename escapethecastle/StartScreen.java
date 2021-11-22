@@ -1,6 +1,9 @@
 import greenfoot.Greenfoot;
+import greenfoot.GreenfootSound;
 
 public class StartScreen extends Screen {
+    
+    public static GreenfootSound bgm = new GreenfootSound("sounds/background-1.wav");
 
     /**
      * Constructor for objects of class StartScreen.
@@ -10,10 +13,14 @@ public class StartScreen extends Screen {
         super(700, 500, 1);
         prepare();
     }
+    
+    public void started() {
+        bgm.playLoop();
+    }
 
     public void act() {
         if (Greenfoot.isKeyDown("Enter"))
-            Greenfoot.setWorld(new StartScreen());
+            Greenfoot.setWorld(new MyWorld());
     }
 
 

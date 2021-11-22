@@ -1,5 +1,6 @@
 import greenfoot.Greenfoot;
 import greenfoot.GreenfootImage;
+import greenfoot.GreenfootSound;
 
 public abstract class Player extends DisplayComponent {
     private int speed = 7;
@@ -7,12 +8,14 @@ public abstract class Player extends DisplayComponent {
     private int gravity = 2;
     private int jumpStrength = 30;
 
+    private static GreenfootSound jumpSound = new GreenfootSound("sounds/jump.wav");
+
     protected Player() {
-        vSpeed = 0;
+        velocity = 0;
+        jumpSound.setVolume(90);
     }
 
     public abstract void setPlayerImage(String img);
-
     
     public void act() {
         move();
@@ -34,6 +37,7 @@ public abstract class Player extends DisplayComponent {
     public void jump() {
         vSpeed = -jumpStrength;
         fall();
+        jumpSound.play();
     }
 
 

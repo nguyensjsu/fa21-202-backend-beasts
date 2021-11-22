@@ -1,9 +1,11 @@
 import greenfoot.Greenfoot;
 import greenfoot.GreenfootImage;
+import greenfoot.GreenfootSound;
 
 public class GameStrategyButton extends DisplayComponent {
 
     private IGameStrategy gameStrategy;
+    private static GreenfootSound clickSound = new GreenfootSound("sounds/button-click.wav");
 
     public GameStrategyButton(GreenfootImage image, IGameStrategy gameStrategy) {
         this.gameStrategy = gameStrategy;
@@ -16,6 +18,7 @@ public class GameStrategyButton extends DisplayComponent {
             setTransparency(255);
         }
         if (Greenfoot.mouseClicked(this)) {
+            clickSound.play();
             GameStrategyProvider.setGameStrategy(gameStrategy);
             setTransparency(170);
         }

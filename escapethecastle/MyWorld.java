@@ -30,5 +30,7 @@ public class MyWorld extends World {
         Brick brick = new Brick(currentStrategy.getBrickSpeed());
         addObject(brick, 268, 76);
         brick.setLocation(271, 22);
+        ScoreDisplay scoreDisplay = new ScoreDisplay();
+        addObject(scoreDisplay, 650, 10);
     }
 }

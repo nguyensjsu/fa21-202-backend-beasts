@@ -1,5 +1,6 @@
 import java.util.HashMap;
-import greenfoot.*;
+import greenfoot.GreenfootSound;
+import greenfoot.Greenfoot;
 
 public class ButtonFactory  
 {
@@ -7,6 +8,9 @@ public class ButtonFactory
     private HashMap<String, ICommand> buttonCommandMap;
     private ICommand startCommand;
     private ICommand quitCommand;
+    private ICommand replayCommand;
+    
+    private static GreenfootSound clickSound = new GreenfootSound("sounds/button-click.wav");
     
     public ButtonFactory() {
         buttonImageMap = new HashMap<>();
@@ -14,10 +18,12 @@ public class ButtonFactory
         
         buttonImageMap.put("START", "images/button_start.png");
         buttonImageMap.put("QUIT", "images/button_quit.png");
+        buttonImageMap.put("REPLAY", "images/button_replay.png");
         
         startCommand = new Command();
         startCommand.setReceiver(new IReceiver() {
             public void doAction() {
+                 clickSound.play();
                  Greenfoot.setWorld(new MyWorld());
             }
         });
@@ -26,11 +32,21 @@ public class ButtonFactory
         quitCommand = new Command();
         quitCommand.setReceiver(new IReceiver() {
             public void doAction() {
+                 clickSound.play();
+                 StartScreen.bgm.stop();
                  Greenfoot.stop();
             }
         });
         buttonCommandMap.put("QUIT", quitCommand);
         
+        replayCommand = new Command();
+        replayCommand.setReceiver(new IReceiver() {
+           public void doAction() {
+               clickSound.play();
+               Greenfoot.setWorld(new StartScreen());
+           }
+        });
+        buttonCommandMap.put("REPLAY", replayCommand);
     }
     
     public Button getButton(String buttonType) {

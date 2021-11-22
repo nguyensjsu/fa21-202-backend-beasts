@@ -1,5 +1,4 @@
-import greenfoot.Actor;
-import greenfoot.GreenfootImage;
+import greenfoot.*;
 
 /**
  * Write a description of class Brick here.
@@ -20,6 +19,11 @@ public class Brick extends DisplayComponent {
 
     public void act() {
         fall();
+        // Added for testing Gameover screen
+        if(isTouching(Player.class)) {
+            GameOverScreen gameover = new GameOverScreen(60);
+            Greenfoot.setWorld(gameover);
+        }
     }
 
     public void fall() {
