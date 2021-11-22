@@ -1,5 +1,4 @@
-import greenfoot.Greenfoot;
-import greenfoot.GreenfootImage;
+import greenfoot.*;
 
 /**
  * Write a description of class Brick here.
@@ -10,6 +9,7 @@ import greenfoot.GreenfootImage;
 public class Brick extends DisplayComponent {
     private int vSpeed = 0;
     private int gravity = 3;
+    private boolean bricksTouching = false;
 
     public Brick(int velocity) {
         GreenfootImage img = new GreenfootImage(getImage());
@@ -21,13 +21,42 @@ public class Brick extends DisplayComponent {
     }
 
     public void act() {
-        fall();
-        // Added for testing Gameover screen
-        
-        // if (isTouching(Player.class)) {
-        //    GameOverScreen gameover = new GameOverScreen(scoreDisplay.getScore());
-        //    Greenfoot.setWorld(gameover);
-        // }
+        if(!bricksTouching) {
+            fall();
+            hitWall();
+            // Added for testing Gameover screen
+            Brick below = (Brick) getOneObjectAtOffset(0, getImage().getHeight()/2, Brick.class);
+            if(below != null) {
+                setLocation(getX(), below.getY() - below.getImage().getHeight()/2 - getImage().getHeight()/2);
+            }
+            
+            Brick left = (Brick) getOneObjectAtOffset(getImage().getWidth()/-2, 0, Brick.class);
+            if(left != null) {
+                bricksTouching = true;
+                setLocation(left.getX() + left.getImage().getWidth()/2 + getImage().getWidth()/2, getY());
+            } else {
+                bricksTouching = false;
+            }
+            
+            Brick right = (Brick) getOneObjectAtOffset(getImage().getWidth()/2, 0, Brick.class);
+            if(right != null) {
+                bricksTouching = true;
+                setLocation(right.getX() - right.getImage().getWidth()/2 - getImage().getWidth()/2, getY());
+            } else {
+                bricksTouching = false;
+            }
+        }
+    }
+    
+    public boolean bricksTouching() {
+        return bricksTouching;
+    }
+    
+    public void hitWall() {
+        if(getX()+(getImage().getWidth()/2) >= getWorld().getWidth())
+            setLocation(getWorld().getWidth() - (getImage().getWidth()/2), getY());
+        if(getX()-getImage().getWidth()/2 <= 0)
+            setLocation(getImage().getWidth()/2, getY());
     }
 
     public void fall() {

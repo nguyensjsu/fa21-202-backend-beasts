@@ -42,7 +42,8 @@ public abstract class Player extends DisplayComponent {
 
 
     public void move() {
-         if(Greenfoot.isKeyDown("left")){
+        hitWall();
+        if(Greenfoot.isKeyDown("left")){
             moveLeft();
         }
         if(Greenfoot.isKeyDown("right")){
@@ -68,7 +69,15 @@ public abstract class Player extends DisplayComponent {
         }
     }
     
+    public void hitWall() {
+        if(getX()+(getImage().getWidth()/2) >= getWorld().getWidth())
+            setLocation(getWorld().getWidth() - (getImage().getWidth()/2), getY());
+        if(getX()-getImage().getWidth()/2 <= 0)
+            setLocation(getImage().getWidth()/2, getY());
+    }
+    
     public void push() {
+        // game over if brick bottom touches player
         Brick up = (Brick) getOneObjectAtOffset(0, getImage().getHeight() / -2, Brick.class);
         if(up != null) {
            GameScreen myWorld = (GameScreen) getWorld();
@@ -77,15 +86,22 @@ public abstract class Player extends DisplayComponent {
            Greenfoot.setWorld(gameover);
         }
         
-        Brick right = (Brick) getOneObjectAtOffset(getImage().getWidth()/2, 0, Brick.class);
-        if(right != null) {
-            right.setLocation(getX() + getImage().getWidth()/2 + right.getImage().getWidth()/2, right.getY());
-        }
-        
         Brick left = (Brick) getOneObjectAtOffset(getImage().getWidth()/-2, 0, Brick.class);
         if(left != null) {
-            left.setLocation(getX() - getImage().getWidth()/2 - left.getImage().getWidth()/2, left.getY());
+            if(!left.bricksTouching()) {
+                left.setLocation(getX() - getImage().getWidth()/2 - left.getImage().getWidth()/2, left.getY());
+            }
+            setLocation(left.getX() + left.getImage().getWidth()/2 + getImage().getWidth()/2, getY());
         }
+        
+        Brick right = (Brick) getOneObjectAtOffset(getImage().getWidth()/2, 0, Brick.class);
+        if(right != null) {
+            if(!right.bricksTouching()) {
+                right.setLocation(getX() + getImage().getWidth()/2 + right.getImage().getWidth()/2, right.getY());
+            }
+            setLocation(right.getX() - right.getImage().getWidth()/2 - getImage().getWidth()/2, getY());
+        }
+        
             
     }
 
