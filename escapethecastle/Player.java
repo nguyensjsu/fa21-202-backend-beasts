@@ -109,7 +109,7 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
         Brick up = (Brick) getOneObjectAtOffset(0, getImage().getHeight() / -2, Brick.class);
         if (up != null && !up.isOnGround()) {
             //Adding code for score calculator when a player dies.
-            notifyObservers(PlayerFinalState.WON);
+            notifyObservers(PlayerFinalState.DIED);
         }
 
         Brick left = (Brick) getOneObjectAtOffset(getImage().getWidth() / -2, 0, Brick.class);
