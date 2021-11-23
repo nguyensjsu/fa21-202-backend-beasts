@@ -37,9 +37,9 @@ public class StartScreen extends Screen {
         PlayerOptionDecorator marioOption = PlayerOptionDecorator.wrapAround(mario);
         PlayerOptionDecorator warioOption = PlayerOptionDecorator.wrapAround(wario);
         PlayerOptionDecorator luigiOption = PlayerOptionDecorator.wrapAround(luigi);
-        addObject(marioOption, 260, 110);
-        addObject(warioOption, 335, 105);
-        addObject(luigiOption, 420, 100);
+        addObject(marioOption, 250, 110);
+        addObject(warioOption, 335, 110);
+        addObject(luigiOption, 420, 110);
 
         //Adding the easy medium and difficult levels.
         EasyLevelButton easyLevel = new EasyLevelButton();

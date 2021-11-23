@@ -1,4 +1,5 @@
 import greenfoot.GreenfootImage;
+import greenfoot.GreenfootSound;
 
 import java.util.ArrayList;
 
@@ -10,9 +11,11 @@ import java.util.ArrayList;
  */
 public class Brick extends DisplayComponent implements IBrickSubject {
     private int vSpeed = 0;
-    private int gravity = 3;
+    private int gravity = 0;
     private boolean shouldNotify = true;
     private boolean bricksTouching = false;
+    private boolean hasPlayedSound = false;
+    private static final GreenfootSound brickSound = new GreenfootSound("sounds/brick-hit-ground.wav");
 
     private final ArrayList<IBrickObserver> observers = new ArrayList<>();
 
@@ -41,7 +44,13 @@ public class Brick extends DisplayComponent implements IBrickSubject {
 
     public void act() {
         if (!isOnGround()) {
+            hasPlayedSound = false;
             fall();
+        } else {
+            if(!hasPlayedSound) {
+                brickSound.play();
+                hasPlayedSound = true;
+            }
         }
         // Use shouldNotify to prevent notifying even after a complete fall.
         if (shouldNotify && isOnGround()) {
@@ -50,21 +59,28 @@ public class Brick extends DisplayComponent implements IBrickSubject {
         }
         if (!bricksTouching) {
             hitWall();
-
-            Brick left = (Brick) getOneObjectAtOffset(getImage().getWidth() / -2, 0, Brick.class);
-            if (left != null) {
-                bricksTouching = true;
-                setLocation(left.getX() + left.getImage().getWidth() / 2 + getImage().getWidth() / 2, getY());
-            } else {
-                bricksTouching = false;
-            }
-
-            Brick right = (Brick) getOneObjectAtOffset(getImage().getWidth() / 2, 0, Brick.class);
-            if (right != null) {
-                bricksTouching = true;
-                setLocation(right.getX() - right.getImage().getWidth() / 2 - getImage().getWidth() / 2, getY());
-            } else {
-                bricksTouching = false;
+            if(isTouching(Brick.class)) {
+                Brick below = (Brick) getOneObjectAtOffset(0, getImage().getHeight()/2, Brick.class);
+                if(below != null) {
+                    setLocation(getX(), below.getY() - below.getImage().getHeight()/2 - getImage().getHeight()/2);
+                }
+                
+                Brick top = (Brick) getOneObjectAtOffset(0, getImage().getHeight()/-2, Brick.class);
+                if(top != null) {
+                    bricksTouching = true;
+                }
+                
+                Brick left = (Brick) getOneObjectAtOffset(getImage().getWidth()/-2, 0, Brick.class);
+                if(left != null) {
+                    bricksTouching = true;
+                    setLocation(left.getX() + left.getImage().getWidth()/2 + getImage().getWidth()/2, getY());
+                }
+                
+                Brick right = (Brick) getOneObjectAtOffset(getImage().getWidth()/2, 0, Brick.class);
+                if(right != null) {
+                    bricksTouching = true;
+                    setLocation(right.getX() - right.getImage().getWidth()/2 - getImage().getWidth()/2, getY());
+                }
             }
         }
     }
@@ -93,5 +109,10 @@ public class Brick extends DisplayComponent implements IBrickSubject {
 
     public void fall() {
         setLocation(getX(), getY() + vSpeed);
+        vSpeed = vSpeed + gravity;
+        if (getY() >= getWorld().getHeight() - getImage().getHeight() / 2){
+            vSpeed = 0;
+            setLocation(getX(), getWorld().getHeight() - (getImage().getHeight()/2));
+        }
     }
 }

@@ -15,6 +15,7 @@ public class ScoreCalculator implements IScoreUpdateSubject, IBrickObserver, IPl
     @Override
     public void notifyBrickFall() {
         this.numberOfBricks++;
+        notifyLevelCompleted();
     }
 
     public void attachObserver(IScoreUpdateObserver observer) {

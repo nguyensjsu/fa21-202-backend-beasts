@@ -1,15 +1,17 @@
 import greenfoot.*;
 
 class Luigi extends Player {
-    private String img;
+    private final int imageHeight = 50;
+    private final int imageWidth = 40;
     
-    public Luigi(String img) {
-        setPlayerImage(img);
+    public Luigi(String runSequence, String playerImage) {
+        setRunSequence(runSequence);
+        setPlayerImage(playerImage);
     }
     
     public void setPlayerImage(String img) {
-        GreenfootImage image = new GreenfootImage(img);
-        image.scale(image.getWidth() / 18, image.getHeight() / 18);
-        setImage(image);
+        playerImage = new GreenfootImage(img);
+        playerImage.scale(playerImage.getWidth()/4, playerImage.getHeight()/4);
     }
+    
 }
