@@ -43,7 +43,7 @@ public class GameScreen extends Screen implements IPlayerObserver {
         scoreCalculator.attachObserver(scoreDisplay);
 
         addObject(door, getWidth() - door.getWidth() / 3, getHeight() - door.getHeight() / 2);
-        addObject(scoreDisplay, 650, 10);
+        addObject(scoreDisplay, 600, 10);
         addObject(player, 69, 445);
     }
 
