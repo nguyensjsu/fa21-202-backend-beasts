@@ -1,14 +1,21 @@
 import greenfoot.Actor;
 import greenfoot.Greenfoot;
 import greenfoot.GreenfootSound;
+import greenfoot.GreenfootImage;
 
 import java.util.ArrayList;
 
 public abstract class Player extends DisplayComponent implements IPlayerSubject {
     private final int speed = 7;
     private int vSpeed = 0;
-    private final int gravity = 2;
-    private final int jumpStrength = 30;
+    private int gravity = 3;
+    private int jumpStrength = 30;
+    
+    private GreenfootImage[] playerRightImages;
+    private GreenfootImage[] playerLeftImages;
+    protected GreenfootImage playerImage;
+    private int currentImage = 0;
+
 
     private final ArrayList<IPlayerObserver> playerObservers = new ArrayList<>();
     private static final GreenfootSound jumpSound = new GreenfootSound("sounds/jump.wav");
@@ -16,6 +23,10 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
     protected Player() {
         vSpeed = 0;
         jumpSound.setVolume(90);
+    }
+    
+    public GreenfootImage getPlayerImage() {
+        return playerImage;
     }
 
     @Override
@@ -42,6 +53,22 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
     }
 
     public abstract void setPlayerImage(String img);
+    
+    protected void setRunSequence(String img) {
+        GreenfootImage bigImage = new GreenfootImage(img);
+        int w=bigImage.getWidth(), h = bigImage.getHeight();
+        int numImagesAcross=4;
+        playerRightImages = new GreenfootImage[numImagesAcross];
+        playerLeftImages = new GreenfootImage[numImagesAcross];
+        for(int x=0; x<numImagesAcross; x++) {
+            playerRightImages[x] = new GreenfootImage(w/numImagesAcross, h);
+            playerLeftImages[x] = new GreenfootImage(w/numImagesAcross, h);
+            playerRightImages[x].drawImage(bigImage, -w*x/numImagesAcross, 0);
+            playerLeftImages[x].drawImage(bigImage, -w*x/numImagesAcross, 0);
+            playerLeftImages[x].mirrorHorizontally();
+        }
+        setImage(playerRightImages[0]);
+    }
 
     public void act() {
         move();
@@ -58,10 +85,20 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
 
     public void moveLeft() {
         setLocation(getX() - speed, getY());
+        setImage(playerLeftImages[currentImage]);
+        currentImage++;
+        if(currentImage == playerRightImages.length) {
+            currentImage = 0;
+        }
     }
 
     public void moveRight() {
         setLocation(getX() + speed, getY());
+        setImage(playerRightImages[currentImage]);
+        currentImage++;
+        if(currentImage == playerRightImages.length) {
+            currentImage = 0;
+        }
     }
 
     public void fall() {
@@ -91,8 +128,16 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
             fall();
         } else {
             vSpeed = 0;
-            Brick down = (Brick) getOneObjectAtOffset(0, getImage().getHeight() / 2, Brick.class);
-
+            push();
+            
+            int imageHeight = getImage().getHeight();
+            int imageWidth = getImage().getWidth();
+            Brick down = (Brick) (getOneObjectAtOffset(0, imageHeight / 2, Brick.class) != null ?
+                            getOneObjectAtOffset(0, imageHeight / 2, Brick.class) : 
+                            getOneObjectAtOffset(imageWidth / -2, imageHeight / 2, Brick.class) != null ?
+                            getOneObjectAtOffset(imageWidth / -2, imageHeight / 2, Brick.class) : 
+                            getOneObjectAtOffset(imageWidth / 2, imageHeight / 2, Brick.class) != null ?
+                            getOneObjectAtOffset(imageWidth / 2, imageHeight / 2, Brick.class) : null);
             if (down != null) {
                 // land on brick
                 int brickTopLoc = down.getY() - (down.getImage().getHeight() / 2);
@@ -143,7 +188,9 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
         int imageWidth = getImage().getWidth();
         int imageHeight = getImage().getHeight();
 
-        if (getOneObjectAtOffset(imageWidth / -2, imageHeight / 2, Brick.class) != null || getOneObjectAtOffset(imageWidth / 2, imageHeight / 2, Brick.class) != null) {
+        if (getOneObjectAtOffset(imageWidth / -2, imageHeight / 2, Brick.class) != null || 
+        getOneObjectAtOffset(imageWidth / 2, imageHeight / 2, Brick.class) != null || 
+        getOneObjectAtOffset(0, imageHeight / 2, Brick.class) != null) {
             return true;
         }
         return false;

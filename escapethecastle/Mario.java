@@ -1,16 +1,17 @@
 import greenfoot.*;
 
 class Mario extends Player {
-    private String img;
+    private final int imageHeight = 50;
+    private final int imageWidth = 40;
     
-    public Mario(String img) {
-        super();
-        setPlayerImage(img);
+    public Mario(String runSequence, String playerImage) {
+        setRunSequence(runSequence);
+        setPlayerImage(playerImage);
     }
     
     public void setPlayerImage(String img) {
-        GreenfootImage image = new GreenfootImage(img);
-        image.scale(image.getWidth() / 25, image.getHeight() / 25);
-        setImage(image);
+        playerImage = new GreenfootImage(img);
+        playerImage.scale(playerImage.getWidth()/25, playerImage.getHeight()/25);
     }
+    
 }

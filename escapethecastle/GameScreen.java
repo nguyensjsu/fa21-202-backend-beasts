@@ -33,14 +33,15 @@ public class GameScreen extends Screen implements IPlayerObserver {
         Player player = PlayerSelector.getChosenPlayer();
         scoreDisplay = new ScoreDisplay();
         scoreCalculator = new ScoreCalculator();
+        door = new Door();
 
         // Attach the score calculator to notify for the score.
         player.attachObserver(scoreCalculator);
         // Attach GameScreen as observer to listen the player's state.
         player.attachObserver(this);
+        player.getImage().setTransparency(255);
         scoreCalculator.attachObserver(scoreDisplay);
-        //Adding the door
-        door = new Door();
+
         addObject(door, getWidth() - door.getWidth() / 3, getHeight() - door.getHeight() / 2);
         addObject(scoreDisplay, 650, 10);
         addObject(player, 69, 445);

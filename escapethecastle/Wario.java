@@ -1,16 +1,17 @@
 import greenfoot.*;
 
 class Wario extends Player {
-    private String img;
+    private final int imageHeight = 60;
+    private final int imageWidth = 55;
     
-    public Wario(String img) {
-        super();
-        setPlayerImage(img);
+    public Wario(String runSequence, String playerImage) {
+        setRunSequence(runSequence);
+        setPlayerImage(playerImage);
     }
     
     public void setPlayerImage(String img) {
-        GreenfootImage image = new GreenfootImage(img);
-        image.scale(image.getWidth() / 15, image.getHeight() / 15);
-        setImage(image);
+        playerImage = new GreenfootImage(img);
+        playerImage.scale(playerImage.getWidth()/6, playerImage.getHeight()/6);
     }
+    
 }
