@@ -4,13 +4,13 @@ import greenfoot.GreenfootSound;
 import java.util.ArrayList;
 
 public abstract class Player extends DisplayComponent implements IPlayerSubject {
-    private int speed = 7;
+    private final int speed = 7;
     private int vSpeed = 0;
-    private int gravity = 2;
-    private int jumpStrength = 30;
+    private final int gravity = 2;
+    private final int jumpStrength = 30;
 
     static ArrayList<IPlayerObserver> playerObservers = new ArrayList<>();
-    private static GreenfootSound jumpSound = new GreenfootSound("sounds/jump.wav");
+    private static final GreenfootSound jumpSound = new GreenfootSound("sounds/jump.wav");
 
     protected Player() {
         vSpeed = 0;
@@ -30,10 +30,11 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
 
     @Override
     public void notifyObservers(PlayerFinalState playerFinalState) {
-        if (playerFinalState.equals(PlayerFinalState.DIED)) for (IPlayerObserver playerObserver : playerObservers) {
-            playerObserver.notifyLevelDied();
-        }
-        else {
+        if (playerFinalState.equals(PlayerFinalState.DIED)) {
+            for (IPlayerObserver playerObserver : playerObservers) {
+                playerObserver.notifyLevelDied();
+            }
+        } else {
             for (IPlayerObserver playerObserver : playerObservers) {
                 playerObserver.notifyLevelCompleted();
             }
@@ -106,13 +107,9 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
     public void push() {
         // game over if brick bottom touches player
         Brick up = (Brick) getOneObjectAtOffset(0, getImage().getHeight() / -2, Brick.class);
-        if (up != null) {
-            GameScreen myWorld = (GameScreen) getWorld();
-            ScoreDisplay scoreDisplay = myWorld.getScoreDisplay();
+        if (up != null && !up.isOnGround()) {
             //Adding code for score calculator when a player dies.
-            notifyObservers(PlayerFinalState.DIED);
-            GameOverScreen gameover = new GameOverScreen(scoreDisplay.getScore());
-            Greenfoot.setWorld(gameover);
+            notifyObservers(PlayerFinalState.WON);
         }
 
         Brick left = (Brick) getOneObjectAtOffset(getImage().getWidth() / -2, 0, Brick.class);

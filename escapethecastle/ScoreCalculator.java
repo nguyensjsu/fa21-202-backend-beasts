@@ -49,7 +49,7 @@ public class ScoreCalculator implements IScoreUpdateSubject, IBrickObserver, IPl
     @Override
     public void notifyLevelCompleted() {
         IGameStrategy currentStrategy = GameStrategyProvider.getGameStrategy();
-        //TODO :Mayank please get the number of bricks constructed. Currently hardcoding the number of bricks.
+        //TODO(Mayank): Use a variable numberOfBricks in the class and increment them from Brick.notifyOObservers.
         int numberOfBricks = 60;
         if (currentStrategy instanceof EasyGameStrategy) {
             updateScore += (SCOREFACTOR / numberOfBricks) * 100;
