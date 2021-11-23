@@ -1,11 +1,13 @@
-import greenfoot.Greenfoot;
-import greenfoot.GreenfootSound;
+import greenfoot.*;
 
 public abstract class Player extends DisplayComponent {
     private int speed = 7;
     private int vSpeed = 0;
-    private int gravity = 2;
+    private int gravity = 3;
     private int jumpStrength = 30;
+    
+    protected GreenfootImage img;
+    protected GreenfootImage flipImg;
 
     private static GreenfootSound jumpSound = new GreenfootSound("sounds/jump.wav");
 
@@ -16,16 +18,19 @@ public abstract class Player extends DisplayComponent {
 
     public abstract void setPlayerImage(String img);
     
+    public abstract void setPlayerFlipImage(String img);
+    
     public void act() {
         move();
-        push();
     }
     
     public void moveLeft() {
+        setImage(flipImg);
         setLocation(getX() - speed, getY());
     }
     
     public void moveRight() {
+        setImage(img);
         setLocation(getX() + speed, getY());
     }
 
@@ -56,8 +61,9 @@ public abstract class Player extends DisplayComponent {
             fall();
         } else {
             vSpeed = 0;
+            push();
+        
             Brick down = (Brick) getOneObjectAtOffset(0, getImage().getHeight() / 2, Brick.class);
-            
             if(down != null) {
                 // land on brick
                 int brickTopLoc = down.getY() - (down.getImage().getHeight()/2);
@@ -78,7 +84,7 @@ public abstract class Player extends DisplayComponent {
     
     public void push() {
         // game over if brick bottom touches player
-        Brick up = (Brick) getOneObjectAtOffset(0, getImage().getHeight() / -2, Brick.class);
+        Brick up = (Brick) getOneObjectAtOffset(0, getImage().getHeight() / -2 , Brick.class);
         if(up != null) {
            GameScreen myWorld = (GameScreen) getWorld();
            ScoreDisplay scoreDisplay = myWorld.getScoreDisplay();

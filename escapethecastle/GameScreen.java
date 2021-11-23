@@ -32,6 +32,7 @@ public class GameScreen extends Screen {
         Player character = PlayerSelector.getChosenPlayer();
         addObject(character, 140, 228);
         character.setLocation(69, 445);
+        character.getImage().setTransparency(255);
         this.scoreDisplay = new ScoreDisplay();
         this.scoreCalculator = new ScoreCalculator();
         this.scoreCalculator.attachObserver(this.scoreDisplay);

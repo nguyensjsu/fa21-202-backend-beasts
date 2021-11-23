@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class Brick extends DisplayComponent implements IBrickSubject {
     private int vSpeed = 0;
-    private int gravity = 3;
+    private int gravity = 0;
     private boolean bricksTouching = false;
     
     static ArrayList<IBrickObserver> observers = new ArrayList<>();
@@ -42,27 +42,32 @@ public class Brick extends DisplayComponent implements IBrickSubject {
         if(!bricksTouching) {
             fall();
             hitWall();
-            Brick below = (Brick) getOneObjectAtOffset(0, getImage().getHeight()/2, Brick.class);
-            if(below != null) {
-                setLocation(getX(), below.getY() - below.getImage().getHeight()/2 - getImage().getHeight()/2);
-            }
-            
-            Brick left = (Brick) getOneObjectAtOffset(getImage().getWidth()/-2, 0, Brick.class);
-            if(left != null) {
-                bricksTouching = true;
-                setLocation(left.getX() + left.getImage().getWidth()/2 + getImage().getWidth()/2, getY());
-            } else {
-                bricksTouching = false;
-            }
-            
-            Brick right = (Brick) getOneObjectAtOffset(getImage().getWidth()/2, 0, Brick.class);
-            if(right != null) {
-                bricksTouching = true;
-                setLocation(right.getX() - right.getImage().getWidth()/2 - getImage().getWidth()/2, getY());
-            } else {
-                bricksTouching = false;
+            if(isTouching(Brick.class)) {
+                Brick below = (Brick) getOneObjectAtOffset(0, getImage().getHeight()/2, Brick.class);
+                if(below != null) {
+                    setLocation(getX(), below.getY() - below.getImage().getHeight()/2 - getImage().getHeight()/2);
+                }
+                
+                Brick top = (Brick) getOneObjectAtOffset(0, getImage().getHeight()/-2, Brick.class);
+                if(top != null) {
+                    bricksTouching = true;
+                }
+                
+                Brick left = (Brick) getOneObjectAtOffset(getImage().getWidth()/-2, 0, Brick.class);
+                if(left != null) {
+                    bricksTouching = true;
+                    setLocation(left.getX() + left.getImage().getWidth()/2 + getImage().getWidth()/2, getY());
+                }
+                
+                Brick right = (Brick) getOneObjectAtOffset(getImage().getWidth()/2, 0, Brick.class);
+                if(right != null) {
+                    bricksTouching = true;
+                    setLocation(right.getX() - right.getImage().getWidth()/2 - getImage().getWidth()/2, getY());
+                }
             }
         }
+        
+        
     }
     
     public boolean bricksTouching() {
@@ -78,6 +83,10 @@ public class Brick extends DisplayComponent implements IBrickSubject {
 
     public void fall() {
         setLocation(getX(), getY() + vSpeed);
-        if (getY() >= getWorld().getHeight() - getImage().getHeight() / 2) vSpeed = 0;   
+        vSpeed = vSpeed + gravity;
+        if (getY() >= getWorld().getHeight() - getImage().getHeight() / 2){
+            vSpeed = 0;
+            setLocation(getX(), getWorld().getHeight() - (getImage().getHeight()/2));
+        }
     }
 }
