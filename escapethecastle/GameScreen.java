@@ -40,7 +40,7 @@ public class GameScreen extends Screen implements IPlayerObserver {
         player.getImage().setTransparency(255);
         scoreCalculator.attachObserver(scoreDisplay);
 
-        addObject(scoreDisplay, 650, 10);
+        addObject(scoreDisplay, 600, 10);
         addObject(player, 69, 445);
     }
 
