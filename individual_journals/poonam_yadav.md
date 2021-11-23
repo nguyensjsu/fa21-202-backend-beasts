@@ -23,5 +23,12 @@
 * Created issues for code development
 * Divide the development task
 
+## Week 3 (15/11/2021 - 21/11/2021)
+
+### Finished This Week
+* Implemented strategy pattern for starting the game at easy, medium and difficult level.
+* Implemented player decorator for decorating the player for choosing an avatar.
+* Created bricks randomly based on strategy
+
 ### Tasks Planned Next Week
 * Code implementation

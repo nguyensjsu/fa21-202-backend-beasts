@@ -1,4 +1,4 @@
-import greenfoot.World;
+import greenfoot.Greenfoot;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class GameScreen extends Screen {
+public class GameScreen extends Screen implements IPlayerObserver {
 
     private Brick currentBrick;
     private ScoreCalculator scoreCalculator;
@@ -29,16 +29,21 @@ public class GameScreen extends Screen {
      * That is: create the initial objects and add them to the world.
      */
     private void prepare() {
-        Player character = PlayerSelector.getChosenPlayer();
-        addObject(character, 140, 228);
-        character.setLocation(69, 445);
-        character.getImage().setTransparency(255);
-        this.scoreDisplay = new ScoreDisplay();
-        this.scoreCalculator = new ScoreCalculator();
-        this.scoreCalculator.attachObserver(this.scoreDisplay);
+        Player player = PlayerSelector.getChosenPlayer();
+        scoreDisplay = new ScoreDisplay();
+        scoreCalculator = new ScoreCalculator();
+
+        // Attach the score calculator to notify for the score.
+        player.attachObserver(scoreCalculator);
+        // Attach GameScreen as observer to listen the player's state.
+        player.attachObserver(this);
+        player.getImage().setTransparency(255);
+        scoreCalculator.attachObserver(scoreDisplay);
+
         addObject(scoreDisplay, 650, 10);
+        addObject(player, 69, 445);
     }
-    
+
     public ScoreDisplay getScoreDisplay() {
         return scoreDisplay;
     }
@@ -50,11 +55,8 @@ public class GameScreen extends Screen {
 
     public void addNewBricksIfNeeded() {
         if (currentBrick != null) {
-            int y = currentBrick.getY();
-            int brickHeight = currentBrick.getImage().getHeight();
-            int worldHeight = getHeight();
             // If brick has landed on the ground.
-            if ((y + brickHeight / 2.0) >= worldHeight) {
+            if (currentBrick.isOnGround()) {
                 addNewBricks();
             }
         } else {
@@ -69,9 +71,22 @@ public class GameScreen extends Screen {
         int bucketSize = 14;
         for (int i = 0; i < numberOfBricks; i++) {
             Brick brick = new Brick(currentStrategy.getBrickSpeed());
+            brick.attachObserver(this.scoreCalculator);
             currentBrick = brick;
             addComponent(brick, 268, 76);
             brick.setLocation(random.nextInt(0, bucketSize) * brick.getWidth() + brick.getWidth() / 2, 22);
         }
+    }
+
+    @Override
+    public void notifyLevelCompleted() {
+        GameOverScreen gameover = new GameOverScreen(scoreDisplay.getScore());
+        Greenfoot.setWorld(gameover);
+    }
+
+    @Override
+    public void notifyLevelDied() {
+        GameOverScreen gameover = new GameOverScreen(scoreDisplay.getScore());
+        Greenfoot.setWorld(gameover);
     }
 }

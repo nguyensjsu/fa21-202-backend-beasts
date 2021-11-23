@@ -1,4 +1,5 @@
-import greenfoot.*;
+import greenfoot.GreenfootImage;
+
 import java.util.ArrayList;
 
 /**
@@ -10,22 +11,22 @@ import java.util.ArrayList;
 public class Brick extends DisplayComponent implements IBrickSubject {
     private int vSpeed = 0;
     private int gravity = 0;
+    private boolean shouldNotify = true;
     private boolean bricksTouching = false;
-    
-    static ArrayList<IBrickObserver> observers = new ArrayList<>();
-    
-    public void setScore(int score) {
-        notifyObservers(score);
-    }
+
+    private final ArrayList<IBrickObserver> observers = new ArrayList<>();
+
     public void attachObserver(IBrickObserver observer) {
         observers.add(observer);
     }
+
     public void removeObserver(IBrickObserver observer) {
         observers.remove(observer);
     }
-    public void notifyObservers(int score) {
-        for (IBrickObserver bo: observers) {
-            bo.setScore(score);
+
+    public void notifyObservers() {
+        for (IBrickObserver bo : observers) {
+            bo.notifyBrickFall();
         }
     }
 
@@ -39,8 +40,15 @@ public class Brick extends DisplayComponent implements IBrickSubject {
     }
 
     public void act() {
-        if(!bricksTouching) {
+        if (!isOnGround()) {
             fall();
+        }
+        // Use shouldNotify to prevent notifying even after a complete fall.
+        if (shouldNotify && isOnGround()) {
+            shouldNotify = false;
+            notifyObservers();
+        }
+        if (!bricksTouching) {
             hitWall();
             if(isTouching(Brick.class)) {
                 Brick below = (Brick) getOneObjectAtOffset(0, getImage().getHeight()/2, Brick.class);
@@ -69,16 +77,27 @@ public class Brick extends DisplayComponent implements IBrickSubject {
         
         
     }
-    
+
     public boolean bricksTouching() {
         return bricksTouching;
     }
-    
+
+    public boolean isOnGround() {
+        if (getY() >= getWorld().getHeight() - getImage().getHeight() / 2) {
+            return true;
+        }
+        Brick below = (Brick) getOneObjectAtOffset(0, getImage().getHeight() / 2, Brick.class);
+        if (below != null) {
+            return below.isOnGround();
+        }
+        return false;
+    }
+
     public void hitWall() {
-        if(getX()+(getImage().getWidth()/2) >= getWorld().getWidth())
-            setLocation(getWorld().getWidth() - (getImage().getWidth()/2), getY());
-        if(getX()-getImage().getWidth()/2 <= 0)
-            setLocation(getImage().getWidth()/2, getY());
+        if (getX() + (getImage().getWidth() / 2) >= getWorld().getWidth())
+            setLocation(getWorld().getWidth() - (getImage().getWidth() / 2), getY());
+        if (getX() - getImage().getWidth() / 2 <= 0)
+            setLocation(getImage().getWidth() / 2, getY());
     }
 
     public void fall() {
