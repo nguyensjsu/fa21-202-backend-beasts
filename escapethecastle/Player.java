@@ -14,7 +14,8 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
     private GreenfootImage[] playerRightImages;
     private GreenfootImage[] playerLeftImages;
     protected GreenfootImage playerImage;
-    private int currentImage = 0;
+    private float currentImage = 0f;
+    private static final float animationSpeed = 0.4f;
 
 
     private final ArrayList<IPlayerObserver> playerObservers = new ArrayList<>();
@@ -85,8 +86,8 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
 
     public void moveLeft() {
         setLocation(getX() - speed, getY());
-        setImage(playerLeftImages[currentImage]);
-        currentImage++;
+        setImage(playerLeftImages[(int)currentImage%playerRightImages.length]);
+        currentImage += animationSpeed;
         if(currentImage == playerRightImages.length) {
             currentImage = 0;
         }
@@ -94,8 +95,8 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
 
     public void moveRight() {
         setLocation(getX() + speed, getY());
-        setImage(playerRightImages[currentImage]);
-        currentImage++;
+        setImage(playerRightImages[(int)currentImage%playerLeftImages.length]);
+        currentImage += animationSpeed;
         if(currentImage == playerRightImages.length) {
             currentImage = 0;
         }
