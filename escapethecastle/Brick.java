@@ -12,21 +12,19 @@ public class Brick extends DisplayComponent implements IBrickSubject {
     private int vSpeed = 0;
     private int gravity = 3;
     private boolean bricksTouching = false;
+    private int bricksTouchedGround = 0;
 
     static ArrayList<IBrickObserver> observers = new ArrayList<>();
 
-    public void setScore(int score) {
-        notifyObservers(score);
-    }
     public void attachObserver(IBrickObserver observer) {
         observers.add(observer);
     }
     public void removeObserver(IBrickObserver observer) {
         observers.remove(observer);
     }
-    public void notifyObservers(int score) {
+    public void notifyObservers(int bricks) {
         for (IBrickObserver bo: observers) {
-            bo.setScore(score);
+            bo.increaseBricks(bricks);
         }
     }
 
@@ -37,6 +35,7 @@ public class Brick extends DisplayComponent implements IBrickSubject {
         img.scale(50, img.getHeight() / 5);
         setImage(img);
         this.vSpeed = velocity;
+        attachObserver(new ScoreCalculator());
     }
 
     public void act() {
@@ -70,6 +69,8 @@ public class Brick extends DisplayComponent implements IBrickSubject {
 
     public boolean isOnGround() {
         if(getY() >= getWorld().getHeight() - getImage().getHeight() / 2) {
+            this.bricksTouchedGround++;
+            notifyObservers(bricksTouchedGround);
             return true;
         }
         Brick below = (Brick) getOneObjectAtOffset(0, getImage().getHeight() / 2, Brick.class);
