@@ -30,14 +30,17 @@ public class GameScreen extends Screen implements IPlayerObserver {
      */
     private void prepare() {
         Player player = PlayerSelector.getChosenPlayer();
+        scoreDisplay = new ScoreDisplay();
+        scoreCalculator = new ScoreCalculator();
+
+        // Attach the score calculator to notify for the score.
+        player.attachObserver(scoreCalculator);
         // Attach GameScreen as observer to listen the player's state.
         player.attachObserver(this);
-        addObject(player, 140, 228);
-        player.setLocation(69, 445);
-        this.scoreDisplay = new ScoreDisplay();
-        this.scoreCalculator = new ScoreCalculator();
-        this.scoreCalculator.attachObserver(this.scoreDisplay);
+        scoreCalculator.attachObserver(scoreDisplay);
+
         addObject(scoreDisplay, 650, 10);
+        addObject(player, 69, 445);
     }
 
     public ScoreDisplay getScoreDisplay() {
@@ -67,8 +70,8 @@ public class GameScreen extends Screen implements IPlayerObserver {
         int bucketSize = 14;
         for (int i = 0; i < numberOfBricks; i++) {
             Brick brick = new Brick(currentStrategy.getBrickSpeed());
+            brick.attachObserver(this.scoreCalculator);
             currentBrick = brick;
-            this.currentBrick.attachObserver(this.scoreCalculator);
             addComponent(brick, 268, 76);
             brick.setLocation(random.nextInt(0, bucketSize) * brick.getWidth() + brick.getWidth() / 2, 22);
         }
