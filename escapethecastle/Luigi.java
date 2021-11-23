@@ -11,7 +11,7 @@ class Luigi extends Player {
     
     public void setPlayerImage(String img) {
         playerImage = new GreenfootImage(img);
-        playerImage.scale(playerImage.getWidth()/20, playerImage.getHeight()/20);
+        playerImage.scale(playerImage.getWidth()/4, playerImage.getHeight()/4);
     }
     
 }

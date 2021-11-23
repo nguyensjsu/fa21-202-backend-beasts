@@ -11,7 +11,7 @@ class Wario extends Player {
     
     public void setPlayerImage(String img) {
         playerImage = new GreenfootImage(img);
-        playerImage.scale(playerImage.getWidth()/12, playerImage.getHeight()/12);
+        playerImage.scale(playerImage.getWidth()/6, playerImage.getHeight()/6);
     }
     
 }
