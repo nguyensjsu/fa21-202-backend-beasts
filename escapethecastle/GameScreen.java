@@ -13,6 +13,7 @@ public class GameScreen extends Screen implements IPlayerObserver {
     private Brick currentBrick;
     private ScoreCalculator scoreCalculator;
     private ScoreDisplay scoreDisplay;
+    private Door door;
 
     /**
      * Constructor for objects of class MyWorld.
@@ -38,7 +39,9 @@ public class GameScreen extends Screen implements IPlayerObserver {
         // Attach GameScreen as observer to listen the player's state.
         player.attachObserver(this);
         scoreCalculator.attachObserver(scoreDisplay);
-
+        //Adding the door
+        door = new Door();
+        addObject(door, getWidth() - door.getWidth() / 3, getHeight() - door.getHeight() / 2);
         addObject(scoreDisplay, 650, 10);
         addObject(player, 69, 445);
     }
