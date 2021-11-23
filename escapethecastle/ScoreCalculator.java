@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class ScoreCalculator implements IScoreUpdateSubject, IBrickObserver, IPlayerObserver {
+public class ScoreCalculator implements IScoreUpdateSubject, IBrickObserver, IPlayerObserver, IDoorObserver {
     private final ArrayList<IScoreUpdateObserver> observers = new ArrayList<>();
     public int updateScore = 0;
     private int numberOfBricks = 0;

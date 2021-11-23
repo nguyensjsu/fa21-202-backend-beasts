@@ -1,3 +1,4 @@
+import greenfoot.Actor;
 import greenfoot.Greenfoot;
 import greenfoot.GreenfootSound;
 import greenfoot.GreenfootImage;
@@ -71,6 +72,15 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
 
     public void act() {
         move();
+        push();
+        hasReachedDoor();
+    }
+
+    private void hasReachedDoor() {
+        Door touch = (Door) getOneIntersectingObject(Door.class);
+        if (touch != null && Greenfoot.isKeyDown("Enter")) {
+            notifyObservers(PlayerFinalState.WON);
+        }
     }
 
     public void moveLeft() {
