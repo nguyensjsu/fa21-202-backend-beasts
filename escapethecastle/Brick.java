@@ -14,7 +14,7 @@ public class Brick extends DisplayComponent implements IBrickSubject {
     private boolean shouldNotify = true;
     private boolean bricksTouching = false;
 
-    static ArrayList<IBrickObserver> observers = new ArrayList<>();
+    private final ArrayList<IBrickObserver> observers = new ArrayList<>();
 
     public void attachObserver(IBrickObserver observer) {
         observers.add(observer);
