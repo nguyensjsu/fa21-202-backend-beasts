@@ -9,13 +9,12 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
     private final int gravity = 2;
     private final int jumpStrength = 30;
 
-    static ArrayList<IPlayerObserver> playerObservers = new ArrayList<>();
+    private final ArrayList<IPlayerObserver> playerObservers = new ArrayList<>();
     private static final GreenfootSound jumpSound = new GreenfootSound("sounds/jump.wav");
 
     protected Player() {
         vSpeed = 0;
         jumpSound.setVolume(90);
-        attachObserver(new ScoreCalculator());
     }
 
     @Override

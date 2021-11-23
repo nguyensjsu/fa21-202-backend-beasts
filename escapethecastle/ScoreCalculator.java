@@ -7,13 +7,13 @@ import java.util.ArrayList;
  * @version (a version number or a date)
  */
 public class ScoreCalculator implements IScoreUpdateSubject, IBrickObserver, IPlayerObserver {
-    static ArrayList<IScoreUpdateObserver> observers = new ArrayList<>();
-    public  int updateScore = 0;
+    private final ArrayList<IScoreUpdateObserver> observers = new ArrayList<>();
+    public int updateScore = 0;
     private int numberOfBricks = 0;
     private static final int SCOREFACTOR = 1000;
 
     @Override
-    public void increaseBricks() {
+    public void notifyBrickFall() {
         this.numberOfBricks++;
     }
 
@@ -34,12 +34,14 @@ public class ScoreCalculator implements IScoreUpdateSubject, IBrickObserver, IPl
     @Override
     public void notifyLevelCompleted() {
         IGameStrategy currentStrategy = GameStrategyProvider.getGameStrategy();
-        if (currentStrategy instanceof EasyGameStrategy) {
-            updateScore += (SCOREFACTOR / numberOfBricks) * 100;
-        } else if (currentStrategy instanceof MediumGameStrategy) {
-            updateScore += (SCOREFACTOR / numberOfBricks) * 150;
-        } else {
-            updateScore += (SCOREFACTOR / numberOfBricks) * 200;
+        if (numberOfBricks != 0) {
+            if (currentStrategy instanceof EasyGameStrategy) {
+                updateScore += (SCOREFACTOR / numberOfBricks) * 100;
+            } else if (currentStrategy instanceof MediumGameStrategy) {
+                updateScore += (SCOREFACTOR / numberOfBricks) * 150;
+            } else {
+                updateScore += (SCOREFACTOR / numberOfBricks) * 200;
+            }
         }
         notifyObservers(updateScore);
     }
