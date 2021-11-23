@@ -17,19 +17,19 @@ public class Brick extends DisplayComponent implements IBrickSubject {
     private boolean hasPlayedSound = false;
     private static final GreenfootSound brickSound = new GreenfootSound("sounds/brick-hit-ground.wav");
 
-    private final ArrayList<IBrickObserver> observers = new ArrayList<>();
+    private final ArrayList<IBrickObserver> brickObservers = new ArrayList<>();
 
-    public void attachObserver(IBrickObserver observer) {
-        observers.add(observer);
+    public void attachObserver(IBrickObserver brickObserver) {
+        brickObservers.add(brickObserver);
     }
 
-    public void removeObserver(IBrickObserver observer) {
-        observers.remove(observer);
+    public void removeObserver(IBrickObserver brickObserver) {
+        brickObservers.remove(brickObserver);
     }
 
     public void notifyObservers() {
-        for (IBrickObserver bo : observers) {
-            bo.notifyBrickFall();
+        for (IBrickObserver brickObserver : brickObservers) {
+            brickObserver.notifyBrickFall();
         }
     }
 
