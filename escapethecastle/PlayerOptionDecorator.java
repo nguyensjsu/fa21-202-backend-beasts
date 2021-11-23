@@ -8,7 +8,7 @@ public class PlayerOptionDecorator extends DisplayComponent {
 
     private PlayerOptionDecorator(Player wrapped) {
         this.wrappedPlayer = wrapped;
-        setImage(wrapped.getImage());
+        setImage(wrapped.getPlayerImage());
         setTransparency(170);
     }
 
