@@ -74,8 +74,6 @@ public class Brick extends DisplayComponent implements IBrickSubject {
                 }
             }
         }
-        
-        
     }
 
     public boolean bricksTouching() {

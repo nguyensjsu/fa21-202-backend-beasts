@@ -88,9 +88,16 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
         } else {
             vSpeed = 0;
             push();
-        
-            Brick down = (Brick) getOneObjectAtOffset(0, getImage().getHeight() / 2, Brick.class);
-            if(down != null) {
+            
+            int imageHeight = getImage().getHeight();
+            int imageWidth = getImage().getWidth();
+            Brick down = (Brick) (getOneObjectAtOffset(0, imageHeight / 2, Brick.class) != null ?
+                            getOneObjectAtOffset(0, imageHeight / 2, Brick.class) : 
+                            getOneObjectAtOffset(imageWidth / -2, imageHeight / 2, Brick.class) != null ?
+                            getOneObjectAtOffset(imageWidth / -2, imageHeight / 2, Brick.class) : 
+                            getOneObjectAtOffset(imageWidth / 2, imageHeight / 2, Brick.class) != null ?
+                            getOneObjectAtOffset(imageWidth / 2, imageHeight / 2, Brick.class) : null);
+            if (down != null) {
                 // land on brick
                 int brickTopLoc = down.getY() - (down.getImage().getHeight() / 2);
                 setLocation(getX(), brickTopLoc - getImage().getHeight() / 2);
@@ -140,7 +147,9 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
         int imageWidth = getImage().getWidth();
         int imageHeight = getImage().getHeight();
 
-        if (getOneObjectAtOffset(imageWidth / -2, imageHeight / 2, Brick.class) != null || getOneObjectAtOffset(imageWidth / 2, imageHeight / 2, Brick.class) != null) {
+        if (getOneObjectAtOffset(imageWidth / -2, imageHeight / 2, Brick.class) != null || 
+        getOneObjectAtOffset(imageWidth / 2, imageHeight / 2, Brick.class) != null || 
+        getOneObjectAtOffset(0, imageHeight / 2, Brick.class) != null) {
             return true;
         }
         return false;
