@@ -13,8 +13,8 @@ public class ScoreCalculator implements IScoreUpdateSubject, IBrickObserver, IPl
     private static final int SCOREFACTOR = 1000;
 
     @Override
-    public void increaseBricks(int bricks) {
-        this.numberOfBricks = bricks;
+    public void increaseBricks() {
+        this.numberOfBricks++;
     }
 
     public void attachObserver(IScoreUpdateObserver observer) {

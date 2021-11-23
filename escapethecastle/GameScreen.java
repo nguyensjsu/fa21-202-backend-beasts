@@ -68,6 +68,7 @@ public class GameScreen extends Screen implements IPlayerObserver {
         for (int i = 0; i < numberOfBricks; i++) {
             Brick brick = new Brick(currentStrategy.getBrickSpeed());
             currentBrick = brick;
+            this.currentBrick.attachObserver(this.scoreCalculator);
             addComponent(brick, 268, 76);
             brick.setLocation(random.nextInt(0, bucketSize) * brick.getWidth() + brick.getWidth() / 2, 22);
         }

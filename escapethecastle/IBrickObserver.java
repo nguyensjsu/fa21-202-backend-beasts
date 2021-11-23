@@ -6,5 +6,5 @@
  */
 public interface IBrickObserver  
 {
-    public void increaseBricks(int bricks);
+    public void increaseBricks();
 }
