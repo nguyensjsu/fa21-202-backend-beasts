@@ -79,7 +79,7 @@ public abstract class Player extends DisplayComponent {
     public void push() {
         // game over if brick bottom touches player
         Brick up = (Brick) getOneObjectAtOffset(0, getImage().getHeight() / -2, Brick.class);
-        if(up != null) {
+        if(up != null && !up.isOnGround()) {
            GameScreen myWorld = (GameScreen) getWorld();
            ScoreDisplay scoreDisplay = myWorld.getScoreDisplay();
            GameOverScreen gameover = new GameOverScreen(scoreDisplay.getScore());
