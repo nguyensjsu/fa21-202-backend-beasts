@@ -4,22 +4,14 @@ class Wario extends Player {
     private final int imageHeight = 60;
     private final int imageWidth = 55;
     
-    public Wario(String img, String flipImg) {
-        super();
-        setPlayerImage(img);
-        setPlayerFlipImage(flipImg);
+    public Wario(String runSequence, String playerImage) {
+        setRunSequence(runSequence);
+        setPlayerImage(playerImage);
     }
     
     public void setPlayerImage(String img) {
-        GreenfootImage image = new GreenfootImage(img);
-        image.scale(imageWidth, imageHeight);
-        this.img = image;
-        setImage(image);
+        playerImage = new GreenfootImage(img);
+        playerImage.scale(playerImage.getWidth()/12, playerImage.getHeight()/12);
     }
     
-    public void setPlayerFlipImage(String img) {
-        GreenfootImage image = new GreenfootImage(img);
-        image.scale(imageWidth, imageHeight);
-        this.flipImg = image;
-    }
 }
