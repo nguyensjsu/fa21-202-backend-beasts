@@ -39,13 +39,11 @@ public class Brick extends DisplayComponent implements IBrickSubject {
     }
 
     public void act() {
-        if(!bricksTouching) {
+        if(!isOnGround()) {
             fall();
+        }
+        if(!bricksTouching) {
             hitWall();
-            Brick below = (Brick) getOneObjectAtOffset(0, getImage().getHeight() / 2, Brick.class);
-            if(below != null) {
-                setLocation(getX(), below.getY() - below.getImage().getHeight() / 2 - getImage().getHeight() / 2);
-            }
             
             Brick left = (Brick) getOneObjectAtOffset(getImage().getWidth() / -2, 0, Brick.class);
             if(left != null) {
@@ -69,6 +67,17 @@ public class Brick extends DisplayComponent implements IBrickSubject {
         return bricksTouching;
     }
     
+    public boolean isOnGround() {
+        if(getY() >= getWorld().getHeight() - getImage().getHeight() / 2) {
+            return true;
+        }
+        Brick below = (Brick) getOneObjectAtOffset(0, getImage().getHeight() / 2, Brick.class);
+        if(below != null) {
+            return below.isOnGround();
+        }
+        return false;
+    }
+    
     public void hitWall() {
         if (getX() + (getImage().getWidth() / 2) >= getWorld().getWidth())
             setLocation(getWorld().getWidth() - (getImage().getWidth() / 2), getY());
@@ -78,6 +87,5 @@ public class Brick extends DisplayComponent implements IBrickSubject {
 
     public void fall() {
         setLocation(getX(), getY() + vSpeed);
-        if (getY() >= getWorld().getHeight() - getImage().getHeight() / 2) vSpeed = 0;   
     }
 }

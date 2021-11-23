@@ -53,7 +53,7 @@ public class GameScreen extends Screen {
             int brickHeight = currentBrick.getImage().getHeight();
             int worldHeight = getHeight();
             // If brick has landed on the ground.
-            if ((y + brickHeight / 2.0) >= worldHeight) {
+            if(currentBrick.isOnGround()) {
                 addNewBricks();
             }
         } else {
