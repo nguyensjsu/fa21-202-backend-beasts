@@ -24,10 +24,6 @@ public class GameScreen extends Screen implements IPlayerObserver {
         prepare();
     }
 
-    /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
-     */
     private void prepare() {
         Player player = PlayerSelector.getChosenPlayer();
         scoreDisplay = new ScoreDisplay();

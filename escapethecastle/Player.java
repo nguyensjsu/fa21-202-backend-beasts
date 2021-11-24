@@ -7,6 +7,7 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
     private int vSpeed = 0;
     private int gravity = 3;
     private int jumpStrength = 30;
+    private String name = "Player 1";
     
     protected GreenfootImage img;
     protected GreenfootImage flipImg;
@@ -17,6 +18,14 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
     protected Player() {
         vSpeed = 0;
         jumpSound.setVolume(90);
+    }
+    
+    public String getPlayerName() {
+        return name;
+    }
+    
+    public void setPlayerName(String name) {
+        this.name = name;
     }
 
     @Override

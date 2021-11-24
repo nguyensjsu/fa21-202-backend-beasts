@@ -33,4 +33,8 @@ public class PlayerOptionDecorator extends DisplayComponent {
         image.setTransparency(i);
         setImage(image);
     }
+    
+    public void setPlayerName(String name) {
+        wrappedPlayer.setPlayerName(name);
+    }
 }
