@@ -19,10 +19,10 @@ public class GameOverScreen extends Screen {
     }
 
     private String getResult(int score) {
-        if(score > 50) {
-            return "Congratulations!! You Win!";
+        if(score == 0) {
+            return "Sorry... You Lose!";
         }
-        return "Sorry... You Lose!";
+        return "Congratulations!! You Win!";
     }
 
     /**
