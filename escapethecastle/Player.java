@@ -1,4 +1,7 @@
-import greenfoot.*;
+import greenfoot.Actor;
+import greenfoot.Greenfoot;
+import greenfoot.GreenfootSound;
+import greenfoot.GreenfootImage;
 
 import java.util.ArrayList;
 
@@ -9,8 +12,12 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
     private int jumpStrength = 30;
     private String name = "Player 1";
     
-    protected GreenfootImage img;
-    protected GreenfootImage flipImg;
+    private GreenfootImage[] playerRightImages;
+    private GreenfootImage[] playerLeftImages;
+    protected GreenfootImage playerImage;
+    private float currentImage = 0f;
+    private static final float animationSpeed = 0.4f;
+
 
     private final ArrayList<IPlayerObserver> playerObservers = new ArrayList<>();
     private static final GreenfootSound jumpSound = new GreenfootSound("sounds/jump.wav");
@@ -26,6 +33,10 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
     
     public void setPlayerName(String name) {
         this.name = name;
+    }
+
+    public GreenfootImage getPlayerImage() {
+        return playerImage;
     }
 
     @Override
@@ -53,20 +64,51 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
 
     public abstract void setPlayerImage(String img);
     
-    public abstract void setPlayerFlipImage(String img);
-    
+    protected void setRunSequence(String img) {
+        GreenfootImage bigImage = new GreenfootImage(img);
+        int w=bigImage.getWidth(), h = bigImage.getHeight();
+        int numImagesAcross=4;
+        playerRightImages = new GreenfootImage[numImagesAcross];
+        playerLeftImages = new GreenfootImage[numImagesAcross];
+        for(int x=0; x<numImagesAcross; x++) {
+            playerRightImages[x] = new GreenfootImage(w/numImagesAcross, h);
+            playerLeftImages[x] = new GreenfootImage(w/numImagesAcross, h);
+            playerRightImages[x].drawImage(bigImage, -w*x/numImagesAcross, 0);
+            playerLeftImages[x].drawImage(bigImage, -w*x/numImagesAcross, 0);
+            playerLeftImages[x].mirrorHorizontally();
+        }
+        setImage(playerRightImages[0]);
+    }
+
     public void act() {
         move();
+        push();
+        hasReachedDoor();
+    }
+
+    private void hasReachedDoor() {
+        Door touch = (Door) getOneIntersectingObject(Door.class);
+        if (touch != null && Greenfoot.isKeyDown("Enter")) {
+            notifyObservers(PlayerFinalState.WON);
+        }
     }
 
     public void moveLeft() {
-        setImage(flipImg);
         setLocation(getX() - speed, getY());
+        setImage(playerLeftImages[(int)currentImage%playerRightImages.length]);
+        currentImage += animationSpeed;
+        if(currentImage == playerRightImages.length) {
+            currentImage = 0;
+        }
     }
 
     public void moveRight() {
-        setImage(img);
         setLocation(getX() + speed, getY());
+        setImage(playerRightImages[(int)currentImage%playerLeftImages.length]);
+        currentImage += animationSpeed;
+        if(currentImage == playerRightImages.length) {
+            currentImage = 0;
+        }
     }
 
     public void fall() {

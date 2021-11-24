@@ -13,6 +13,7 @@ public class GameScreen extends Screen implements IPlayerObserver {
     private Brick currentBrick;
     private ScoreCalculator scoreCalculator;
     private ScoreDisplay scoreDisplay;
+    private Door door;
 
     /**
      * Constructor for objects of class MyWorld.
@@ -28,6 +29,7 @@ public class GameScreen extends Screen implements IPlayerObserver {
         Player player = PlayerSelector.getChosenPlayer();
         scoreDisplay = new ScoreDisplay();
         scoreCalculator = new ScoreCalculator();
+        door = new Door();
 
         // Attach the score calculator to notify for the score.
         player.attachObserver(scoreCalculator);
@@ -36,7 +38,8 @@ public class GameScreen extends Screen implements IPlayerObserver {
         player.getImage().setTransparency(255);
         scoreCalculator.attachObserver(scoreDisplay);
 
-        addObject(scoreDisplay, 650, 10);
+        addObject(door, getWidth() - door.getWidth() / 3, getHeight() - door.getHeight() / 2);
+        addObject(scoreDisplay, 600, 10);
         addObject(player, 69, 445);
     }
 

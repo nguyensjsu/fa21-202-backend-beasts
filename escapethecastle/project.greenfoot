@@ -5,6 +5,7 @@ class.StartScreen.image=brick.jpg
 dependency1.from=Screen
 dependency1.to=DisplayComponent
 dependency1.type=UsesDependency
+<<<<<<< HEAD
 dependency10.from=StartScreen
 dependency10.to=GameScreen
 dependency10.type=UsesDependency
@@ -34,11 +35,43 @@ dependency18.to=PlayerFactory
 dependency18.type=UsesDependency
 dependency19.from=StartScreen
 dependency19.to=PlayerType
+=======
+dependency10.from=GameScreen
+dependency10.to=GameStrategyProvider
+dependency10.type=UsesDependency
+dependency11.from=StartScreen
+dependency11.to=GameScreen
+dependency11.type=UsesDependency
+dependency12.from=StartScreen
+dependency12.to=Player
+dependency12.type=UsesDependency
+dependency13.from=StartScreen
+dependency13.to=PlayerOptionDecorator
+dependency13.type=UsesDependency
+dependency14.from=StartScreen
+dependency14.to=EasyLevelButton
+dependency14.type=UsesDependency
+dependency15.from=StartScreen
+dependency15.to=MediumLevelButton
+dependency15.type=UsesDependency
+dependency16.from=StartScreen
+dependency16.to=HardLevelButton
+dependency16.type=UsesDependency
+dependency17.from=StartScreen
+dependency17.to=ButtonFactory
+dependency17.type=UsesDependency
+dependency18.from=StartScreen
+dependency18.to=Button
+dependency18.type=UsesDependency
+dependency19.from=StartScreen
+dependency19.to=PlayerFactory
+>>>>>>> c773882763629052bfb7faf0aa7316284fc17fcb
 dependency19.type=UsesDependency
 dependency2.from=GameScreen
 dependency2.to=Brick
 dependency2.type=UsesDependency
 dependency20.from=StartScreen
+<<<<<<< HEAD
 dependency20.to=PlayerSelector
 dependency20.type=UsesDependency
 dependency21.from=GameOverScreen
@@ -67,10 +100,41 @@ dependency28.to=ICommand
 dependency28.type=UsesDependency
 dependency29.from=Player
 dependency29.to=Brick
+=======
+dependency20.to=PlayerType
+dependency20.type=UsesDependency
+dependency21.from=StartScreen
+dependency21.to=PlayerSelector
+dependency21.type=UsesDependency
+dependency22.from=GameOverScreen
+dependency22.to=ScoreBoardBackground
+dependency22.type=UsesDependency
+dependency23.from=GameOverScreen
+dependency23.to=ScoreBoardTitle
+dependency23.type=UsesDependency
+dependency24.from=GameOverScreen
+dependency24.to=ScoreBoardResult
+dependency24.type=UsesDependency
+dependency25.from=GameOverScreen
+dependency25.to=Score
+dependency25.type=UsesDependency
+dependency26.from=GameOverScreen
+dependency26.to=ButtonFactory
+dependency26.type=UsesDependency
+dependency27.from=GameOverScreen
+dependency27.to=Button
+dependency27.type=UsesDependency
+dependency28.from=DisplayComponent
+dependency28.to=IScreen
+dependency28.type=UsesDependency
+dependency29.from=Button
+dependency29.to=ICommand
+>>>>>>> c773882763629052bfb7faf0aa7316284fc17fcb
 dependency29.type=UsesDependency
 dependency3.from=GameScreen
 dependency3.to=ScoreCalculator
 dependency3.type=UsesDependency
+<<<<<<< HEAD
 dependency30.from=PlayerOptionDecorator
 dependency30.to=Player
 dependency30.type=UsesDependency
@@ -97,19 +161,48 @@ dependency37.to=IBrickObserver
 dependency37.type=UsesDependency
 dependency38.from=IBrickSubject
 dependency38.to=IBrickObserver
+=======
+dependency30.from=Player
+dependency30.to=IPlayerObserver
+dependency30.type=UsesDependency
+dependency31.from=Player
+dependency31.to=PlayerFinalState
+dependency31.type=UsesDependency
+dependency32.from=Player
+dependency32.to=Door
+dependency32.type=UsesDependency
+dependency33.from=Player
+dependency33.to=Brick
+dependency33.type=UsesDependency
+dependency34.from=PlayerOptionDecorator
+dependency34.to=Player
+dependency34.type=UsesDependency
+dependency35.from=PlayerOptionDecorator
+dependency35.to=PlayerSelector
+dependency35.type=UsesDependency
+dependency36.from=GameStrategyButton
+dependency36.to=IGameStrategy
+dependency36.type=UsesDependency
+dependency37.from=GameStrategyButton
+dependency37.to=GameStrategyProvider
+dependency37.type=UsesDependency
+dependency38.from=HardLevelButton
+dependency38.to=HardGameStrategy
+>>>>>>> c773882763629052bfb7faf0aa7316284fc17fcb
 dependency38.type=UsesDependency
-dependency39.from=PlayerSelector
-dependency39.to=Player
+dependency39.from=EasyLevelButton
+dependency39.to=EasyGameStrategy
 dependency39.type=UsesDependency
 dependency4.from=GameScreen
 dependency4.to=ScoreDisplay
 dependency4.type=UsesDependency
-dependency40.from=ICommand
-dependency40.to=IReceiver
+dependency40.from=MediumLevelButton
+dependency40.to=MediumGameStrategy
 dependency40.type=UsesDependency
-dependency41.from=ScoreCalculator
-dependency41.to=IScoreUpdateObserver
+dependency41.from=Brick
+dependency41.to=IBrickObserver
 dependency41.type=UsesDependency
+<<<<<<< HEAD
 dependency42.from=ScoreCalculator
 dependency42.to=IGameStrategy
 dependency42.type=UsesDependency
@@ -133,10 +226,36 @@ dependency48.to=Luigi
 dependency48.type=UsesDependency
 dependency49.from=IScreen
 dependency49.to=DisplayComponent
+=======
+dependency42.from=IBrickSubject
+dependency42.to=IBrickObserver
+dependency42.type=UsesDependency
+dependency43.from=PlayerSelector
+dependency43.to=Player
+dependency43.type=UsesDependency
+dependency44.from=ICommand
+dependency44.to=IReceiver
+dependency44.type=UsesDependency
+dependency45.from=ScoreCalculator
+dependency45.to=IScoreUpdateObserver
+dependency45.type=UsesDependency
+dependency46.from=ScoreCalculator
+dependency46.to=IGameStrategy
+dependency46.type=UsesDependency
+dependency47.from=ScoreCalculator
+dependency47.to=EasyGameStrategy
+dependency47.type=UsesDependency
+dependency48.from=ScoreCalculator
+dependency48.to=MediumGameStrategy
+dependency48.type=UsesDependency
+dependency49.from=ScoreCalculator
+dependency49.to=GameStrategyProvider
+>>>>>>> c773882763629052bfb7faf0aa7316284fc17fcb
 dependency49.type=UsesDependency
 dependency5.from=GameScreen
-dependency5.to=Player
+dependency5.to=Door
 dependency5.type=UsesDependency
+<<<<<<< HEAD
 dependency50.from=GameStrategyProvider
 dependency50.to=IGameStrategy
 dependency50.type=UsesDependency
@@ -166,10 +285,42 @@ dependency58.to=IReceiver
 dependency58.type=UsesDependency
 dependency59.from=IInvoker
 dependency59.to=ICommand
+=======
+dependency50.from=PlayerFactory
+dependency50.to=Player
+dependency50.type=UsesDependency
+dependency51.from=PlayerFactory
+dependency51.to=PlayerType
+dependency51.type=UsesDependency
+dependency52.from=PlayerFactory
+dependency52.to=Mario
+dependency52.type=UsesDependency
+dependency53.from=PlayerFactory
+dependency53.to=Wario
+dependency53.type=UsesDependency
+dependency54.from=PlayerFactory
+dependency54.to=Luigi
+dependency54.type=UsesDependency
+dependency55.from=IScreen
+dependency55.to=DisplayComponent
+dependency55.type=UsesDependency
+dependency56.from=GameStrategyProvider
+dependency56.to=IGameStrategy
+dependency56.type=UsesDependency
+dependency57.from=GameStrategyProvider
+dependency57.to=EasyGameStrategy
+dependency57.type=UsesDependency
+dependency58.from=ButtonFactory
+dependency58.to=ICommand
+dependency58.type=UsesDependency
+dependency59.from=ButtonFactory
+dependency59.to=Command
+>>>>>>> c773882763629052bfb7faf0aa7316284fc17fcb
 dependency59.type=UsesDependency
 dependency6.from=GameScreen
-dependency6.to=IGameStrategy
+dependency6.to=Player
 dependency6.type=UsesDependency
+<<<<<<< HEAD
 dependency60.from=IDisplayComponent
 dependency60.to=DisplayComponent
 dependency60.type=UsesDependency
@@ -181,8 +332,46 @@ dependency62.to=IScoreUpdateObserver
 dependency62.type=UsesDependency
 dependency7.from=GameScreen
 dependency7.to=GameOverScreen
+=======
+dependency60.from=ButtonFactory
+dependency60.to=IReceiver
+dependency60.type=UsesDependency
+dependency61.from=ButtonFactory
+dependency61.to=GameScreen
+dependency61.type=UsesDependency
+dependency62.from=ButtonFactory
+dependency62.to=StartScreen
+dependency62.type=UsesDependency
+dependency63.from=ButtonFactory
+dependency63.to=Button
+dependency63.type=UsesDependency
+dependency64.from=IPlayerSubject
+dependency64.to=IPlayerObserver
+dependency64.type=UsesDependency
+dependency65.from=IPlayerSubject
+dependency65.to=PlayerFinalState
+dependency65.type=UsesDependency
+dependency66.from=IInvoker
+dependency66.to=ICommand
+dependency66.type=UsesDependency
+dependency67.from=Command
+dependency67.to=IReceiver
+dependency67.type=UsesDependency
+dependency68.from=IDisplayComponent
+dependency68.to=DisplayComponent
+dependency68.type=UsesDependency
+dependency69.from=IDisplayComponent
+dependency69.to=IScreen
+dependency69.type=UsesDependency
+dependency7.from=GameScreen
+dependency7.to=IGameStrategy
+>>>>>>> c773882763629052bfb7faf0aa7316284fc17fcb
 dependency7.type=UsesDependency
+dependency70.from=IScoreUpdateSubject
+dependency70.to=IScoreUpdateObserver
+dependency70.type=UsesDependency
 dependency8.from=GameScreen
+<<<<<<< HEAD
 dependency8.to=PlayerSelector
 dependency8.type=UsesDependency
 dependency9.from=GameScreen
@@ -195,6 +384,20 @@ editor.fx.0.y=32
 height=1048
 package.numDependencies=62
 package.numTargets=43
+=======
+dependency8.to=GameOverScreen
+dependency8.type=UsesDependency
+dependency9.from=GameScreen
+dependency9.to=PlayerSelector
+dependency9.type=UsesDependency
+editor.fx.0.height=728
+editor.fx.0.width=800
+editor.fx.0.x=496
+editor.fx.0.y=147
+height=1095
+package.numDependencies=70
+package.numTargets=45
+>>>>>>> c773882763629052bfb7faf0aa7316284fc17fcb
 project.charset=UTF-8
 publish.hasSource=false
 publish.locked=true
@@ -205,7 +408,7 @@ publish.title=
 publish.url=
 readme.height=60
 readme.name=@README
-readme.width=49
+readme.width=48
 readme.x=10
 readme.y=10
 simulation.speed=51
@@ -259,10 +462,17 @@ target15.width=120
 target15.x=0
 target15.y=0
 target16.height=70
+<<<<<<< HEAD
 target16.name=MediumGameStrategy
 target16.showInterface=false
 target16.type=ClassTarget
 target16.width=170
+=======
+target16.name=PlayerFinalState
+target16.showInterface=false
+target16.type=EnumTarget
+target16.width=120
+>>>>>>> c773882763629052bfb7faf0aa7316284fc17fcb
 target16.x=0
 target16.y=0
 target17.height=70
@@ -273,14 +483,24 @@ target17.width=120
 target17.x=0
 target17.y=0
 target18.height=70
+<<<<<<< HEAD
 target18.name=PlayerFactory
 target18.showInterface=false
 target18.type=ClassTarget
+=======
+target18.name=Player
+target18.showInterface=false
+target18.type=AbstractTarget
+>>>>>>> c773882763629052bfb7faf0aa7316284fc17fcb
 target18.width=120
 target18.x=0
 target18.y=0
 target19.height=70
+<<<<<<< HEAD
 target19.name=IScreen
+=======
+target19.name=IPlayerObserver
+>>>>>>> c773882763629052bfb7faf0aa7316284fc17fcb
 target19.showInterface=false
 target19.type=InterfaceTarget
 target19.width=120
@@ -294,9 +514,15 @@ target2.width=150
 target2.x=0
 target2.y=0
 target20.height=70
+<<<<<<< HEAD
 target20.name=Character
 target20.showInterface=false
 target20.type=ClassTarget
+=======
+target20.name=IScreen
+target20.showInterface=false
+target20.type=InterfaceTarget
+>>>>>>> c773882763629052bfb7faf0aa7316284fc17fcb
 target20.width=120
 target20.x=0
 target20.y=0
@@ -322,6 +548,7 @@ target23.width=120
 target23.x=0
 target23.y=0
 target24.height=70
+<<<<<<< HEAD
 target24.name=ButtonFactory
 target24.showInterface=false
 target24.type=ClassTarget
@@ -337,12 +564,30 @@ target25.x=0
 target25.y=0
 target26.height=70
 target26.name=PlayerOptionDecorator
+=======
+target24.name=ScoreBoardBackground
+target24.showInterface=false
+target24.type=ClassTarget
+target24.width=180
+target24.x=0
+target24.y=0
+target25.height=70
+target25.name=PlayerOptionDecorator
+target25.showInterface=false
+target25.type=ClassTarget
+target25.width=170
+target25.x=0
+target25.y=0
+target26.height=70
+target26.name=ButtonFactory
+>>>>>>> c773882763629052bfb7faf0aa7316284fc17fcb
 target26.showInterface=false
 target26.type=ClassTarget
-target26.width=170
+target26.width=120
 target26.x=0
 target26.y=0
 target27.height=70
+<<<<<<< HEAD
 target27.name=HardLevelButton
 target27.showInterface=false
 target27.type=ClassTarget
@@ -351,16 +596,33 @@ target27.x=0
 target27.y=0
 target28.height=70
 target28.name=StartScreen
+=======
+target27.name=IPlayerSubject
+target27.showInterface=false
+target27.type=InterfaceTarget
+target27.width=120
+target27.x=0
+target27.y=0
+target28.height=70
+target28.name=Door
+>>>>>>> c773882763629052bfb7faf0aa7316284fc17fcb
 target28.showInterface=false
 target28.type=ClassTarget
 target28.width=120
 target28.x=0
 target28.y=0
 target29.height=70
+<<<<<<< HEAD
 target29.name=GameOverScreen
 target29.showInterface=false
 target29.type=ClassTarget
 target29.width=140
+=======
+target29.name=HardLevelButton
+target29.showInterface=false
+target29.type=ClassTarget
+target29.width=130
+>>>>>>> c773882763629052bfb7faf0aa7316284fc17fcb
 target29.x=0
 target29.y=0
 target3.height=70
@@ -371,27 +633,42 @@ target3.width=120
 target3.x=0
 target3.y=0
 target30.height=70
+<<<<<<< HEAD
 target30.name=IReceiver
+=======
+target30.name=StartScreen
+>>>>>>> c773882763629052bfb7faf0aa7316284fc17fcb
 target30.showInterface=false
-target30.type=InterfaceTarget
+target30.type=ClassTarget
 target30.width=120
 target30.x=0
 target30.y=0
 target31.height=70
+<<<<<<< HEAD
 target31.name=Score
 target31.showInterface=false
 target31.type=ClassTarget
+=======
+target31.name=IReceiver
+target31.showInterface=false
+target31.type=InterfaceTarget
+>>>>>>> c773882763629052bfb7faf0aa7316284fc17fcb
 target31.width=120
 target31.x=0
 target31.y=0
 target32.height=70
+<<<<<<< HEAD
 target32.name=ScoreBoardResult
+=======
+target32.name=GameOverScreen
+>>>>>>> c773882763629052bfb7faf0aa7316284fc17fcb
 target32.showInterface=false
 target32.type=ClassTarget
 target32.width=140
 target32.x=0
 target32.y=0
 target33.height=70
+<<<<<<< HEAD
 target33.name=GameStrategyButton
 target33.showInterface=false
 target33.type=ClassTarget
@@ -403,11 +680,25 @@ target34.name=Command
 target34.showInterface=false
 target34.type=ClassTarget
 target34.width=120
+=======
+target33.name=Score
+target33.showInterface=false
+target33.type=ClassTarget
+target33.width=120
+target33.x=0
+target33.y=0
+target34.height=70
+target34.name=ScoreBoardResult
+target34.showInterface=false
+target34.type=ClassTarget
+target34.width=140
+>>>>>>> c773882763629052bfb7faf0aa7316284fc17fcb
 target34.x=0
 target34.y=0
 target35.height=70
-target35.name=IInvoker
+target35.name=GameStrategyButton
 target35.showInterface=false
+<<<<<<< HEAD
 target35.type=InterfaceTarget
 target35.width=120
 target35.x=0
@@ -416,10 +707,21 @@ target36.height=70
 target36.name=Brick
 target36.showInterface=false
 target36.type=ClassTarget
+=======
+target35.type=ClassTarget
+target35.width=160
+target35.x=0
+target35.y=0
+target36.height=70
+target36.name=IInvoker
+target36.showInterface=false
+target36.type=InterfaceTarget
+>>>>>>> c773882763629052bfb7faf0aa7316284fc17fcb
 target36.width=120
 target36.x=0
 target36.y=0
 target37.height=70
+<<<<<<< HEAD
 target37.name=IDisplayComponent
 target37.showInterface=false
 target37.type=InterfaceTarget
@@ -437,6 +739,25 @@ target39.height=70
 target39.name=EasyLevelButton
 target39.showInterface=false
 target39.type=ClassTarget
+=======
+target37.name=Command
+target37.showInterface=false
+target37.type=ClassTarget
+target37.width=120
+target37.x=0
+target37.y=0
+target38.height=70
+target38.name=Brick
+target38.showInterface=false
+target38.type=ClassTarget
+target38.width=120
+target38.x=0
+target38.y=0
+target39.height=70
+target39.name=IDisplayComponent
+target39.showInterface=false
+target39.type=InterfaceTarget
+>>>>>>> c773882763629052bfb7faf0aa7316284fc17fcb
 target39.width=130
 target39.x=0
 target39.y=0
@@ -448,6 +769,7 @@ target4.width=120
 target4.x=0
 target4.y=0
 target40.height=70
+<<<<<<< HEAD
 target40.name=IScoreUpdateSubject
 target40.showInterface=false
 target40.type=InterfaceTarget
@@ -475,6 +797,49 @@ target43.type=ClassTarget
 target43.width=120
 target43.x=0
 target43.y=0
+=======
+target40.name=DisplayComponent
+target40.showInterface=false
+target40.type=ClassTarget
+target40.width=130
+target40.x=0
+target40.y=0
+target41.height=70
+target41.name=EasyLevelButton
+target41.showInterface=false
+target41.type=ClassTarget
+target41.width=130
+target41.x=0
+target41.y=0
+target42.height=70
+target42.name=IScoreUpdateSubject
+target42.showInterface=false
+target42.type=InterfaceTarget
+target42.width=160
+target42.x=0
+target42.y=0
+target43.height=70
+target43.name=MediumLevelButton
+target43.showInterface=false
+target43.type=ClassTarget
+target43.width=150
+target43.x=0
+target43.y=0
+target44.height=70
+target44.name=IBrickObserver
+target44.showInterface=false
+target44.type=InterfaceTarget
+target44.width=120
+target44.x=0
+target44.y=0
+target45.height=70
+target45.name=ScoreDisplay
+target45.showInterface=false
+target45.type=ClassTarget
+target45.width=120
+target45.x=0
+target45.y=0
+>>>>>>> c773882763629052bfb7faf0aa7316284fc17fcb
 target5.height=70
 target5.name=IScoreUpdateObserver
 target5.showInterface=false
@@ -511,7 +876,14 @@ target9.width=130
 target9.x=0
 target9.y=0
 version=3.0.0
+<<<<<<< HEAD
 width=1920
 world.lastInstantiated=StartScreen
 xPosition=0
 yPosition=32
+=======
+width=1792
+world.lastInstantiated=StartScreen
+xPosition=0
+yPosition=25
+>>>>>>> c773882763629052bfb7faf0aa7316284fc17fcb

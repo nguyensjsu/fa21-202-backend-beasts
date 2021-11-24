@@ -1,4 +1,5 @@
 import greenfoot.GreenfootImage;
+import greenfoot.GreenfootSound;
 
 import java.util.ArrayList;
 
@@ -13,20 +14,22 @@ public class Brick extends DisplayComponent implements IBrickSubject {
     private int gravity = 0;
     private boolean shouldNotify = true;
     private boolean bricksTouching = false;
+    private boolean hasPlayedSound = false;
+    private static final GreenfootSound brickSound = new GreenfootSound("sounds/brick-hit-ground.wav");
 
-    private final ArrayList<IBrickObserver> observers = new ArrayList<>();
+    private final ArrayList<IBrickObserver> brickObservers = new ArrayList<>();
 
-    public void attachObserver(IBrickObserver observer) {
-        observers.add(observer);
+    public void attachObserver(IBrickObserver brickObserver) {
+        brickObservers.add(brickObserver);
     }
 
-    public void removeObserver(IBrickObserver observer) {
-        observers.remove(observer);
+    public void removeObserver(IBrickObserver brickObserver) {
+        brickObservers.remove(brickObserver);
     }
 
     public void notifyObservers() {
-        for (IBrickObserver bo : observers) {
-            bo.notifyBrickFall();
+        for (IBrickObserver brickObserver : brickObservers) {
+            brickObserver.notifyBrickFall();
         }
     }
 
@@ -41,7 +44,13 @@ public class Brick extends DisplayComponent implements IBrickSubject {
 
     public void act() {
         if (!isOnGround()) {
+            hasPlayedSound = false;
             fall();
+        } else {
+            if(!hasPlayedSound) {
+                brickSound.play();
+                hasPlayedSound = true;
+            }
         }
         // Use shouldNotify to prevent notifying even after a complete fall.
         if (shouldNotify && isOnGround()) {

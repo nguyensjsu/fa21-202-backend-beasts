@@ -10,6 +10,17 @@ public class ScoreCalculator implements IScoreUpdateSubject, IBrickObserver, IPl
     @Override
     public void notifyBrickFall() {
         this.numberOfBricks++;
+        IGameStrategy currentStrategy = GameStrategyProvider.getGameStrategy();
+        if (numberOfBricks != 0) {
+            if (currentStrategy instanceof EasyGameStrategy) {
+                updateScore += (SCOREFACTOR / numberOfBricks) * 100;
+            } else if (currentStrategy instanceof MediumGameStrategy) {
+                updateScore += (SCOREFACTOR / numberOfBricks) * 150;
+            } else {
+                updateScore += (SCOREFACTOR / numberOfBricks) * 200;
+            }
+        }
+        notifyObservers(updateScore);
     }
 
     public void attachObserver(IScoreUpdateObserver observer) {
@@ -28,16 +39,6 @@ public class ScoreCalculator implements IScoreUpdateSubject, IBrickObserver, IPl
 
     @Override
     public void notifyLevelCompleted() {
-        IGameStrategy currentStrategy = GameStrategyProvider.getGameStrategy();
-        if (numberOfBricks != 0) {
-            if (currentStrategy instanceof EasyGameStrategy) {
-                updateScore += (SCOREFACTOR / numberOfBricks) * 100;
-            } else if (currentStrategy instanceof MediumGameStrategy) {
-                updateScore += (SCOREFACTOR / numberOfBricks) * 150;
-            } else {
-                updateScore += (SCOREFACTOR / numberOfBricks) * 200;
-            }
-        }
         notifyObservers(updateScore);
     }
 

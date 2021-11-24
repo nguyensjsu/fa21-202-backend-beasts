@@ -4,21 +4,14 @@ class Luigi extends Player {
     private final int imageHeight = 50;
     private final int imageWidth = 40;
     
-    public Luigi(String img, String flipImg) {
-        setPlayerImage(img);
-        setPlayerFlipImage(flipImg);
+    public Luigi(String runSequence, String playerImage) {
+        setRunSequence(runSequence);
+        setPlayerImage(playerImage);
     }
     
     public void setPlayerImage(String img) {
-        GreenfootImage image = new GreenfootImage(img);
-        image.scale(imageWidth, imageHeight);
-        this.img = image;
-        setImage(image);
+        playerImage = new GreenfootImage(img);
+        playerImage.scale(playerImage.getWidth()/4, playerImage.getHeight()/4);
     }
     
-    public void setPlayerFlipImage(String img) {
-        GreenfootImage image = new GreenfootImage(img);
-        image.scale(imageWidth, imageHeight);
-        this.flipImg = image;
-    }
 }
