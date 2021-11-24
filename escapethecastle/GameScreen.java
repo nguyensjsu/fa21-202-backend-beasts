@@ -14,6 +14,7 @@ public class GameScreen extends Screen implements IPlayerObserver {
     private ScoreCalculator scoreCalculator;
     private ScoreDisplay scoreDisplay;
     private Door door;
+    private Player player;
 
     /**
      * Constructor for objects of class MyWorld.
@@ -26,7 +27,7 @@ public class GameScreen extends Screen implements IPlayerObserver {
     }
 
     private void prepare() {
-        Player player = PlayerSelector.getChosenPlayer();
+        player = PlayerSelector.getChosenPlayer();
         scoreDisplay = new ScoreDisplay();
         scoreCalculator = new ScoreCalculator();
         door = new Door();
@@ -79,13 +80,13 @@ public class GameScreen extends Screen implements IPlayerObserver {
 
     @Override
     public void notifyLevelCompleted() {
-        GameOverScreen gameover = new GameOverScreen(scoreDisplay.getScore());
+        GameOverScreen gameover = new GameOverScreen(scoreDisplay.getScore(), player.getPlayerName());
         Greenfoot.setWorld(gameover);
     }
 
     @Override
     public void notifyLevelDied() {
-        GameOverScreen gameover = new GameOverScreen(scoreDisplay.getScore());
+        GameOverScreen gameover = new GameOverScreen(scoreDisplay.getScore(), player.getPlayerName());
         Greenfoot.setWorld(gameover);
     }
 }
