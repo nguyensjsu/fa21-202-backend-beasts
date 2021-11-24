@@ -7,12 +7,14 @@ import greenfoot.Greenfoot;
  */
 public class GameOverScreen extends Screen {
     private int score;
+    private String playerName;
     /**
      * Constructor for objects of class GameOverScreen
      */
-    public GameOverScreen(int score) {
+    public GameOverScreen(int score, String playerName) {
         super(700, 500, 1);
         this.score = score;
+        this.playerName = playerName;
         prepare();
     }
 
@@ -33,14 +35,16 @@ public class GameOverScreen extends Screen {
         String result = getResult(this.score);
         ScoreBoardResult scoreBoardResult = new ScoreBoardResult(result);
         Score userScore = new Score(this.score);
+        PlayerName player = new PlayerName(playerName);
         
         addObject(scoreBoardBackground, getHeight(), getWidth());
         addObject(scoreBoardTitle, getWidth() / 2, 50);
-        addObject(scoreBoardResult, getWidth() / 2, 200);
-        addObject(userScore, getWidth() / 2, 300);
+        addObject(player, getWidth() / 2, 180);
+        addObject(scoreBoardResult, getWidth() / 2, 250);
+        addObject(userScore, getWidth() / 2, 320);
         
         ButtonFactory buttonFactory = new ButtonFactory();
         Button replayButton = buttonFactory.getButton("REPLAY");
-        addComponent(replayButton, getWidth() / 2, 400);
+        addComponent(replayButton, getWidth() / 2, 420);
     }
 }
