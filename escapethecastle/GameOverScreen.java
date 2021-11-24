@@ -37,11 +37,11 @@ public class GameOverScreen extends Screen {
         Score userScore = new Score(this.score);
         PlayerName player = new PlayerName(playerName);
         
-        addObject(scoreBoardBackground, getHeight(), getWidth());
-        addObject(scoreBoardTitle, getWidth() / 2, 50);
-        addObject(player, getWidth() / 2, 180);
-        addObject(scoreBoardResult, getWidth() / 2, 250);
-        addObject(userScore, getWidth() / 2, 320);
+        addComponent(scoreBoardBackground, getHeight(), getWidth());
+        addComponent(scoreBoardTitle, getWidth() / 2, 50);
+        addComponent(player, getWidth() / 2, 180);
+        addComponent(scoreBoardResult, getWidth() / 2, 250);
+        addComponent(userScore, getWidth() / 2, 320);
         
         ButtonFactory buttonFactory = new ButtonFactory();
         Button replayButton = buttonFactory.getButton("REPLAY");
