@@ -1,5 +1,4 @@
-import greenfoot.GreenfootImage;
-import greenfoot.GreenfootSound;
+import greenfoot.*;
 
 import java.util.ArrayList;
 
@@ -37,7 +36,7 @@ public class Brick extends DisplayComponent implements IBrickSubject {
         GreenfootImage img = new GreenfootImage(getImage());
         // Width should be a divisor of the world's width (700) to allow dropping the bricks at all places.
         // If width changes, GameScreen.addNewBricks should change accordingly.
-        img.scale(50, img.getHeight() / 5);
+        img.scale(GameScreen.width / GameScreen.bucketSize, img.getHeight() / 5);
         setImage(img);
         this.vSpeed = velocity;
     }
