@@ -33,7 +33,6 @@ public class Brick extends DisplayComponent implements IBrickSubject {
     }
 
     public Brick(int velocity) {
-        GreenfootImage img = new GreenfootImage(getImage());
         // Width should be a divisor of the world's width (700) to allow dropping the bricks at all places.
         // If width changes, GameScreen.addNewBricks should change accordingly.
         img.scale(GameScreen.width / GameScreen.bucketSize, img.getHeight() / 5);
@@ -51,13 +50,13 @@ public class Brick extends DisplayComponent implements IBrickSubject {
                 hasPlayedSound = true;
             }
         }
+        hitWall();
         // Use shouldNotify to prevent notifying even after a complete fall.
         if (shouldNotify && isOnGround()) {
             shouldNotify = false;
             notifyObservers();
         }
         if (!bricksTouching) {
-            hitWall();
             if(isTouching(Brick.class)) {
                 Brick below = (Brick) getOneObjectAtOffset(0, getImage().getHeight()/2, Brick.class);
                 if(below != null) {
@@ -97,6 +96,10 @@ public class Brick extends DisplayComponent implements IBrickSubject {
             return below.isOnGround();
         }
         return false;
+    }
+    
+    public boolean hasHitWall() {
+        return (getX() + (getImage().getWidth() / 2) >= getWorld().getWidth()) || (getX() - getImage().getWidth() / 2 <= 0);
     }
 
     public void hitWall() {

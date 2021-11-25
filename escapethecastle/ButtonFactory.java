@@ -44,6 +44,7 @@ public class ButtonFactory
            public void doAction() {
                clickSound.play();
                Greenfoot.setWorld(new StartScreen());
+               StartScreen.bgm.playLoop();
            }
         });
         buttonCommandMap.put("REPLAY", replayCommand);

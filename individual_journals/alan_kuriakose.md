@@ -21,3 +21,15 @@
 
 ### Planned for Next Week
 * Implementation of code.
+
+## Week 3 (15/11/2021 - 21/11/2021)
+
+### Finished in This Week
+* Added basic implementation of start screen with start and quit buttons.
+* Implemented command pattern and factory pattern for buttons in start screen.
+* Implemented score board replay button using button factory.
+* Added game background music, button click sounds, brick hit ground sound and player jump sound to game.
+
+### Planned for Next Week
+* Implement player animation.
+* Add other required sounds to the game.
