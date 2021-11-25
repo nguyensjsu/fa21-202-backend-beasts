@@ -180,7 +180,7 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
 
         Brick left = (Brick) getOneObjectAtOffset(getImage().getWidth() / -2, 0, Brick.class);
         if (left != null) {
-            if (!left.bricksTouching()) {
+            if (!left.bricksTouching() && !left.hasHitWall()) {
                 left.setLocation(getX() - getImage().getWidth() / 2 - left.getImage().getWidth() / 2, left.getY());
             }
             setLocation(left.getX() + left.getImage().getWidth() / 2 + getImage().getWidth() / 2, getY());
@@ -188,7 +188,7 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
 
         Brick right = (Brick) getOneObjectAtOffset(getImage().getWidth() / 2, 0, Brick.class);
         if (right != null) {
-            if (!right.bricksTouching()) {
+            if (!right.bricksTouching() && !right.hasHitWall()) {
                 right.setLocation(getX() + getImage().getWidth() / 2 + right.getImage().getWidth() / 2, right.getY());
             }
             setLocation(right.getX() - right.getImage().getWidth() / 2 - getImage().getWidth() / 2, getY());
