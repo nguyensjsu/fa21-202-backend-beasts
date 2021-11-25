@@ -14,6 +14,7 @@ public class GameScreen extends Screen implements IPlayerObserver {
     private ScoreCalculator scoreCalculator;
     private ScoreDisplay scoreDisplay;
     private Door door;
+    private Player player;
     public static int width = 0;
     public static int height = 0;
     public static int bucketSize = 15;
