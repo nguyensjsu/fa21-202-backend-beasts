@@ -21,10 +21,12 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
 
     private final ArrayList<IPlayerObserver> playerObservers = new ArrayList<>();
     private static final GreenfootSound jumpSound = new GreenfootSound("sounds/jump.wav");
+    private static final GreenfootSound gameOverSound = new GreenfootSound("sounds/game-over.wav");
 
     protected Player() {
         vSpeed = 0;
         jumpSound.setVolume(90);
+        gameOverSound.setVolume(80);
     }
     
     public String getPlayerName() {
@@ -171,12 +173,14 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
         Brick up = (Brick) getOneObjectAtOffset(0, getImage().getHeight() / -2, Brick.class);
         if (up != null && !up.isOnGround()) {
             //Adding code for score calculator when a player dies.
+            StartScreen.bgm.stop();
+            gameOverSound.play();
             notifyObservers(PlayerFinalState.DIED);
         }
 
         Brick left = (Brick) getOneObjectAtOffset(getImage().getWidth() / -2, 0, Brick.class);
         if (left != null) {
-            if (!left.bricksTouching()) {
+            if (!left.bricksTouching() && !left.hasHitWall()) {
                 left.setLocation(getX() - getImage().getWidth() / 2 - left.getImage().getWidth() / 2, left.getY());
             }
             setLocation(left.getX() + left.getImage().getWidth() / 2 + getImage().getWidth() / 2, getY());
@@ -184,7 +188,7 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
 
         Brick right = (Brick) getOneObjectAtOffset(getImage().getWidth() / 2, 0, Brick.class);
         if (right != null) {
-            if (!right.bricksTouching()) {
+            if (!right.bricksTouching() && !right.hasHitWall()) {
                 right.setLocation(getX() + getImage().getWidth() / 2 + right.getImage().getWidth() / 2, right.getY());
             }
             setLocation(right.getX() - right.getImage().getWidth() / 2 - getImage().getWidth() / 2, getY());
