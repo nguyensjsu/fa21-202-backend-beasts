@@ -16,6 +16,6 @@ public class ScoreBoardResult extends DisplayComponent {
     public ScoreBoardResult(String result) {
         this.result = result;
         Color color = new Color(0, 0, 0, 0);
-        setImage(new GreenfootImage(this.result, 35, Color.ORANGE, color));
+        setImage(new GreenfootImage(this.result, 31, Color.ORANGE, color));
     }
 }
