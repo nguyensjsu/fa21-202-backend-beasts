@@ -1,5 +1,3 @@
-import java.util.concurrent.ThreadLocalRandom;
-
 /**
  * Write a description of class MyWorld here.
  *
@@ -13,8 +11,8 @@ public class GameScreen extends Screen implements IPlayerObserver {
     private final ScoreDisplay scoreDisplay;
     private final Door door;
     private final Player player;
-    public static int width = 0;
-    public static int height = 0;
+    public static int width = 700;
+    public static int height = 500;
     public static final int BUCKET_SIZE = 14;
 
     /**
@@ -65,14 +63,13 @@ public class GameScreen extends Screen implements IPlayerObserver {
 
     public void addNewBricks() {
         IGameStrategy currentStrategy = GameStrategyProvider.getGameStrategy();
-        ThreadLocalRandom random = ThreadLocalRandom.current();
         int numberOfBricks = currentStrategy.getNumberOfBricksFalling();
         for (int i = 0; i < numberOfBricks; i++) {
             Brick brick = new Brick(currentStrategy.getBrickSpeed());
             brick.attachObserver(this.scoreCalculator);
             currentBrick = brick;
             addComponent(brick, 268, 76);
-            brick.setLocation(random.nextInt(0, GameScreen.BUCKET_SIZE) * brick.getWidth() + brick.getWidth() / 2, 22);
+            brick.initializeLocation();
         }
     }
 
