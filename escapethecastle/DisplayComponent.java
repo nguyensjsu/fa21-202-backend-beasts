@@ -49,4 +49,97 @@ public class DisplayComponent extends Actor implements IDisplayComponent {
     public int getHeight() {
         return getImage().getHeight();
     }
+
+    public <O> O getLeftObject(Class<O> oClass) {
+        return oClass.cast(getOneObjectAtOffset(
+                getWidth() / -2 - 1,
+                0,
+                oClass
+        ));
+    }
+
+    public <O> O getRightObject(Class<O> oClass) {
+        return oClass.cast(getOneObjectAtOffset(
+                getWidth() / 2 + 1,
+                0,
+                oClass
+        ));
+    }
+
+    public <O> O getTopObject(Class<O> oClass) {
+        return oClass.cast(getOneObjectAtOffset(
+                0,
+                getHeight() / -2 - 1,
+                oClass
+        ));
+    }
+
+    public <O> O getBelowObject(Class<O> oClass) {
+        return oClass.cast(getOneObjectAtOffset(
+                0,
+                getHeight() / 2 + 1,
+                oClass
+        ));
+    }
+
+    public <O> O getObject(int x, int y, Class<O> oClass) {
+        return oClass.cast(getOneObjectAtOffset(
+                x,
+                y,
+                oClass
+        ));
+    }
+
+    public <O> O getBottomSideObject(Class<O> oClass) {
+        for (int i = getWidth() / -2; i <= getWidth() / 2; i++) {
+            O obj = oClass.cast(getOneObjectAtOffset(i, getHeight() / 2 + 1, oClass));
+            if (obj != null) return obj;
+        }
+        return null;
+    }
+
+    public <O> O getBottomLeftObject(Class<O> oClass) {
+        return oClass.cast(getOneObjectAtOffset(
+                getWidth() / -2 - 1,
+                getHeight() / 2 + 1,
+                oClass
+        ));
+    }
+
+    public <O> O getBottomRightObject(Class<O> oClass) {
+        return oClass.cast(getOneObjectAtOffset(
+                getWidth() / 2 + 1,
+                getHeight() / 2 + 1,
+                oClass
+        ));
+    }
+
+    public boolean isOnWorldGround() {
+        return getY() >= getWorld().getHeight() - getHeight() / 2;
+    }
+
+    public boolean hasHitRightWall() {
+        return getX() + (getWidth() / 2) >= getWorld().getWidth();
+    }
+
+    public boolean hasHitLeftWall() {
+        return getX() - getWidth() / 2 <= 0;
+    }
+
+    public void resetLocationOnWorldGround() {
+        setLocation(getX(), getWorld().getHeight() - (getHeight() / 2));
+    }
+
+    public void resetLocationOnRightWall() {
+        setLocation(getWorld().getWidth() - (getWidth() / 2), getY());
+    }
+
+    public void resetLocationOnLeftWall() {
+        setLocation(getWidth() / 2, getY());
+    }
+
+    public void resetIfHitWall() {
+        if (hasHitLeftWall()) resetLocationOnLeftWall();
+        if (hasHitRightWall()) resetLocationOnRightWall();
+    }
 }

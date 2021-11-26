@@ -1,5 +1,7 @@
-import greenfoot.*;
+import greenfoot.GreenfootSound;
+
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Write a description of class Brick here.
@@ -9,161 +11,138 @@ import java.util.ArrayList;
  */
 public class Brick extends DisplayComponent implements IBrickSubject {
 
-  private int vSpeed = 0;
-  private final int gravity = 0;
-  private boolean shouldNotify = true;
-  private boolean bricksTouching = false;
-  private boolean hasPlayedSound = false;
-  private static final GreenfootSound brickSound = new GreenfootSound(
-    "sounds/brick-hit-ground.wav"
-  );
+    private int vSpeed = 0;
+    private final int gravity = 0;
+    private boolean shouldNotify = true;
+    private boolean bricksTouching = false;
+    private boolean hasPlayedSound = false;
+    private int bucket;
+    private static final GreenfootSound brickSound = new GreenfootSound(
+            "sounds/brick-hit-ground.wav"
+    );
 
-  private final ArrayList<IBrickObserver> brickObservers = new ArrayList<>();
+    private final ArrayList<IBrickObserver> brickObservers = new ArrayList<>();
 
-  public void attachObserver(IBrickObserver brickObserver) {
-    brickObservers.add(brickObserver);
-  }
-
-  public void removeObserver(IBrickObserver brickObserver) {
-    brickObservers.remove(brickObserver);
-  }
-
-  public void notifyObservers() {
-    for (IBrickObserver brickObserver : brickObservers) {
-      brickObserver.notifyBrickFall();
+    public Brick(int velocity) {
+        // Adding 1 pixel for overlaps.
+        getImage().scale(GameScreen.width / GameScreen.BUCKET_SIZE, 30);
+        this.vSpeed = velocity;
+        ThreadLocalRandom random = ThreadLocalRandom.current();
+        bucket = random.nextInt(0, GameScreen.BUCKET_SIZE);
     }
-  }
 
-  public Brick(int velocity) {
-    getImage().scale(GameScreen.width / GameScreen.BUCKET_SIZE, 30);
-    this.vSpeed = velocity;
-  }
+    public void attachObserver(IBrickObserver brickObserver) {
+        brickObservers.add(brickObserver);
+    }
 
-  public void act() {
-    if (!isOnGround()) {
-      hasPlayedSound = false;
-      fall();
-    } else {
-      if (!hasPlayedSound) {
-        brickSound.play();
-        hasPlayedSound = true;
-      }
+    public void removeObserver(IBrickObserver brickObserver) {
+        brickObservers.remove(brickObserver);
     }
-    hitWall();
-    // Use shouldNotify to prevent notifying even after a complete fall.
-    if (shouldNotify && isOnGround()) {
-      shouldNotify = false;
-      notifyObservers();
+
+    public void notifyObservers() {
+        for (IBrickObserver brickObserver : brickObservers) {
+            brickObserver.notifyBrickFall();
+        }
     }
-    if (!bricksTouching) {
-      if (isTouching(Brick.class)) {
-        Brick below = (Brick) getOneObjectAtOffset(
-          0,
-          getImage().getHeight() / 2,
-          Brick.class
-        );
+
+
+    @Override
+    public void act() {
+        if (!isOnGround()) {
+            hasPlayedSound = false;
+            fall();
+        } else if (!hasPlayedSound) {
+            brickSound.play();
+            hasPlayedSound = true;
+        }
+        resetIfHitWall();
+        // Use shouldNotify to prevent notifying even after a complete fall.
+        if (shouldNotify && isOnGround()) {
+            shouldNotify = false;
+            notifyObservers();
+        }
+    }
+
+    public boolean isOnGround() {
+        if (isOnWorldGround()) {
+            return true;
+        }
+        // Intentionally using getObject with no allowance for overlap i.e h/2 to allow the object overlapping.
+        Brick below = getObject(0, getHeight() / 2, Brick.class);
         if (below != null) {
-          setLocation(
-            getX(),
-            below.getY() -
-            below.getImage().getHeight() /
-            2 -
-            getImage().getHeight() /
-            2
-          );
+            return below.isOnGround();
         }
+        return false;
+    }
 
-        Brick top = (Brick) getOneObjectAtOffset(
-          0,
-          getImage().getHeight() / -2,
-          Brick.class
-        );
-        if (top != null) {
-          bricksTouching = true;
+    public void fall() {
+        setLocation(getX(), getY() + vSpeed);
+        vSpeed = vSpeed + gravity;
+        if (isOnWorldGround()) {
+            vSpeed = 0;
+            resetLocationOnWorldGround();
         }
+    }
 
-        Brick left = (Brick) getOneObjectAtOffset(
-          getImage().getWidth() / -2,
-          0,
-          Brick.class
-        );
-        if (left != null) {
-          bricksTouching = true;
-          setLocation(
-            left.getX() +
-            left.getImage().getWidth() /
-            2 +
-            getImage().getWidth() /
-            2,
-            getY()
-          );
+    public int getBucket() {
+        return bucket;
+    }
+
+    public void setBucket(int bucket) {
+        this.bucket = bucket;
+    }
+
+    public void initializeLocation() {
+        setLocation(getBucketX(), 22);
+    }
+
+    public int getBucketX() {
+        return bucket * getWidth() + getWidth() / 2;
+    }
+
+    public void resetBucketLocation() {
+        setLocation(getBucketX(), getY());
+    }
+
+    public void tryPushingLeft() {
+        // Allow pushing when brick has not hit another brick or has no brick on top of it.
+        Brick leftBrick = getLeftObject(Brick.class);
+        Brick topBrick = getTopObject(Brick.class);
+        if (!hasHitLeftWall() && leftBrick == null && topBrick == null) {
+            bucket--;
+            resetBucketLocation();
         }
+    }
 
-        Brick right = (Brick) getOneObjectAtOffset(
-          getImage().getWidth() / 2,
-          0,
-          Brick.class
-        );
-        if (right != null) {
-          bricksTouching = true;
-          setLocation(
-            right.getX() -
-            right.getImage().getWidth() /
-            2 -
-            getImage().getWidth() /
-            2,
-            getY()
-          );
+    public void tryPushingRight() {
+        // Allow pushing when brick has not hit another brick or has no brick on top of it.
+        Brick rightBrick = getRightObject(Brick.class);
+        Brick topBrick = getTopObject(Brick.class);
+        if (!hasHitRightWall() && rightBrick == null && topBrick == null) {
+            bucket++;
+            resetBucketLocation();
         }
-      }
     }
-  }
 
-  public boolean bricksTouching() {
-    return bricksTouching;
-  }
-
-  public boolean isOnGround() {
-    if (getY() >= getWorld().getHeight() - getImage().getHeight() / 2) {
-      return true;
+    @Override
+    public boolean hasHitRightWall() {
+        return bucket >= (GameScreen.BUCKET_SIZE - 1);
     }
-    Brick below = (Brick) getOneObjectAtOffset(
-      0,
-      getImage().getHeight() / 2,
-      Brick.class
-    );
-    if (below != null) {
-      return below.isOnGround();
+
+    @Override
+    public boolean hasHitLeftWall() {
+        return bucket <= 0;
     }
-    return false;
-  }
 
-  public boolean hasHitWall() {
-    return (
-      (getX() + (getImage().getWidth() / 2) >= getWorld().getWidth()) ||
-      (getX() - getImage().getWidth() / 2 <= 0)
-    );
-  }
-
-  public void hitWall() {
-    if (
-      getX() + (getImage().getWidth() / 2) >= getWorld().getWidth()
-    ) setLocation(getWorld().getWidth() - (getImage().getWidth() / 2), getY());
-    if (getX() - getImage().getWidth() / 2 <= 0) setLocation(
-      getImage().getWidth() / 2,
-      getY()
-    );
-  }
-
-  public void fall() {
-    setLocation(getX(), getY() + vSpeed);
-    vSpeed = vSpeed + gravity;
-    if (getY() >= getWorld().getHeight() - getImage().getHeight() / 2) {
-      vSpeed = 0;
-      setLocation(
-        getX(),
-        getWorld().getHeight() - (getImage().getHeight() / 2)
-      );
+    @Override
+    public void resetLocationOnRightWall() {
+        bucket = 13;
+        resetBucketLocation();
     }
-  }
+
+    @Override
+    public void resetLocationOnLeftWall() {
+        bucket = 0;
+        resetBucketLocation();
+    }
 }

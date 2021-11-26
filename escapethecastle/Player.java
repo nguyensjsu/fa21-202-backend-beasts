@@ -82,6 +82,7 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
         setImage(playerRightImages[0]);
     }
 
+    @Override
     public void act() {
         move();
         push();
@@ -95,7 +96,11 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
         }
     }
 
-    public void moveLeft() {
+    public void tryMovingLeft() {
+        Brick leftBrick = getLeftObject(Brick.class);
+        // If there is brick on left, don't move.
+        if (leftBrick != null) return;
+
         setLocation(getX() - speed, getY());
         setImage(playerLeftImages[(int) currentImage % playerRightImages.length]);
         currentImage += animationSpeed;
@@ -104,7 +109,11 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
         }
     }
 
-    public void moveRight() {
+    public void tryMovingRight() {
+        Brick rightBrick = getRightObject(Brick.class);
+        // If there is brick on right, don't move.
+        if (rightBrick != null) return;
+
         setLocation(getX() + speed, getY());
         setImage(playerRightImages[(int) currentImage % playerLeftImages.length]);
         currentImage += animationSpeed;
@@ -114,6 +123,10 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
     }
 
     public void fall() {
+        // If player is falling and on the solid ground, stop the fall.
+        if (isOnSolidGround() && vSpeed > 0) {
+            return;
+        }
         setLocation(getX(), getY() + vSpeed);
         vSpeed = vSpeed + gravity;
     }
@@ -126,12 +139,12 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
 
 
     public void move() {
-        hitWall();
+        resetIfHitWall();
         if (Greenfoot.isKeyDown("left")) {
-            moveLeft();
+            tryMovingLeft();
         }
         if (Greenfoot.isKeyDown("right")) {
-            moveRight();
+            tryMovingRight();
         }
         if (Greenfoot.isKeyDown("up") && isOnSolidGround()) {
             jump();
@@ -141,16 +154,9 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
         } else {
             vSpeed = 0;
             push();
-
-            int imageHeight = getImage().getHeight();
-            int imageWidth = getImage().getWidth();
-            Brick down = (Brick) (getOneObjectAtOffset(0, imageHeight / 2, Brick.class) != null ?
-                    getOneObjectAtOffset(0, imageHeight / 2, Brick.class) :
-                    getOneObjectAtOffset(imageWidth / -2, imageHeight / 2, Brick.class) != null ?
-                            getOneObjectAtOffset(imageWidth / -2, imageHeight / 2, Brick.class) :
-                            getOneObjectAtOffset(imageWidth / 2, imageHeight / 2, Brick.class) != null ?
-                                    getOneObjectAtOffset(imageWidth / 2, imageHeight / 2, Brick.class) : null);
-            if (down != null) {
+            Brick down = getBottomSideObject(Brick.class);
+            // If a brick is there to land, and it's the top one, land there.
+            if (down != null && down.getTopObject(Brick.class) == null) {
                 // land on brick
                 int brickTopLoc = down.getY() - (down.getImage().getHeight() / 2);
                 setLocation(getX(), brickTopLoc - getImage().getHeight() / 2);
@@ -161,49 +167,32 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
         }
     }
 
-    public void hitWall() {
-        if (getX() + (getImage().getWidth() / 2) >= getWorld().getWidth())
-            setLocation(getWorld().getWidth() - (getImage().getWidth() / 2), getY());
-        if (getX() - getImage().getWidth() / 2 <= 0)
-            setLocation(getImage().getWidth() / 2, getY());
-    }
-
     public void push() {
         // game over if brick bottom touches player
-        Brick up = (Brick) getOneObjectAtOffset(0, getImage().getHeight() / -2, Brick.class);
+        Brick up = getTopObject(Brick.class);
         if (up != null && !up.isOnGround()) {
+            System.out.println(up + " UP " + up.getX() + " " + up.getY());
             //Adding code for score calculator when a player dies.
             StartScreen.BACKGROUND_MUSIC.stop();
             gameOverSound.play();
             notifyObservers(PlayerFinalState.DIED);
         }
 
-        Brick left = (Brick) getOneObjectAtOffset(getImage().getWidth() / -2, 0, Brick.class);
-        if (left != null) {
-            if (!left.bricksTouching() && !left.hasHitWall()) {
-                left.setLocation(getX() - getImage().getWidth() / 2 - left.getImage().getWidth() / 2, left.getY());
-            }
-            setLocation(left.getX() + left.getImage().getWidth() / 2 + getImage().getWidth() / 2, getY());
+        Brick leftBrick = getLeftObject(Brick.class);
+        if (leftBrick != null && Greenfoot.isKeyDown("left")) {
+            leftBrick.tryPushingLeft();
         }
 
-        Brick right = (Brick) getOneObjectAtOffset(getImage().getWidth() / 2, 0, Brick.class);
-        if (right != null) {
-            if (!right.bricksTouching() && !right.hasHitWall()) {
-                right.setLocation(getX() + getImage().getWidth() / 2 + right.getImage().getWidth() / 2, right.getY());
-            }
-            setLocation(right.getX() - right.getImage().getWidth() / 2 - getImage().getWidth() / 2, getY());
+        Brick rightBrick = getRightObject(Brick.class);
+        if (rightBrick != null && Greenfoot.isKeyDown("right")) {
+            rightBrick.tryPushingRight();
         }
 
     }
 
     public boolean isOnSolidGround() {
-        if (getY() >= getWorld().getHeight() - (getImage().getHeight() / 2)) return true;
+        if (isOnWorldGround()) return true;
 
-        int imageWidth = getImage().getWidth();
-        int imageHeight = getImage().getHeight();
-
-        return getOneObjectAtOffset(imageWidth / -2, imageHeight / 2, Brick.class) != null ||
-                getOneObjectAtOffset(imageWidth / 2, imageHeight / 2, Brick.class) != null ||
-                getOneObjectAtOffset(0, imageHeight / 2, Brick.class) != null;
+        return getBottomSideObject(Brick.class) != null;
     }
 }
