@@ -2,7 +2,7 @@ import greenfoot.Color;
 import greenfoot.GreenfootImage;
 
 public class Rank extends DisplayComponent{
-    private int rank;
+    private final int rank;
 
     /**
      * Constructor for objects of class Score

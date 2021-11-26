@@ -1,4 +1,4 @@
 public enum PlayerFinalState {
     DIED,
-    WON;
+    WON
 }

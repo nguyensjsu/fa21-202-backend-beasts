@@ -7,16 +7,16 @@ import java.util.List;
  * @version (a version number or a date)
  */
 public class GameOverScreen extends Screen {
-    private int score;
-    private String playerName;
-    private ScoreRepository scoreRepository;
+    private final ScoreRepository scoreRepository;
+    private final ScoreDisplay scoreDisplay;
+    private final String playerName;
 
     /**
      * Constructor for objects of class GameOverScreen
      */
-    public GameOverScreen(int score, String playerName, ScoreRepository scoreRepository) {
+    public GameOverScreen(ScoreDisplay scoreDisplay, String playerName, ScoreRepository scoreRepository) {
         super(700, 500, 1);
-        this.score = score;
+        this.scoreDisplay = scoreDisplay;
         this.playerName = playerName;
         this.scoreRepository = scoreRepository;
         prepare();
@@ -36,9 +36,9 @@ public class GameOverScreen extends Screen {
     private void prepare() {
         ScoreBoardBackground scoreBoardBackground = new ScoreBoardBackground();
         ScoreBoardTitle scoreBoardTitle = new ScoreBoardTitle();
-        String result = getResult(this.score);
+        String result = getResult(scoreDisplay.getScore());
         ScoreBoardResult scoreBoardResult = new ScoreBoardResult(result);
-        Score userScore = new Score(this.score);
+        Score userScore = new Score(scoreDisplay.getScore());
         PlayerName player = new PlayerName(playerName);
         Rank rank = new Rank(scoreRepository.getCurrentPlayerRank(playerName, GameStrategyProvider.getGameStrategy()));
 

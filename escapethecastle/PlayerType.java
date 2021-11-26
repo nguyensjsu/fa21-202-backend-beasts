@@ -7,5 +7,5 @@
 public enum PlayerType  {
     MARIO, 
     WARIO, 
-    LUIGI;
+    LUIGI
 }

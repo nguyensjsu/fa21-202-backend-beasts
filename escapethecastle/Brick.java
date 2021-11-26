@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Brick extends DisplayComponent implements IBrickSubject {
 
   private int vSpeed = 0;
-  private int gravity = 0;
+  private final int gravity = 0;
   private boolean shouldNotify = true;
   private boolean bricksTouching = false;
   private boolean hasPlayedSound = false;
@@ -35,7 +35,7 @@ public class Brick extends DisplayComponent implements IBrickSubject {
   }
 
   public Brick(int velocity) {
-    getImage().scale(GameScreen.width / GameScreen.bucketSize, 30);
+    getImage().scale(GameScreen.width / GameScreen.BUCKET_SIZE, 30);
     this.vSpeed = velocity;
   }
 
