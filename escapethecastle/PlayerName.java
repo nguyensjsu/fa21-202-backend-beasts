@@ -14,6 +14,6 @@ public class PlayerName extends DisplayComponent
     public PlayerName(String playerName) {
         this.playerName = playerName;
         Color color = new Color(0,0,0,0);
-        setImage(new GreenfootImage ("Hi " + this.playerName, 30, Color.ORANGE, color));
+        setImage(new GreenfootImage ("Hi " + this.playerName, 25, Color.ORANGE, color));
     }
 }
