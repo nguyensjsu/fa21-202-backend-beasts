@@ -2,7 +2,6 @@ import greenfoot.Greenfoot;
 
 public class GameController {
     private static GameController gameController;
-    private StartScreen startScreen;
     private GameScreen gameScreen;
     private GameOverScreen gameOver;
     private ScoreDisplay scoreDisplay;
@@ -33,7 +32,6 @@ public class GameController {
         scoreCalculator = new ScoreCalculator();
         scoreRepo = new ScoreRepository(player.getPlayerName(), scoreDisplay);
         door = new Door();
-        startScreen = new StartScreen();
         gameScreen = new GameScreen(scoreDisplay, player, door, scoreCalculator);
 
         // Attach the score calculator to notify for the score.
@@ -48,7 +46,7 @@ public class GameController {
     public void setScreen(Screen screen) {
         switch (screen) {
             case START_SCREEN:
-                Greenfoot.setWorld(startScreen);
+                Greenfoot.setWorld(new StartScreen());
                 break;
             case GAME_SCREEN:
                 initialize();
