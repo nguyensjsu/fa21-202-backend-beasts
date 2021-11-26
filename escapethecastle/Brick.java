@@ -35,9 +35,7 @@ public class Brick extends DisplayComponent implements IBrickSubject {
   }
 
   public Brick(int velocity) {
-    GreenfootImage img = new GreenfootImage(getImage());
-    img.scale(GameScreen.width / GameScreen.BUCKET_SIZE, img.getHeight() / 5);
-    setImage(img);
+    getImage().scale(GameScreen.width / GameScreen.BUCKET_SIZE, 30);
     this.vSpeed = velocity;
   }
 

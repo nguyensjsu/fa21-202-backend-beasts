@@ -15,7 +15,7 @@ public class GameScreen extends Screen implements IPlayerObserver {
     private final Player player;
     public static int width = 0;
     public static int height = 0;
-    public static final int BUCKET_SIZE = 15;
+    public static final int BUCKET_SIZE = 14;
 
     /**
      * Constructor for objects of class MyWorld.
