@@ -7,7 +7,7 @@ import greenfoot.*;
  */
 public class PlayerName extends DisplayComponent
 {
-    private String playerName;
+    private final String playerName;
     /**
      * Constructor for objects of class ScoreBoardResult
      */

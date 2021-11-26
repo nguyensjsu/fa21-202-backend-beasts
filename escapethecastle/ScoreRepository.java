@@ -18,7 +18,7 @@ public class ScoreRepository implements IPlayerObserver {
     public void writeScores(int score) {
         IGameStrategy gameStrategy = GameStrategyProvider.getGameStrategy();
         File file = getFile(gameStrategy);
-        try (FileWriter fr = new FileWriter(file, true); BufferedWriter br = new BufferedWriter(fr);) {
+        try (FileWriter fr = new FileWriter(file, true); BufferedWriter br = new BufferedWriter(fr)) {
             br.write(playerName + ", " + score);
             br.newLine();
             br.flush();

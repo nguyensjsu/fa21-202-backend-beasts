@@ -7,7 +7,7 @@ import greenfoot.*;
  */
 public class Score extends DisplayComponent
 {
-    private int score;
+    private final int score;
     
     /**
      * Constructor for objects of class Score

@@ -4,8 +4,8 @@ import greenfoot.GreenfootSound;
 
 public class GameStrategyButton extends DisplayComponent {
 
-    private IGameStrategy gameStrategy;
-    private static GreenfootSound clickSound = new GreenfootSound("sounds/button-click.wav");
+    private final IGameStrategy gameStrategy;
+    private static final GreenfootSound clickSound = new GreenfootSound("sounds/button-click.wav");
 
     public GameStrategyButton(GreenfootImage image, IGameStrategy gameStrategy) {
         this.gameStrategy = gameStrategy;

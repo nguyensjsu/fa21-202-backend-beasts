@@ -7,8 +7,8 @@ import java.util.ArrayList;
 public abstract class Player extends DisplayComponent implements IPlayerSubject {
     private final int speed = 7;
     private int vSpeed = 0;
-    private int gravity = 3;
-    private int jumpStrength = 30;
+    private final int gravity = 3;
+    private final int jumpStrength = 30;
     private String name = "Player 1";
 
     private GreenfootImage[] playerRightImages;
@@ -173,7 +173,7 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
         Brick up = (Brick) getOneObjectAtOffset(0, getImage().getHeight() / -2, Brick.class);
         if (up != null && !up.isOnGround()) {
             //Adding code for score calculator when a player dies.
-            StartScreen.bgm.stop();
+            StartScreen.BACKGROUND_MUSIC.stop();
             gameOverSound.play();
             notifyObservers(PlayerFinalState.DIED);
         }
@@ -202,11 +202,8 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
         int imageWidth = getImage().getWidth();
         int imageHeight = getImage().getHeight();
 
-        if (getOneObjectAtOffset(imageWidth / -2, imageHeight / 2, Brick.class) != null ||
+        return getOneObjectAtOffset(imageWidth / -2, imageHeight / 2, Brick.class) != null ||
                 getOneObjectAtOffset(imageWidth / 2, imageHeight / 2, Brick.class) != null ||
-                getOneObjectAtOffset(0, imageHeight / 2, Brick.class) != null) {
-            return true;
-        }
-        return false;
+                getOneObjectAtOffset(0, imageHeight / 2, Brick.class) != null;
     }
 }
