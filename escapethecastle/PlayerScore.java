@@ -1,8 +1,8 @@
 import java.util.Objects;
 
 public class PlayerScore implements Comparable<PlayerScore> {
-    private String name;
-    private int score;
+    private final String name;
+    private final int score;
 
     public PlayerScore(String name, int score) {
         this.name = name;
