@@ -15,6 +15,7 @@ public class GameScreen extends Screen implements IPlayerObserver {
     private ScoreDisplay scoreDisplay;
     private Door door;
     private Player player;
+    private ScoreRepository scoreRepo;
     public static int width = 0;
     public static int height = 0;
     public static int bucketSize = 15;
@@ -30,7 +31,7 @@ public class GameScreen extends Screen implements IPlayerObserver {
         this.height = height;
         prepare();
     }
-    
+
     public GameScreen() {
         // Create a new world with 700x500 cells with a cell size of 1x1 pixels.
         // Change the brick's size too if you change this.
@@ -44,10 +45,12 @@ public class GameScreen extends Screen implements IPlayerObserver {
         player = PlayerSelector.getChosenPlayer();
         scoreDisplay = new ScoreDisplay();
         scoreCalculator = new ScoreCalculator();
+        scoreRepo = new ScoreRepository(player.getPlayerName(), scoreDisplay);
         door = new Door();
 
         // Attach the score calculator to notify for the score.
         player.attachObserver(scoreCalculator);
+        player.attachObserver(scoreRepo);
         // Attach GameScreen as observer to listen the player's state.
         player.attachObserver(this);
         player.getImage().setTransparency(255);
@@ -93,13 +96,16 @@ public class GameScreen extends Screen implements IPlayerObserver {
 
     @Override
     public void notifyLevelCompleted() {
-        GameOverScreen gameover = new GameOverScreen(scoreDisplay.getScore(), player.getPlayerName());
-        Greenfoot.setWorld(gameover);
+        setGameOverScreen();
     }
 
     @Override
     public void notifyLevelDied() {
-        GameOverScreen gameover = new GameOverScreen(scoreDisplay.getScore(), player.getPlayerName());
+        setGameOverScreen();
+    }
+
+    private void setGameOverScreen() {
+        GameOverScreen gameover = new GameOverScreen(scoreDisplay.getScore(), player.getPlayerName(), scoreRepo);
         Greenfoot.setWorld(gameover);
     }
 }

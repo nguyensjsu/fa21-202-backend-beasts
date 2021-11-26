@@ -9,7 +9,7 @@ public class ScoreBoardTitle extends DisplayComponent {
 
     public ScoreBoardTitle() {
         GreenfootImage titleImage = new GreenfootImage("title.png");
-        titleImage.scale(200,80);
+        titleImage.scale(180,60);
         setImage(titleImage);
     }
 }

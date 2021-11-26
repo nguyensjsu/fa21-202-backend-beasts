@@ -16,6 +16,6 @@ public class Score extends DisplayComponent
         this.score = score;
         Color color = new Color(0,0,0,0);
         String userScore = "Your score is " + this.score;
-        setImage(new GreenfootImage (userScore, 30, Color.ORANGE, color));
+        setImage(new GreenfootImage (userScore, 36, Color.ORANGE, color));
     }
 }
