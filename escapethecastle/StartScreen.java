@@ -30,8 +30,6 @@ public class StartScreen extends Screen {
      * That is: create the initial objects and add them to the world.
      */
     private void prepare() {
-        String name = Greenfoot.ask("Enter Player Name");
-
         Player mario = PlayerFactory.getPlayer(PlayerType.MARIO);
         Player wario = PlayerFactory.getPlayer(PlayerType.WARIO);
         Player luigi = PlayerFactory.getPlayer(PlayerType.LUIGI);
@@ -43,10 +41,12 @@ public class StartScreen extends Screen {
         addComponent(marioOption, 260, 110);
         addComponent(warioOption, 335, 105);
         addComponent(luigiOption, 420, 100);
-        marioOption.setPlayerName(name);
-        warioOption.setPlayerName(name);
-        luigiOption.setPlayerName(name);
-
+        
+        if(Player.getPlayerName().equals("Player 1")) {
+            String name = Greenfoot.ask("Enter Player Name");
+            Player.setPlayerName(name);
+        }
+        
         //Adding the easy medium and difficult levels.
         EasyLevelButton easyLevel = new EasyLevelButton();
         addComponent(easyLevel, 250, 200);

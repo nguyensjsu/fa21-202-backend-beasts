@@ -30,7 +30,7 @@ public class GameController {
         player = PlayerSelector.getChosenPlayer();
         scoreDisplay = new ScoreDisplay();
         scoreCalculator = new ScoreCalculator();
-        scoreRepo = new ScoreRepository(player.getPlayerName(), scoreDisplay);
+        scoreRepo = new ScoreRepository(Player.getPlayerName(), scoreDisplay);
         door = new Door();
         gameScreen = new GameScreen(scoreDisplay, player, door, scoreCalculator);
 
@@ -53,7 +53,7 @@ public class GameController {
                 Greenfoot.setWorld(gameScreen);
                 break;
             case GAME_OVER_SCREEN:
-                gameOver = new GameOverScreen(scoreDisplay, player.getPlayerName(), scoreRepo);
+                gameOver = new GameOverScreen(scoreDisplay, Player.getPlayerName(), scoreRepo);
                 Greenfoot.setWorld(gameOver);
         }
     }
