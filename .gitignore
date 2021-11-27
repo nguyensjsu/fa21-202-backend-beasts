@@ -10,4 +10,5 @@ target
 escapethecastle/doc
 
 escapethecastle/*.ctxt
+escapethecastle/*.txt
 escapethecastle/*.class

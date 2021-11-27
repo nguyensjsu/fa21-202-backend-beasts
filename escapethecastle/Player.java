@@ -9,7 +9,7 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
     private int vSpeed = 0;
     private final int gravity = 3;
     private final int jumpStrength = 30;
-    private String name = "Player 1";
+    private static String name = "Player 1";
 
     private GreenfootImage[] playerRightImages;
     private GreenfootImage[] playerLeftImages;
@@ -28,12 +28,12 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
         gameOverSound.setVolume(80);
     }
 
-    public String getPlayerName() {
+    public static String getPlayerName() {
         return name;
     }
 
-    public void setPlayerName(String name) {
-        this.name = name;
+    public static void setPlayerName(String name) {
+        Player.name = name;
     }
 
     public GreenfootImage getPlayerImage() {
@@ -171,7 +171,6 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
         // game over if brick bottom touches player
         Brick up = getTopObject(Brick.class);
         if (up != null && !up.isOnGround()) {
-            System.out.println(up + " UP " + up.getX() + " " + up.getY());
             //Adding code for score calculator when a player dies.
             StartScreen.BACKGROUND_MUSIC.stop();
             gameOverSound.play();
