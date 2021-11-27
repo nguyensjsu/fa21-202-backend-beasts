@@ -41,9 +41,6 @@ public class StartScreen extends Screen {
         addComponent(marioOption, 260, 110);
         addComponent(warioOption, 335, 105);
         addComponent(luigiOption, 420, 100);
-        // marioOption.setPlayerName(name);
-        // warioOption.setPlayerName(name);
-        // luigiOption.setPlayerName(name);
         
         if(Player.getPlayerName().equals("Player 1")) {
             String name = Greenfoot.ask("Enter Player Name");
