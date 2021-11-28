@@ -20,6 +20,10 @@ public class StartScreen extends Screen {
 
     public void act() {
         if (Greenfoot.isKeyDown("Enter")) {
+            if(Player.getPlayerName().equals("Player 1")) {
+                String name = Greenfoot.ask("Enter Player Name");
+                Player.setPlayerName(name);
+            }
             GameController.getInstance().setScreen(GameController.Screen.GAME_SCREEN);
         }
     }
@@ -41,11 +45,6 @@ public class StartScreen extends Screen {
         addComponent(marioOption, 260, 110);
         addComponent(warioOption, 335, 105);
         addComponent(luigiOption, 420, 100);
-        
-        if(Player.getPlayerName().equals("Player 1")) {
-            String name = Greenfoot.ask("Enter Player Name");
-            Player.setPlayerName(name);
-        }
         
         //Adding the easy medium and difficult levels.
         EasyLevelButton easyLevel = new EasyLevelButton();
