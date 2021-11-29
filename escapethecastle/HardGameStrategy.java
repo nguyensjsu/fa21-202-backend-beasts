@@ -11,4 +11,9 @@ public class HardGameStrategy implements IGameStrategy {
     public int getNumberOfBricksFalling() {
         return 3;
     }
+
+    @Override
+    public int getNumberOfLives() {
+        return 3;
+    }
 }
