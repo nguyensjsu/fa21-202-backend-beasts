@@ -4,7 +4,7 @@
 public class HardGameStrategy implements IGameStrategy {
     @Override
     public int getBrickSpeed() {
-        return 3;
+        return 10;
     }
 
     @Override

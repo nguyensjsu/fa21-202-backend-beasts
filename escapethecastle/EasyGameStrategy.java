@@ -4,7 +4,7 @@
 public class EasyGameStrategy implements IGameStrategy {
     @Override
     public int getBrickSpeed() {
-        return 1;
+        return 12;
     }
 
     @Override

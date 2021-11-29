@@ -8,11 +8,11 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Brick extends DisplayComponent implements IBrickSubject {
 
-    private int vSpeed = 0;
-    private final int gravity = 0;
+    private int vSpeed = 5;
+    private int gravity = 0;
     private boolean shouldNotify = true;
-    private boolean bricksTouching = false;
     private boolean hasPlayedSound = false;
+    private int coolDown = 80;
     private int bucket;
     private static final GreenfootSound brickSound = new GreenfootSound(
             "sounds/brick-hit-ground.wav"
@@ -73,6 +73,10 @@ public class Brick extends DisplayComponent implements IBrickSubject {
     }
 
     public void fall() {
+        if (coolDown > 0) {
+            coolDown--;
+            return;
+        }
         setLocation(getX(), getY() + vSpeed);
         vSpeed = vSpeed + gravity;
         if (isOnWorldGround()) {
