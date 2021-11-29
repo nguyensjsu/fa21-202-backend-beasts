@@ -36,7 +36,7 @@ public class GameScreen extends Screen implements IPlayerObserver {
     }
 
     private void prepare() {
-        addComponent(door, getWidth() - door.getWidth() / 3, getHeight() - door.getHeight() / 2);
+        addComponent(door, getWidth() - door.getWidth() / 3, getHeight() - 6 * door.getHeight() / 2);
         addComponent(scoreDisplay, 600, 10);
         addComponent(player, 69, 445);
     }
