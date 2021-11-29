@@ -11,4 +11,9 @@ public class MediumGameStrategy implements IGameStrategy {
     public int getNumberOfBricksFalling() {
         return 2;
     }
+
+    @Override
+    public int getNumberOfLives() {
+        return 2;
+    }
 }

@@ -3,6 +3,7 @@ import greenfoot.GreenfootImage;
 import greenfoot.GreenfootSound;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Abstract class to represent a player.
@@ -19,10 +20,9 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
     protected GreenfootImage playerImage;
     private float currentImage = 0f;
     private static final float animationSpeed = 0.4f;
-    private int numberOfLivesLeft = 3;
     private int coolDownForLife = 0;
-    private int totalNumberOfLives = 3;
-
+    private int totalNumberOfLives = 1;
+    private int numberOfLivesLeft = 1;
 
     private final ArrayList<IPlayerObserver> playerObservers = new ArrayList<>();
     private static final GreenfootSound jumpSound = new GreenfootSound("sounds/jump.wav");
@@ -183,7 +183,7 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
         // game over if brick bottom touches player
         Brick up = getTopObject(Brick.class);
         if (up != null && !up.isOnGround()) {
-            if (numberOfLivesLeft <= 1) {
+            if (numberOfLivesLeft <= 0) {
                 StartScreen.BACKGROUND_MUSIC.stop();
                 gameOverSound.play();
                 notifyObservers(PlayerState.DIED);
@@ -212,5 +212,10 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
         if (isOnWorldGround()) return true;
 
         return getBottomSideObject(Brick.class) != null;
+    }
+
+    public void setTotalNumberOfLives(int lives) {
+        totalNumberOfLives = lives;
+        numberOfLivesLeft = lives;
     }
 }

@@ -33,11 +33,12 @@ public final class GameController {
 
     private void initialize() {
         player = PlayerSelector.getChosenPlayer();
+        player.setTotalNumberOfLives(GameStrategyProvider.getGameStrategy().getNumberOfLives());
         scoreDisplay = new ScoreDisplay();
         scoreCalculator = new ScoreCalculator();
         scoreRepo = new ScoreRepository(Player.getPlayerName(), scoreDisplay);
         door = new Door();
-        gameScreen = new GameScreen(scoreDisplay, player, door, scoreCalculator);
+        gameScreen = new GameScreen(scoreDisplay, player, door, scoreCalculator,GameStrategyProvider.getGameStrategy());
 
         // Attach the score calculator to notify for the score.
         player.attachObserver(scoreCalculator);

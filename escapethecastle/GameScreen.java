@@ -12,6 +12,7 @@ public class GameScreen extends Screen implements IPlayerObserver {
     private final ScoreDisplay scoreDisplay;
     private final Door door;
     private final Player player;
+    private IGameStrategy gameStrategy;
     public static int width = 700;
     public static int height = 500;
     public static final int BUCKET_SIZE = 14;
@@ -21,24 +22,27 @@ public class GameScreen extends Screen implements IPlayerObserver {
     /**
      * Constructor for objects of class MyWorld.
      */
-    public GameScreen(ScoreCalculator scoreCalculator, ScoreDisplay scoreDisplay, Door door, Player player, int w, int h) {
+    public GameScreen(ScoreCalculator scoreCalculator, ScoreDisplay scoreDisplay, Door door, Player player, IGameStrategy gameStrategy, int w, int h) {
         super(w, h, 1);
         this.scoreCalculator = scoreCalculator;
         this.scoreDisplay = scoreDisplay;
         this.door = door;
         this.player = player;
+        this.gameStrategy = gameStrategy;
         width = w;
         height = h;
         lives = new ArrayList<>();
-        lives.add(new PlayerLife(player));
-        lives.add(new PlayerLife(player));
+        int numberOfLives = gameStrategy.getNumberOfLives();
+        for (int i = 0; i < numberOfLives; i++) {
+            lives.add(new PlayerLife(player));
+        }
         prepare();
     }
 
-    public GameScreen(ScoreDisplay scoreDisplay, Player player, Door door, ScoreCalculator scoreCalculator) {
+    public GameScreen(ScoreDisplay scoreDisplay, Player player, Door door, ScoreCalculator scoreCalculator, IGameStrategy gameStrategy) {
         // Create a new world with 700x500 cells with a cell size of 1x1 pixels.
         // Change the brick's size too if you change this.
-        this(scoreCalculator, scoreDisplay, door, player, 700, 500);
+        this(scoreCalculator, scoreDisplay, door, player,gameStrategy, 700, 500);
     }
 
     private void prepare() {
@@ -111,5 +115,9 @@ public class GameScreen extends Screen implements IPlayerObserver {
 
     private void setGameOverScreen() {
         GameController.getInstance().setScreen(GameController.Screen.GAME_OVER_SCREEN);
+    }
+
+    public void setGameStrategy(IGameStrategy gameStrategy) {
+        this.gameStrategy = gameStrategy;
     }
 }

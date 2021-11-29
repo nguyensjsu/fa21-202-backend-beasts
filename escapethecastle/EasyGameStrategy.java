@@ -11,4 +11,9 @@ public class EasyGameStrategy implements IGameStrategy {
     public int getNumberOfBricksFalling() {
         return 1;
     }
+
+    @Override
+    public int getNumberOfLives() {
+        return 1;
+    }
 }
