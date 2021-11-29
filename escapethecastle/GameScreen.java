@@ -1,3 +1,6 @@
+import java.time.Instant;
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * Screen when game is running.
  */
@@ -65,8 +68,9 @@ public class GameScreen extends Screen implements IPlayerObserver {
     public void addNewBricks() {
         IGameStrategy currentStrategy = GameStrategyProvider.getGameStrategy();
         int numberOfBricks = currentStrategy.getNumberOfBricksFalling();
+        ThreadLocalRandom random = ThreadLocalRandom.current();
         for (int i = 0; i < numberOfBricks; i++) {
-            Brick brick = new Brick(currentStrategy.getBrickSpeed());
+            Brick brick = new Brick(currentStrategy.getBrickSpeed(), random);
             brick.attachObserver(this.scoreCalculator);
             currentBrick = brick;
             addComponent(brick, 268, 76);

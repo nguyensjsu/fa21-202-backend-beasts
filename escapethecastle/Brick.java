@@ -20,11 +20,10 @@ public class Brick extends DisplayComponent implements IBrickSubject {
 
     private final ArrayList<IBrickObserver> brickObservers = new ArrayList<>();
 
-    public Brick(int velocity) {
+    public Brick(int velocity, ThreadLocalRandom random) {
         // Adding 1 pixel for overlaps.
         getImage().scale(GameScreen.width / GameScreen.BUCKET_SIZE, 30);
         this.vSpeed = velocity;
-        ThreadLocalRandom random = ThreadLocalRandom.current();
         bucket = random.nextInt(0, GameScreen.BUCKET_SIZE);
     }
 
