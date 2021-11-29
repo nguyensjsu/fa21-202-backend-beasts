@@ -13,11 +13,11 @@ public class ScoreCalculator implements IScoreUpdateSubject, IBrickObserver, IPl
         IGameStrategy currentStrategy = GameStrategyProvider.getGameStrategy();
         if (numberOfBricks != 0) {
             if (currentStrategy instanceof EasyGameStrategy) {
-                updateScore += (SCOREFACTOR / numberOfBricks) * 100;
+                updateScore = (SCOREFACTOR / numberOfBricks) * 100;
             } else if (currentStrategy instanceof MediumGameStrategy) {
-                updateScore += (SCOREFACTOR / numberOfBricks) * 150;
+                updateScore = (SCOREFACTOR / numberOfBricks) * 150;
             } else {
-                updateScore += (SCOREFACTOR / numberOfBricks) * 200;
+                updateScore = (SCOREFACTOR / numberOfBricks) * 200;
             }
         }
         notifyObservers(updateScore);
