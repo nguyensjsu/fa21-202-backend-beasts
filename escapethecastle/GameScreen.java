@@ -1,4 +1,5 @@
-import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -15,6 +16,7 @@ public class GameScreen extends Screen implements IPlayerObserver {
     public static int height = 500;
     public static final int BUCKET_SIZE = 14;
     private int brickCoolDown = 120;
+    private List<PlayerLife> lives;
 
     /**
      * Constructor for objects of class MyWorld.
@@ -27,6 +29,9 @@ public class GameScreen extends Screen implements IPlayerObserver {
         this.player = player;
         width = w;
         height = h;
+        lives = new ArrayList<>();
+        lives.add(new PlayerLife(player));
+        lives.add(new PlayerLife(player));
         prepare();
     }
 
@@ -39,7 +44,13 @@ public class GameScreen extends Screen implements IPlayerObserver {
     private void prepare() {
         addComponent(door, getWidth() - door.getWidth() / 3, getHeight() - 6 * door.getHeight() / 2);
         addComponent(scoreDisplay, 600, 10);
-        addComponent(player, 69, 445);
+        int x = 0;
+        for (int i = 0, livesSize = lives.size(); i < livesSize; i++) {
+            PlayerLife pl = lives.get(i);
+            addComponent(pl, x + pl.getWidth() / 2, pl.getHeight() / 2);
+            x += pl.getWidth() + 2;
+        }
+        addComponent(player, x, player.getHeight() / 2);
     }
 
     public ScoreDisplay getScoreDisplay() {
@@ -86,6 +97,16 @@ public class GameScreen extends Screen implements IPlayerObserver {
     @Override
     public void notifyLevelDied() {
         setGameOverScreen();
+    }
+
+    @Override
+    public void notifyLostLife() {
+        if (lives.isEmpty()) return;
+        PlayerLife lifeLost = lives.get(lives.size() - 1);
+        //lifeLost.getImage().setTransparency(0);
+        //lifeLost.getWorld().removeObject(lifeLost);
+        removeObject(lifeLost);
+        lives.remove(lifeLost);
     }
 
     private void setGameOverScreen() {

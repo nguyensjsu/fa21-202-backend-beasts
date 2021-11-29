@@ -1,5 +1,7 @@
 import greenfoot.Greenfoot;
 
+import java.util.List;
+
 /**
  * Controller class for setting the game screens and supporting the navigations.
  */
