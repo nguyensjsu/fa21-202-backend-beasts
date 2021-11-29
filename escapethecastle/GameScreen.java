@@ -11,6 +11,7 @@ public class GameScreen extends Screen implements IPlayerObserver {
     public static int width = 700;
     public static int height = 500;
     public static final int BUCKET_SIZE = 14;
+    private int brickCoolDown = 120;
 
     /**
      * Constructor for objects of class MyWorld.
@@ -51,7 +52,10 @@ public class GameScreen extends Screen implements IPlayerObserver {
         if (currentBrick != null) {
             // If brick has landed on the ground.
             if (currentBrick.isOnGround()) {
+                while (brickCoolDown-- > 0) {
+                }
                 addNewBricks();
+                brickCoolDown = 120;
             }
         } else {
             addNewBricks();
