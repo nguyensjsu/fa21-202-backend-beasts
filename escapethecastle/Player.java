@@ -4,6 +4,9 @@ import greenfoot.GreenfootSound;
 
 import java.util.ArrayList;
 
+/**
+ * Abstract class to represent a player.
+ */
 public abstract class Player extends DisplayComponent implements IPlayerSubject {
     private final int speed = 7;
     private int vSpeed = 0;

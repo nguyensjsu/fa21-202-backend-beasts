@@ -1,12 +1,10 @@
 /**
- * Write a description of interface IScoreUpdate here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Subject interface for score updates.
  */
-public interface IScoreUpdateSubject  
-{
+public interface IScoreUpdateSubject {
     void attachObserver(IScoreUpdateObserver observer);
+
     void removeObserver(IScoreUpdateObserver observer);
+
     void notifyObservers(int score);
 }

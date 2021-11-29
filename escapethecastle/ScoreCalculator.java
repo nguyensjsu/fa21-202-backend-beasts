@@ -1,7 +1,10 @@
 import java.util.ArrayList;
 
+/**
+ * Class to claculate the score.
+ */
 public class ScoreCalculator implements IScoreUpdateSubject, IBrickObserver, IPlayerObserver {
-    
+
     private final ArrayList<IScoreUpdateObserver> observers = new ArrayList<>();
     public int updateScore = 0;
     private int numberOfBricks = 0;

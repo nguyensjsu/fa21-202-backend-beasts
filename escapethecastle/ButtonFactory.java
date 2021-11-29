@@ -3,7 +3,11 @@ import greenfoot.GreenfootSound;
 
 import java.util.HashMap;
 
+/**
+ * A factory to create the buttons for the game controls.
+ */
 public class ButtonFactory {
+    public static final String PLAYER_1 = "Player 1";
     private final HashMap<String, String> buttonImageMap;
     private final HashMap<String, ICommand> buttonCommandMap;
 
@@ -20,7 +24,7 @@ public class ButtonFactory {
         ICommand startCommand = new Command();
         startCommand.setReceiver(new IReceiver() {
             public void doAction() {
-                if(Player.getPlayerName().equals("Player 1")) {
+                if (Player.getPlayerName().equals(PLAYER_1)) {
                     String name = Greenfoot.ask("Enter Player Name");
                     Player.setPlayerName(name);
                 }
@@ -33,7 +37,7 @@ public class ButtonFactory {
         ICommand quitCommand = new Command();
         quitCommand.setReceiver(new IReceiver() {
             public void doAction() {
-                Player.setPlayerName("Player 1");
+                Player.setPlayerName(PLAYER_1);
                 clickSound.play();
                 StartScreen.BACKGROUND_MUSIC.stop();
                 Greenfoot.stop();
@@ -44,7 +48,7 @@ public class ButtonFactory {
         ICommand replayCommand = new Command();
         replayCommand.setReceiver(new IReceiver() {
             public void doAction() {
-                Player.setPlayerName("Player 1");
+                Player.setPlayerName(PLAYER_1);
                 clickSound.play();
                 GameController.getInstance().setScreen(GameController.Screen.START_SCREEN);
                 StartScreen.BACKGROUND_MUSIC.playLoop();

@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Write a description of class Brick here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Representation of the Brick object.
  */
 public class Brick extends DisplayComponent implements IBrickSubject {
 

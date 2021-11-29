@@ -1,17 +1,15 @@
 import greenfoot.*;
+
 /**
- * Display the current score of the player
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Display component for the score on the game over screen.
  */
 public class ScoreDisplay extends DisplayComponent implements IScoreUpdateObserver {
     private int score;
 
     public int getScore() {
-        return this.score;    
+        return this.score;
     }
-    
+
     /**
      * Constructor for objects of class ScoreDisplay
      */

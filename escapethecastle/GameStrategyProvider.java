@@ -1,3 +1,6 @@
+/**
+ * Singleton class to provide the game strategy.
+ */
 public class GameStrategyProvider {
     private static IGameStrategy gameStrategy;
 
@@ -10,5 +13,8 @@ public class GameStrategyProvider {
 
     public static void setGameStrategy(IGameStrategy strategy) {
         gameStrategy = strategy;
+    }
+
+    private GameStrategyProvider() {
     }
 }

@@ -1,4 +1,7 @@
-public class PlayerFactory {
+/**
+ * Factory for creating the players.
+ */
+public final class PlayerFactory {
 
     public static Player getPlayer(PlayerType playerType) {
         switch (playerType) {
@@ -10,5 +13,8 @@ public class PlayerFactory {
                 return new Luigi("images/lrun.png", "images/luigi.png");
         }
         throw new IllegalStateException("Invalid PlayerType " + playerType);
+    }
+
+    private PlayerFactory() {
     }
 }

@@ -1,8 +1,5 @@
 /**
- * Write a description of class MyWorld here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Screen when game is running.
  */
 public class GameScreen extends Screen implements IPlayerObserver {
 

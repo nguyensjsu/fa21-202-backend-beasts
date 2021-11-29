@@ -1,12 +1,10 @@
 /**
- * Write a description of interface IBrickSubject here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Subject for the brick fall.
  */
-public interface IBrickSubject  
-{
+public interface IBrickSubject {
     void attachObserver(IBrickObserver observer);
+
     void removeObserver(IBrickObserver observer);
+
     void notifyObservers();
 }

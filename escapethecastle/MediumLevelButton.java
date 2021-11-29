@@ -1,6 +1,9 @@
 import greenfoot.Color;
 import greenfoot.GreenfootImage;
 
+/**
+ * Button to select the medium strategy.
+ */
 public class MediumLevelButton extends GameStrategyButton {
 
     public MediumLevelButton() {

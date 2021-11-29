@@ -2,6 +2,9 @@ import greenfoot.Actor;
 
 import java.util.ArrayList;
 
+/**
+ * Common DisplayComponent class that can wrap multiple DisplayComponents using the Composite pattern.
+ */
 public class DisplayComponent extends Actor implements IDisplayComponent {
     private final ArrayList<DisplayComponent> components;
     private int x;

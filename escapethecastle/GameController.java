@@ -1,6 +1,9 @@
 import greenfoot.Greenfoot;
 
-public class GameController {
+/**
+ * Controller class for setting the game screens and supporting the navigations.
+ */
+public final class GameController {
     private static GameController gameController;
     private GameScreen gameScreen;
     private GameOverScreen gameOver;
@@ -43,6 +46,9 @@ public class GameController {
         scoreCalculator.attachObserver(scoreDisplay);
     }
 
+    /**
+     * Sets the current screen on the front panel.
+     */
     public void setScreen(Screen screen) {
         switch (screen) {
             case START_SCREEN:
