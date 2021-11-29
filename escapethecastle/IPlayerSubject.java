@@ -7,5 +7,5 @@ public interface IPlayerSubject {
 
     void removeObserver(IPlayerObserver observer);
 
-    void notifyObservers(PlayerFinalState playerFinalState);
+    void notifyObservers(PlayerState playerState);
 }

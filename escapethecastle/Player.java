@@ -19,6 +19,9 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
     protected GreenfootImage playerImage;
     private float currentImage = 0f;
     private static final float animationSpeed = 0.4f;
+    private int numberOfLivesLeft = 3;
+    private int coolDownForLife = 0;
+    private int totalNumberOfLives = 3;
 
 
     private final ArrayList<IPlayerObserver> playerObservers = new ArrayList<>();
@@ -54,10 +57,14 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
     }
 
     @Override
-    public void notifyObservers(PlayerFinalState playerFinalState) {
-        if (playerFinalState.equals(PlayerFinalState.DIED)) {
+    public void notifyObservers(PlayerState playerState) {
+        if (playerState.equals(PlayerState.DIED)) {
             for (IPlayerObserver playerObserver : playerObservers) {
                 playerObserver.notifyLevelDied();
+            }
+        } else if (PlayerState.LOST_LIFE.equals(playerState)) {
+            for (IPlayerObserver playerObserver : playerObservers) {
+                playerObserver.notifyLostLife();
             }
         } else {
             for (IPlayerObserver playerObserver : playerObservers) {
@@ -95,7 +102,7 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
     private void hasReachedDoor() {
         Door touch = (Door) getOneIntersectingObject(Door.class);
         if (touch != null && Greenfoot.isKeyDown("Enter")) {
-            notifyObservers(PlayerFinalState.WON);
+            notifyObservers(PlayerState.WON);
         }
     }
 
@@ -176,10 +183,17 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
         // game over if brick bottom touches player
         Brick up = getTopObject(Brick.class);
         if (up != null && !up.isOnGround()) {
-            //Adding code for score calculator when a player dies.
-            StartScreen.BACKGROUND_MUSIC.stop();
-            gameOverSound.play();
-            notifyObservers(PlayerFinalState.DIED);
+            if (numberOfLivesLeft <= 1) {
+                StartScreen.BACKGROUND_MUSIC.stop();
+                gameOverSound.play();
+                notifyObservers(PlayerState.DIED);
+            } else {
+                notifyObservers(PlayerState.LOST_LIFE);
+                setLocation(numberOfLivesLeft * getWidth() / 2 - 2 * (totalNumberOfLives - numberOfLivesLeft), getHeight() / 2);
+                vSpeed = 5;
+                numberOfLivesLeft--;
+                Greenfoot.delay(15);
+            }
         }
 
         Brick leftBrick = getLeftObject(Brick.class);

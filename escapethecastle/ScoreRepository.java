@@ -92,4 +92,9 @@ public class ScoreRepository implements IPlayerObserver {
     public void notifyLevelDied() {
         writeScores(scoreDisplay.getScore());
     }
+
+    @Override
+    public void notifyLostLife() {
+        // do nothing
+    }
 }

@@ -50,4 +50,9 @@ public class ScoreCalculator implements IScoreUpdateSubject, IBrickObserver, IPl
         updateScore = 0;
         notifyObservers(updateScore);
     }
+
+    @Override
+    public void notifyLostLife() {
+        //do nothing
+    }
 }

@@ -1,7 +1,8 @@
 /**
  * Enum for the player's final state.
  */
-public enum PlayerFinalState {
+public enum PlayerState {
     DIED,
-    WON
+    WON,
+    LOST_LIFE
 }
