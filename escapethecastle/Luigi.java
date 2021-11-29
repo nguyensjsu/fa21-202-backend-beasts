@@ -1,7 +1,7 @@
 import greenfoot.*;
 
 /**
- * Class for player luigi.
+ * Represents luigi player
  */
 public class Luigi extends Player {
     public Luigi(String runSequence, String playerImage) {
