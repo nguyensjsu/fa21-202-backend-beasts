@@ -1,11 +1,8 @@
 /**
- * Write a description of enum PlayerType here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Enum for the player type.
  */
-public enum PlayerType  {
-    MARIO, 
-    WARIO, 
+public enum PlayerType {
+    MARIO,
+    WARIO,
     LUIGI
 }

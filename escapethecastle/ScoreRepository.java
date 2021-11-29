@@ -3,6 +3,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Class to manage the score repository.
+ */
 public class ScoreRepository implements IPlayerObserver {
     private final String playerName;
     private final ScoreDisplay scoreDisplay;
@@ -13,7 +16,7 @@ public class ScoreRepository implements IPlayerObserver {
     }
 
     /**
-     * Write scores.
+     * Write scores to the file.
      */
     public void writeScores(int score) {
         IGameStrategy gameStrategy = GameStrategyProvider.getGameStrategy();
@@ -28,9 +31,7 @@ public class ScoreRepository implements IPlayerObserver {
     }
 
     /**
-     * Read file.
-     *
-     * @return the hash map
+     * Reads file for a game strategy.
      */
     public List<PlayerScore> readFile(IGameStrategy gameStrategy) {
         String line;

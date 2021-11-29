@@ -1,4 +1,6 @@
-public interface IReceiver  
-{
+/**
+ * Interface for command receiver.
+ */
+public interface IReceiver {
     void doAction();
 }

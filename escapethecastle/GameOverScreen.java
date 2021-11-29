@@ -1,10 +1,7 @@
 import java.util.List;
 
 /**
- * Write a description of class GameOverScreen here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Screen for showing the content when game is over, either lost or won.
  */
 public class GameOverScreen extends Screen {
     private final ScoreRepository scoreRepository;
@@ -20,13 +17,6 @@ public class GameOverScreen extends Screen {
         this.playerName = playerName;
         this.scoreRepository = scoreRepository;
         prepare();
-    }
-
-    private String getResult(int score) {
-        if (score == 0) {
-            return "Sorry... You Lose!";
-        }
-        return "Congratulations!! You Win!";
     }
 
     /**
@@ -48,27 +38,35 @@ public class GameOverScreen extends Screen {
         addComponent(scoreBoardResult, getWidth() / 2, 140);
         addComponent(userScore, getWidth() / 2, 180);
         addComponent(rank, getWidth() / 2, 220);
-        showText("High Scores", getWidth() / 2, 260);
-        showText("Player     |      Score", getWidth() / 2, 300);
-        List<PlayerScore> topThree = scoreRepository.getTopThree(GameStrategyProvider.getGameStrategy());
-        decorateResult(topThree);
+
+        showTopThreePlayers();
 
         ButtonFactory buttonFactory = new ButtonFactory();
         Button replayButton = buttonFactory.getButton("REPLAY");
         addComponent(replayButton, getWidth() / 2, 460);
     }
 
-    private void decorateResult(List<PlayerScore> topThree) {
+    private void showTopThreePlayers() {
+        List<PlayerScore> topThree = scoreRepository.getTopThree(GameStrategyProvider.getGameStrategy());
         int x = 285;
         int y = 330;
         int dx = 70;
         int dy = 35;
+        showText("High Scores", getWidth() / 2, 260);
+        showText("Player     |      Score", getWidth() / 2, 300);
         for (PlayerScore ps : topThree) {
             showText(ps.getName(), x, y);
             showText(String.valueOf(ps.getScore()), x + (2 * dx), y);
             y = y + dy;
         }
 
+    }
+
+    private String getResult(int score) {
+        if (score == 0) {
+            return "Sorry... You Lose!";
+        }
+        return "Congratulations!! You Win!";
     }
 
 }

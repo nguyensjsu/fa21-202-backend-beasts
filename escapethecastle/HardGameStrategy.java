@@ -1,3 +1,6 @@
+/**
+ * Strategy class for hard level game.
+ */
 public class HardGameStrategy implements IGameStrategy {
     @Override
     public int getBrickSpeed() {

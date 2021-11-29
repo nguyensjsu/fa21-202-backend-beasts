@@ -2,6 +2,9 @@ import greenfoot.Greenfoot;
 import greenfoot.GreenfootImage;
 import greenfoot.GreenfootSound;
 
+/**
+ * A decorator class for showing the player option on the start screen.
+ */
 public class PlayerOptionDecorator extends DisplayComponent {
     private final Player wrappedPlayer;
     private static final GreenfootSound CLICK_SOUND = new GreenfootSound("sounds/button-click.wav");
@@ -33,7 +36,7 @@ public class PlayerOptionDecorator extends DisplayComponent {
         image.setTransparency(i);
         setImage(image);
     }
-    
+
     public void setPlayerName(String name) {
         wrappedPlayer.setPlayerName(name);
     }

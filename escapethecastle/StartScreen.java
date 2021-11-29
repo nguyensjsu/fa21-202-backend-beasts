@@ -1,6 +1,9 @@
 import greenfoot.Greenfoot;
 import greenfoot.GreenfootSound;
 
+/**
+ * Screen for the game start.
+ */
 public class StartScreen extends Screen {
 
     public static final GreenfootSound BACKGROUND_MUSIC = new GreenfootSound("sounds/background-1.wav");
@@ -14,13 +17,15 @@ public class StartScreen extends Screen {
         prepare();
     }
 
+    @Override
     public void started() {
         BACKGROUND_MUSIC.playLoop();
     }
 
+    @Override
     public void act() {
         if (Greenfoot.isKeyDown("Enter")) {
-            if(Player.getPlayerName().equals("Player 1")) {
+            if (Player.getPlayerName().equals("Player 1")) {
                 String name = Greenfoot.ask("Enter Player Name");
                 Player.setPlayerName(name);
             }
@@ -45,7 +50,7 @@ public class StartScreen extends Screen {
         addComponent(marioOption, 260, 110);
         addComponent(warioOption, 335, 105);
         addComponent(luigiOption, 420, 100);
-        
+
         //Adding the easy medium and difficult levels.
         EasyLevelButton easyLevel = new EasyLevelButton();
         addComponent(easyLevel, 250, 200);

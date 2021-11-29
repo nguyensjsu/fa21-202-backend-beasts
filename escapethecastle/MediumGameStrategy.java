@@ -1,3 +1,6 @@
+/**
+ * Class for medium game strategy.
+ */
 public class MediumGameStrategy implements IGameStrategy {
     @Override
     public int getBrickSpeed() {

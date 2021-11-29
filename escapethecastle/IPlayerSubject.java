@@ -1,3 +1,6 @@
+/**
+ * Subject interface for broadcasting the player's state updates.
+ */
 public interface IPlayerSubject {
 
     void attachObserver(IPlayerObserver observer);

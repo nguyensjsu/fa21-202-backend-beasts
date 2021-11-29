@@ -1,5 +1,8 @@
 import java.util.Objects;
 
+/**
+ * Display component for showing the player's score.
+ */
 public class PlayerScore implements Comparable<PlayerScore> {
     private final String name;
     private final int score;

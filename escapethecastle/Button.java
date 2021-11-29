@@ -1,15 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Renders the image at location string passed in constructor and handles onClick of that image.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Renders a button with the provided image.
  */
-public class Button extends DisplayComponent implements IInvoker
-{
+public class Button extends DisplayComponent implements IInvoker {
     ICommand command;
-    
+
     // constructor
     public Button(String imageLocation) {
         // length of text image, unknown
@@ -17,24 +13,29 @@ public class Button extends DisplayComponent implements IInvoker
         setImage(img);
     }
 
+    /**
+     * Sets the command object for this button.
+     */
     public void setCommand(ICommand command) {
         this.command = command;
     }
-    
+
+    /**
+     * Invokes the command object.
+     */
     public void invoke() {
         command.execute();
     }
-    
+
     /**
      * Act - do whatever the ImageFactory wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public void act()
-    {
+    @Override
+    public void act() {
         // Add your action code here.
-        if(Greenfoot.mouseClicked(this)) {
-            if(command != null)
-                invoke();
+        if (Greenfoot.mouseClicked(this) && (command != null)) {
+            invoke();
         }
     }
 }

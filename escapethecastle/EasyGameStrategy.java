@@ -1,3 +1,6 @@
+/**
+ * Game strategy for easy game level.
+ */
 public class EasyGameStrategy implements IGameStrategy {
     @Override
     public int getBrickSpeed() {

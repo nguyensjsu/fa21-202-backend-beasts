@@ -1,8 +1,5 @@
 /**
- * Write a description of interface IBrickObserver here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Observer class to listen to the brick falls.
  */
 public interface IBrickObserver {
     void notifyBrickFall();
