@@ -124,7 +124,8 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
 
     public void fall() {
         // If player is falling and on the solid ground, stop the fall.
-        if (isOnSolidGround() && vSpeed > 0) {
+        if (isOnSolidGround() && vSpeed >= 0) {
+            vSpeed = 0;
             return;
         }
         setLocation(getX(), getY() + vSpeed);
@@ -152,11 +153,12 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
         if (!isOnSolidGround()) {
             fall();
         } else {
+            if (vSpeed <= 0) return;
             vSpeed = 0;
             push();
             Brick down = getBottomSideObject(Brick.class);
-            // If a brick is there to land, and it's the top one, land there.
-            if (down != null && down.getTopObject(Brick.class) == null) {
+            // If a brick is there to land, land there.
+            if (down != null) {
                 // land on brick
                 int brickTopLoc = down.getY() - (down.getImage().getHeight() / 2);
                 setLocation(getX(), brickTopLoc - getImage().getHeight() / 2);
