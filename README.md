@@ -51,6 +51,10 @@ State pattern allows an object to alter its behavior when its internal state cha
 
 ![State Pattern](escapethecastle/uml_diagrams/Screen_Statemachine.png)
 
+#### Class diagram
+
+![Class Diagram](escapethecastle/uml_diagrams/ScreenStateClassDiagram.png)
+
 #### Player state machine
 
 ![Player state machine](escapethecastle/uml_diagrams/PlayerStatePattern.png)
