@@ -73,3 +73,8 @@ The factory pattern is used to create different `Button` objects for the game in
 The singleton pattern is used for the `GameController`. It has a static `gameController` instance which is returned on calling the `getInstance()` method. The `StartScreen`, `ButtonFactory`, and `GameScreen` uses it to change the current game screen.
 
 ![Singleton Game Controller](escapethecastle/uml_diagrams/SingletonGameController.png)
+
+#### Game Strategy Provider
+The `GameStrategyProvider` uses the singleton pattern and stores the current strategy being used. It is used by other classes like `GameController`, `GameOverScreen`, `GameScreen`, `GameStrategyButton`, `ScoreCalculator`, and `ScoreRepository` for getting and setting the game strategy.
+
+![Singleton Game Strategy Provider](escapethecastle/uml_diagrams/SingletonGameStrategyProvider.png)
