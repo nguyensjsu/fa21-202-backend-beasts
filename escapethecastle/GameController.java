@@ -47,6 +47,7 @@ public final class GameController {
         player.attachObserver(gameScreen);
         player.getImage().setTransparency(255);
         scoreCalculator.attachObserver(scoreDisplay);
+        player.setPlayingState(player.getTotalNumberOfLives());
     }
 
     /**
