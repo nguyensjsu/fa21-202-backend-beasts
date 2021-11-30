@@ -7,7 +7,7 @@ public class Door extends DisplayComponent {
 
     public Door() {
         GreenfootImage image = new GreenfootImage("images/door.png");
-        image.scale(image.getWidth() / 2, image.getHeight() / 2);
+        image.scale(image.getWidth() / 20, image.getHeight() / 20);
         setImage(image);
     }
 
