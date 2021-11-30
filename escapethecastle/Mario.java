@@ -2,7 +2,7 @@ import greenfoot.*;
 
 
 /**
- * Class for player Mario.
+ * Represents mario player
  */
 class Mario extends Player {
 

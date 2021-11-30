@@ -1,5 +1,5 @@
 /**
- * Factory for creating the players.
+ * A factory to create the players for the game.
  */
 public final class PlayerFactory {
 
