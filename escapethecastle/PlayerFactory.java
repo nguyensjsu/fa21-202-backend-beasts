@@ -3,14 +3,18 @@
  */
 public final class PlayerFactory {
 
+    static Player player = null;
     public static Player getPlayer(PlayerType playerType) {
         switch (playerType) {
             case MARIO:
-                return new Mario("images/mrun.png", "images/mario.png");
+                player = new Mario("images/mrun.png", "images/mario.png");
+                return player;
             case WARIO:
-                return new Wario("images/wrun.png", "images/wario.png");
+                player = new Wario("images/wrun.png", "images/wario.png");
+                return player;
             case LUIGI:
-                return new Luigi("images/lrun.png", "images/luigi.png");
+                player = new Luigi("images/lrun.png", "images/luigi.png");
+                return player;
         }
         throw new IllegalStateException("Invalid PlayerType " + playerType);
     }
