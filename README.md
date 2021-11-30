@@ -49,8 +49,10 @@ State pattern allows an object to alter its behavior when its internal state cha
 
 #### Player Factory
 The factory pattern is used to create the `Player` objects for the three characters - `Mario`,  `Wario`, and `Lugi`.
+
 ![Player factory](escapethecastle/uml_diagrams/FactoryPlayer.png)
 
 #### Button Factory
 The factory pattern is used to create different `Button` objects for the game including the `start` button, `quit` button, and `replay` button.
+
 ![Button factory](escapethecastle/uml_diagrams/FactoryButton.png)
