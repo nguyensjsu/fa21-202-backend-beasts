@@ -35,3 +35,15 @@
 ### Tasks Planned Next Week
 * Implement score calculation logic
 * Implement Observer Pattern for brick for score calculation
+
+## Week 4 (22/11/2021 - 29/11/2021)
+
+### Tasks completed this week
+* Implemented Observer Pattern for Bricks for score calculation
+* Impemented Observer Pattern for score display from score calculation
+* Adding javadocs
+* Refactored the code
+
+### Tasks Planned Next Week
+* Design documentation and class diagram
+* Create user story video
