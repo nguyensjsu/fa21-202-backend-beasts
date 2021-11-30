@@ -10,19 +10,19 @@
 
 **Start Screen**
 
-![Start Screen](https://github.com/nguyensjsu/fa21-202-backend-beasts/blob/main/escapethecastle/images/StartScreen.png)
+![Start Screen](escapethecastle/images/StartScreen.png)
 
 **Game Screen**
 
-![Start Screen](https://github.com/nguyensjsu/fa21-202-backend-beasts/blob/main/escapethecastle/images/GameScreen.png)
+![Start Screen](escapethecastle/images/GameScreen.png)
 
 **ScoreBoard Winning Page**
 
-![Start Screen](https://github.com/nguyensjsu/fa21-202-backend-beasts/blob/main/escapethecastle/images/ScoreBoard-WinningPage.png)
+![Start Screen](escapethecastle/images/ScoreBoard-WinningPage.png)
 
 **ScoreBoard Loosing Page**
 
-![Start Screen](https://github.com/nguyensjsu/fa21-202-backend-beasts/blob/main/escapethecastle/images/ScoreBoard-LoosingPage.png)
+![Start Screen](escapethecastle/images/ScoreBoard-LoosingPage.png)
 
 ## Key Design Features:
 
