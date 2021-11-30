@@ -26,16 +26,6 @@
 
 ## Key Design Features:
 
-### Composite Pattern
-Composite pattern is used to display components on screen. Here the Display Component extends Actor and maintains list of sub components inside it. It renders all the components added as its child at location of that child component into the screen which is passed to render(). Here Screen extends the World class and has one or many display components.
-
-![Component Pattern](escapethecastle/uml_diagrams/CompositeClassDiagram.png)
-
-### Command Pattern
-Command Pattern is used to add action listener to anyh button that is present in the game. Here the Button class implements the IInvoker interface so that when invoke() is called the button performs some action added in the command that is attached to the button. Here we are creating buttons from ButtonFactory which adds inline receiver to Command and attaches the command to created Button.
-
-![Command Pattern](escapethecastle/uml_diagrams/CommandClassDiagram.png)
-
 ### Strategy Pattern
 
 Strategy Pattern is used to configure the game to start at different levels - Easy, Medium and Hard level. EasyGameStrategy, MediumGameStrategy and HardGameStrategy implements respective algorithm for the game levels. GameStrategyButton helps to add different buttons for Easy, Medium and Hard level. Strategy Pattern helps us to keep code structure clear and flexible for adding any more game levels.
@@ -66,3 +56,15 @@ The factory pattern is used to create the `Player` objects for the three charact
 The factory pattern is used to create different `Button` objects for the game including the `start` button, `quit` button, and `replay` button.
 
 ![Button factory](escapethecastle/uml_diagrams/FactoryButton.png)
+
+### Singleton Pattern
+
+#### Game Controller
+The singleton pattern is used for the `GameController`. It has a static `gameController` instance which is returned on calling the `getInstance()` method. The `StartScreen`, `ButtonFactory`, and `GameScreen` uses it to change the current game screen.
+
+![Singleton Game Controller](escapethecastle/uml_diagrams/SingletonGameController.png)
+
+#### Game Strategy Provider
+The `GameStrategyProvider` uses the singleton pattern and stores the current strategy being used. It is used by other classes like `GameController`, `GameOverScreen`, `GameScreen`, `GameStrategyButton`, `ScoreCalculator`, and `ScoreRepository` for getting and setting the game strategy.
+
+![Singleton Game Strategy Provider](escapethecastle/uml_diagrams/SingletonGameStrategyProvider.png)
