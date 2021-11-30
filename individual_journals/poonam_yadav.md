@@ -30,5 +30,16 @@
 * Implemented player decorator for decorating the player for choosing an avatar.
 * Created bricks randomly based on strategy
 
+## Week 4 (22/11/2021 - 29/11/2021)
+
+### Finished this week
+* Worked on moving the bricks to one block on pushing
+* Adding javadocs
+* Implemented state pattern for game screens
+* Added support for multiple lives with strategy pattern
+* Added decorator pattern to wrap the player for displaying multiple images
+* Refactored the code
+
 ### Tasks Planned Next Week
-* Code implementation
+* Design documentation
+* Creating user story video
