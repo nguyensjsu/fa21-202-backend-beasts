@@ -26,16 +26,6 @@
 
 ## Key Design Features:
 
-### Composite Pattern
-Composite pattern is used to display components on screen. Here the Display Component extends Actor and maintains list of sub components inside it. It renders all the components added as its child at location of that child component into the screen which is passed to render(). Here Screen extends the World class and has one or many display components.
-
-![Component Pattern](escapethecastle/uml_diagrams/CompositeClassDiagram.png)
-
-### Command Pattern
-Command Pattern is used to add action listener to anyh button that is present in the game. Here the Button class implements the IInvoker interface so that when invoke() is called the button performs some action added in the command that is attached to the button. Here we are creating buttons from ButtonFactory which adds inline receiver to Command and attaches the command to created Button.
-
-![Command Pattern](escapethecastle/uml_diagrams/CommandClassDiagram.png)
-
 ### Strategy Pattern
 
 Strategy Pattern is used to configure the game to start at different levels - Easy, Medium and Hard level. EasyGameStrategy, MediumGameStrategy and HardGameStrategy implements respective algorithm for the game levels. GameStrategyButton helps to add different buttons for Easy, Medium and Hard level. Strategy Pattern helps us to keep code structure clear and flexible for adding any more game levels.
