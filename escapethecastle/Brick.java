@@ -1,3 +1,4 @@
+import greenfoot.Greenfoot;
 import greenfoot.GreenfootSound;
 
 import java.util.ArrayList;
@@ -20,11 +21,11 @@ public class Brick extends DisplayComponent implements IBrickSubject {
 
     private final ArrayList<IBrickObserver> brickObservers = new ArrayList<>();
 
-    public Brick(int velocity, ThreadLocalRandom random) {
+    public Brick(int velocity) {
         // Adding 1 pixel for overlaps.
         getImage().scale(GameScreen.width / GameScreen.BUCKET_SIZE, 30);
         this.vSpeed = velocity;
-        bucket = random.nextInt(0, GameScreen.BUCKET_SIZE);
+        bucket = Greenfoot.getRandomNumber(GameScreen.BUCKET_SIZE);
     }
 
     public void attachObserver(IBrickObserver brickObserver) {

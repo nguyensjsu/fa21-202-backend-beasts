@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Screen when game is running.
@@ -42,7 +41,7 @@ public class GameScreen extends Screen implements IPlayerObserver {
     public GameScreen(ScoreDisplay scoreDisplay, Player player, Door door, ScoreCalculator scoreCalculator, IGameStrategy gameStrategy) {
         // Create a new world with 700x500 cells with a cell size of 1x1 pixels.
         // Change the brick's size too if you change this.
-        this(scoreCalculator, scoreDisplay, door, player,gameStrategy, 700, 500);
+        this(scoreCalculator, scoreDisplay, door, player, gameStrategy, 700, 500);
     }
 
     private void prepare() {
@@ -83,9 +82,8 @@ public class GameScreen extends Screen implements IPlayerObserver {
     public void addNewBricks() {
         IGameStrategy currentStrategy = GameStrategyProvider.getGameStrategy();
         int numberOfBricks = currentStrategy.getNumberOfBricksFalling();
-        ThreadLocalRandom random = ThreadLocalRandom.current();
         for (int i = 0; i < numberOfBricks; i++) {
-            Brick brick = new Brick(currentStrategy.getBrickSpeed(), random);
+            Brick brick = new Brick(currentStrategy.getBrickSpeed());
             brick.attachObserver(this.scoreCalculator);
             currentBrick = brick;
             addComponent(brick, 268, 76);
