@@ -2,14 +2,23 @@
  * A singleton to provide the chosen player.
  */
 public class PlayerSelector {
-    private static Player player;
+    private Player player;
+
+    private static PlayerSelector instance;
+
+    public static PlayerSelector getInstance() {
+        if (instance == null) {
+            instance = new PlayerSelector();
+        }
+        return instance;
+    }
 
     public static Player getChosenPlayer() {
-        return player;
+        return getInstance().player;
     }
 
     public static void choosePlayer(Player chosen) {
-        player = chosen;
+        getInstance().player = chosen;
     }
 
     private PlayerSelector() {

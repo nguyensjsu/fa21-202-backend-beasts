@@ -2,19 +2,26 @@
  * Singleton class to provide the game strategy.
  */
 public class GameStrategyProvider {
-    private static IGameStrategy gameStrategy;
+    private IGameStrategy gameStrategy;
+
+    private static GameStrategyProvider instance;
+
+    public static GameStrategyProvider getInstance() {
+        if (instance == null) {
+            instance = new GameStrategyProvider();
+        }
+        return instance;
+    }
 
     public static IGameStrategy getGameStrategy() {
-        if (gameStrategy == null) {
-            return new EasyGameStrategy();
-        }
-        return gameStrategy;
+        return getInstance().gameStrategy;
     }
 
     public static void setGameStrategy(IGameStrategy strategy) {
-        gameStrategy = strategy;
+        getInstance().gameStrategy = strategy;
     }
 
     private GameStrategyProvider() {
+        this.gameStrategy = new EasyGameStrategy();
     }
 }
