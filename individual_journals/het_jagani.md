@@ -28,3 +28,14 @@
 * Fix logic to land properly on block after jump.
 ### Planned Next Week
 * Implement block push logic.
+
+## Week 4 (22/11/2021 - 28/11/2021)
+
+### Finished This Week
+* Worked on logic for pushing bricks.
+* Fixed logic of character going inside brick.
+* Added proper character images on start page.
+* Fixed screen width should be multiple of brick width.
+### Planned Next Week
+* Ask for player name at start of game.
+* Documentation and class diagrams.
