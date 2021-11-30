@@ -68,3 +68,8 @@ The singleton pattern is used for the `GameController`. It has a static `gameCon
 The `GameStrategyProvider` uses the singleton pattern and stores the current strategy being used. It is used by other classes like `GameController`, `GameOverScreen`, `GameScreen`, `GameStrategyButton`, `ScoreCalculator`, and `ScoreRepository` for getting and setting the game strategy.
 
 ![Singleton Game Strategy Provider](escapethecastle/uml_diagrams/SingletonGameStrategyProvider.png)
+
+#### Player Selector
+The `PlayerSelector` uses the singleton pattern. It allow setting and getting the playable character that is to be used for the current game. It is used by classes like the `GameController` and `StartScreen`.
+
+![Singleton Player Selector](escapethecastle/uml_diagrams/SingletonPlayerSelector.png)
