@@ -1,14 +1,14 @@
 import greenfoot.Greenfoot;
-
-import java.util.List;
+import greenfoot.World;
 
 /**
  * Controller class for setting the game screens and supporting the navigations.
  */
 public final class GameController {
     private static GameController gameController;
-    private GameScreen gameScreen;
-    private GameOverScreen gameOver;
+    private IScreen startScreen;
+    private IScreen gameScreen;
+    private IScreen gameOver;
     private ScoreDisplay scoreDisplay;
     private Player player;
     private ScoreCalculator scoreCalculator;
@@ -38,13 +38,14 @@ public final class GameController {
         scoreCalculator = new ScoreCalculator();
         scoreRepo = new ScoreRepository(Player.getPlayerName(), scoreDisplay);
         door = new Door();
-        gameScreen = new GameScreen(scoreDisplay, player, door, scoreCalculator,GameStrategyProvider.getGameStrategy());
+        startScreen = new StartScreen();
+        gameScreen = new GameScreen(scoreDisplay, player, door, scoreCalculator, GameStrategyProvider.getGameStrategy());
 
         // Attach the score calculator to notify for the score.
         player.attachObserver(scoreCalculator);
         player.attachObserver(scoreRepo);
         // Attach GameScreen as observer to listen the player's state.
-        player.attachObserver(gameScreen);
+        player.attachObserver((IPlayerObserver) gameScreen);
         player.getImage().setTransparency(255);
         scoreCalculator.attachObserver(scoreDisplay);
         player.setPlayingState(player.getTotalNumberOfLives());
@@ -56,15 +57,15 @@ public final class GameController {
     public void setScreen(Screen screen) {
         switch (screen) {
             case START_SCREEN:
-                Greenfoot.setWorld(new StartScreen());
+                Greenfoot.setWorld((World) startScreen);
                 break;
             case GAME_SCREEN:
                 initialize();
-                Greenfoot.setWorld(gameScreen);
+                Greenfoot.setWorld((World) gameScreen);
                 break;
             case GAME_OVER_SCREEN:
                 gameOver = new GameOverScreen(scoreDisplay, Player.getPlayerName(), scoreRepo);
-                Greenfoot.setWorld(gameOver);
+                Greenfoot.setWorld((World) gameOver);
         }
     }
 }
