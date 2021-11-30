@@ -66,3 +66,10 @@ The factory pattern is used to create the `Player` objects for the three charact
 The factory pattern is used to create different `Button` objects for the game including the `start` button, `quit` button, and `replay` button.
 
 ![Button factory](escapethecastle/uml_diagrams/FactoryButton.png)
+
+### Singleton Pattern
+
+#### Game Controller
+The singleton pattern is used for the `GameController`. It has a static `gameController` instance which is returned on calling the `getInstance()` method. The `StartScreen`, `ButtonFactory`, and `GameScreen` uses it to change the current game screen.
+
+![Singleton Game Controller](escapethecastle/uml_diagrams/SingletonGameController.png)
