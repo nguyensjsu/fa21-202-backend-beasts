@@ -1,9 +1,7 @@
 import greenfoot.Greenfoot;
 import greenfoot.GreenfootImage;
 import greenfoot.GreenfootSound;
-
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Abstract class to represent a player.
