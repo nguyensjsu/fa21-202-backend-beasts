@@ -1,6 +1,7 @@
 import greenfoot.Greenfoot;
 import greenfoot.GreenfootImage;
 import greenfoot.GreenfootSound;
+
 import java.util.ArrayList;
 
 /**
@@ -8,28 +9,38 @@ import java.util.ArrayList;
  */
 public abstract class Player extends DisplayComponent implements IPlayerSubject {
     private final int speed = 7;
+
     private int vSpeed = 0;
     private final int gravity = 3;
     private final int jumpStrength = 30;
     private static String name = "Player 1";
+
+    private IPlayerState currentState;
+    private final IPlayerState notPlayingState;
+    private final IPlayerState playingState;
+    private final IPlayerState wonState;
+    private final IPlayerState diedState;
 
     private GreenfootImage[] playerRightImages;
     private GreenfootImage[] playerLeftImages;
     protected GreenfootImage playerImage;
     private float currentImage = 0f;
     private static final float animationSpeed = 0.4f;
-    private int coolDownForLife = 0;
     private int totalNumberOfLives = 1;
-    private int numberOfLivesLeft = 1;
 
     private final ArrayList<IPlayerObserver> playerObservers = new ArrayList<>();
     private static final GreenfootSound jumpSound = new GreenfootSound("sounds/jump.wav");
-    private static final GreenfootSound gameOverSound = new GreenfootSound("sounds/game-over.wav");
+    public static final GreenfootSound gameOverSound = new GreenfootSound("sounds/game-over.wav");
 
     protected Player() {
         vSpeed = 0;
         jumpSound.setVolume(90);
         gameOverSound.setVolume(80);
+        notPlayingState = new NotPlayingState(this);
+        playingState = new PlayingState(this);
+        wonState = new WonState(this);
+        diedState = new DiedState(this);
+        currentState = notPlayingState;
     }
 
     public static String getPlayerName() {
@@ -42,6 +53,35 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
 
     public GreenfootImage getPlayerImage() {
         return playerImage;
+    }
+
+    public void startPlaying() {
+        currentState.startPlaying(totalNumberOfLives);
+    }
+
+    public void lostLife() {
+        currentState.lostLife();
+    }
+
+    public void won() {
+        currentState.won();
+    }
+
+    public void died() {
+        currentState.died();
+    }
+
+    public void setPlayingState(int totalNumberOfLives) {
+        ((PlayingState) playingState).setNumberOfLives(totalNumberOfLives);
+        currentState = playingState;
+    }
+
+    public void setWonState() {
+        currentState = wonState;
+    }
+
+    public void setDiedState() {
+        currentState = diedState;
     }
 
     @Override
@@ -100,7 +140,7 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
     private void hasReachedDoor() {
         Door touch = (Door) getOneIntersectingObject(Door.class);
         if (touch != null && Greenfoot.isKeyDown("Enter")) {
-            notifyObservers(PlayerState.WON);
+            won();
         }
     }
 
@@ -181,17 +221,7 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
         // game over if brick bottom touches player
         Brick up = getTopObject(Brick.class);
         if (up != null && !up.isOnGround()) {
-            if (numberOfLivesLeft <= 0) {
-                StartScreen.BACKGROUND_MUSIC.stop();
-                gameOverSound.play();
-                notifyObservers(PlayerState.DIED);
-            } else {
-                notifyObservers(PlayerState.LOST_LIFE);
-                setLocation(numberOfLivesLeft * getWidth() / 2 - 2 * (totalNumberOfLives - numberOfLivesLeft), getHeight() / 2);
-                vSpeed = 5;
-                numberOfLivesLeft--;
-                Greenfoot.delay(15);
-            }
+            lostLife();
         }
 
         Brick leftBrick = getLeftObject(Brick.class);
@@ -212,8 +242,19 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
         return getBottomSideObject(Brick.class) != null;
     }
 
+    public int getTotalNumberOfLives() {
+        return totalNumberOfLives;
+    }
+
     public void setTotalNumberOfLives(int lives) {
         totalNumberOfLives = lives;
-        numberOfLivesLeft = lives;
+    }
+
+    public void setvSpeed(int vSpeed) {
+        this.vSpeed = vSpeed;
+    }
+
+    public ArrayList<IPlayerObserver> getPlayerObservers() {
+        return playerObservers;
     }
 }
