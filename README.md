@@ -26,14 +26,22 @@
 
 ## Key Design Features:
 
-**Strategy Pattern**
+### Strategy Pattern
 
 Strategy Pattern is used to configure the game to start at different levels - Easy, Medium and Hard level. EasyGameStrategy, MediumGameStrategy and HardGameStrategy implements respective algorithm for the game levels. GameStrategyButton helps to add different buttons for Easy, Medium and Hard level. Strategy Pattern helps us to keep code structure clear and flexible for adding any more game levels.
 
-![Strategy Pattern](https://github.com/nguyensjsu/fa21-202-backend-beasts/blob/main/escapethecastle/uml_diagrams/StrategyPattern.png)
+![Strategy Pattern](escapethecastle/uml_diagrams/StrategyPattern.png)
 
-**Decorator Pattern**
+### Decorator Pattern
 
 Decorator Pattern allows us to add responsibilites to Player object dynamically and transparently for characters among Mario, Wario and Luigi.
 
-![Decorator Pattern](https://github.com/nguyensjsu/fa21-202-backend-beasts/blob/main/escapethecastle/uml_diagrams/DecoratorPattern.png)
+![Decorator Pattern](escapethecastle/uml_diagrams/DecoratorPattern.png)
+
+### State Pattern
+
+State pattern allows an object to alter its behavior when its internal state changes.
+
+#### Screen state machine
+![State Pattern](escapethecastle/uml_diagrams/Screen_Statemachine.png)
+
