@@ -17,6 +17,7 @@ public class GameScreen extends Screen implements IPlayerObserver {
     public static final int BUCKET_SIZE = 14;
     private int brickCoolDown = 120;
     private List<PlayerLife> lives;
+    private int brickNumber = 0;
 
     /**
      * Constructor for objects of class MyWorld.
@@ -83,7 +84,8 @@ public class GameScreen extends Screen implements IPlayerObserver {
         IGameStrategy currentStrategy = GameStrategyProvider.getGameStrategy();
         int numberOfBricks = currentStrategy.getNumberOfBricksFalling();
         for (int i = 0; i < numberOfBricks; i++) {
-            Brick brick = new Brick(currentStrategy.getBrickSpeed());
+            brickNumber++;
+            Brick brick = new Brick(currentStrategy.getBrickSpeed(), brickNumber);
             brick.attachObserver(this.scoreCalculator);
             currentBrick = brick;
             addComponent(brick, 268, 76);
