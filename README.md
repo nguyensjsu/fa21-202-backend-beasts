@@ -84,6 +84,8 @@ Observer pattern is a software design pattern in which an object, named the subj
 #### Score update observer pattern
 [ScoreCalculator](escapethecastle/ScoreCalculator.java) has [ScoreDisplay](escapethecastle/ScoreDisplay.java) as observer. After calculating the score it notifies the ScoreDisplay using `updateScore()` method. 
 
+![ScoreUpdateObserver](escapethecastle/uml_diagrams/ScoreUpdateObserver.png)
+
 ### Factory Pattern
 
 #### Player Factory
