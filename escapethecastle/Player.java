@@ -201,7 +201,13 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
         if (!isOnSolidGround()) {
             fall();
         } else {
-            if (vSpeed <= 0) return;
+            if (vSpeed <= 0) {
+                while (isOnSolidGround()) {
+                    setLocation(getX(), getY() - 1);
+                }
+                setLocation(getX(), getY() + 1);
+                return;
+            }
             vSpeed = 0;
             push();
             Brick down = getBottomSideObject(Brick.class);
@@ -239,7 +245,9 @@ public abstract class Player extends DisplayComponent implements IPlayerSubject 
     public boolean isOnSolidGround() {
         if (isOnWorldGround()) return true;
 
-        return getBottomSideObject(Brick.class) != null;
+        Brick b = getBelowObject(Brick.class);
+//        System.out.println("Touched " + b + " at speed " + vSpeed);
+        return b != null;
     }
 
     public int getTotalNumberOfLives() {

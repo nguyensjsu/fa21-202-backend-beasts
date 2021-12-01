@@ -1,4 +1,6 @@
+import greenfoot.Color;
 import greenfoot.Greenfoot;
+import greenfoot.GreenfootImage;
 import greenfoot.GreenfootSound;
 
 import java.util.ArrayList;
@@ -18,11 +20,14 @@ public class Brick extends DisplayComponent implements IBrickSubject {
     private static final GreenfootSound brickSound = new GreenfootSound(
             "sounds/brick-hit-ground.wav"
     );
+    private final boolean stacked = false;
 
     private final ArrayList<IBrickObserver> brickObservers = new ArrayList<>();
+    private int brickNumber;
 
-    public Brick(int velocity) {
-        // Adding 1 pixel for overlaps.
+    public Brick(int velocity, int brickNumber) {
+        this.brickNumber = brickNumber;
+//        setImage(new GreenfootImage(String.valueOf(brickNumber), 30, Color.GRAY, Color.WHITE));
         getImage().scale(GameScreen.width / GameScreen.BUCKET_SIZE, 30);
         this.vSpeed = velocity;
         bucket = Greenfoot.getRandomNumber(GameScreen.BUCKET_SIZE);
@@ -45,6 +50,7 @@ public class Brick extends DisplayComponent implements IBrickSubject {
 
     @Override
     public void act() {
+        resetLocationOnGround();
         if (!isOnGround()) {
             hasPlayedSound = false;
             fall();
@@ -57,6 +63,21 @@ public class Brick extends DisplayComponent implements IBrickSubject {
         if (shouldNotify && isOnGround()) {
             shouldNotify = false;
             notifyObservers();
+        }
+    }
+
+    private void resetLocationOnGround() {
+        if (isOnWorldGround()) {
+            resetLocationOnWorldGround();
+        } else {
+            // Intentionally using getObject with no allowance for overlap i.e h/2 to allow the object overlapping.
+            Brick below = getObject(0, getHeight() / 2, Brick.class);
+
+            // Stack the brick on the top of the below one.
+            if (below != null) {
+                int belowBricksY = below.getY();
+                setLocation(getX(), belowBricksY - getHeight());
+            }
         }
     }
 
@@ -81,7 +102,6 @@ public class Brick extends DisplayComponent implements IBrickSubject {
         vSpeed = vSpeed + gravity;
         if (isOnWorldGround()) {
             vSpeed = 0;
-            resetLocationOnWorldGround();
         }
     }
 
@@ -145,5 +165,10 @@ public class Brick extends DisplayComponent implements IBrickSubject {
     public void resetLocationOnLeftWall() {
         bucket = 0;
         resetBucketLocation();
+    }
+
+    @Override
+    public String toString() {
+        return "Brick: " + brickNumber;
     }
 }
