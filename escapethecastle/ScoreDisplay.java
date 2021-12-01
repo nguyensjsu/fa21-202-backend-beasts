@@ -21,6 +21,7 @@ public class ScoreDisplay extends DisplayComponent implements IScoreUpdateObserv
     /**
      * Update the current score by updateScore
      */
+    @Override
     public void updateScore(int updateScore) {
         this.score = updateScore;
         setImage(new GreenfootImage("Score: " + this.score, 20, Color.WHITE, Color.BLACK));
