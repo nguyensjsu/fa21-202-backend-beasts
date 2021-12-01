@@ -63,6 +63,16 @@ State pattern allows an object to alter its behavior when its internal state cha
 
 ![Player state class diagram](escapethecastle/uml_diagrams/PlayerStateClassDiagram.png)
 
+### Observer Pattern
+
+Observer pattern is a software design pattern in which an object, named the subject, maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods.
+
+#### Player observer pattern
+- [Player](escapethecastle/Player.java) has three observers i.e. [ScoreRepository](escapethecastle/ScoreRepository.java), [GameScreen](escapethecastle/GameScreen.java) and [ScoreCalculator](escapethecastle/ScoreCalculator.java). 
+- Based on the [PlayerState](escapethecastle/PlayerState.java) Player calls the different notify method i.e. `notifyLevelCompleted()`, `notifyLevelDied()` and `notifyLostLife()` of the attached observers.
+
+![Player Observers](escapethecastle/uml_diagrams/PlayerObserverPattern.png)
+
 ### Factory Pattern
 
 #### Player Factory
