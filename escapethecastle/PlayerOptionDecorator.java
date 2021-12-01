@@ -19,6 +19,7 @@ public class PlayerOptionDecorator extends DisplayComponent {
         return new PlayerOptionDecorator(player);
     }
 
+    @Override
     public void act() {
         Player chosenPlayer = PlayerSelector.getChosenPlayer();
         if (chosenPlayer == null || !chosenPlayer.equals(wrappedPlayer)) {
