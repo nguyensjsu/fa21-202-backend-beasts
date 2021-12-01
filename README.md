@@ -76,6 +76,11 @@ Observer pattern is a software design pattern in which an object, named the subj
 
 ![Player Observers](escapethecastle/uml_diagrams/PlayerObserverPattern.png)
 
+#### Brick observer pattern
+[Brick](escapethecastle/Brick.java) has [ScoreCalculator](escapethecastle/ScoreCalculator.java) as observer. It notifies the [ScoreCalculator](escapethecastle/ScoreCalculator.java) using `notifyBrickFall()` method to calculate the score once the brick touches the ground.
+
+![brick Observer](escapethecastle/uml_diagrams/BrickObserverPattern.png)
+
 ### Factory Pattern
 
 #### Player Factory
