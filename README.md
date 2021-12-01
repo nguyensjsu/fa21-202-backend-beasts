@@ -38,8 +38,11 @@ code structure clear and flexible for adding any more game levels.
 
 ### Decorator Pattern
 
-Decorator Pattern allows us to add responsibilites to Player object dynamically and transparently for characters among
-Mario, Wario and Luigi.
+Decorator Pattern allows us to add responsibilites to individual objects and not to all objects (i.e. entire class).
+
+#### PlayerOption Decorator Pattern
+
+Add responsibility to Player object dynamically and transparently for characters among Mario, Wario and Luigi.
 
 ![Decorator Pattern](escapethecastle/uml_diagrams/DecoratorPattern.png)
 
