@@ -1,3 +1,4 @@
+
 # Backend Beasts
 
 ### Team Members
@@ -8,6 +9,8 @@
 - [Mayank Garg](https://github.com/mayankgarg23) (015209948)
 
 ### Escape The Castle
+
+[![IEscape The Castle](images/GameCover.jpg)](https://www.youtube.com/watch?v=AkyL6OC40k4)
 
 **Start Screen**
 
