@@ -30,7 +30,7 @@
 
 ## Design Overview
 
-![Architecure Diagram](escapethecastle/uml_diagrams/ArchitecureDiagram.png)
+![Architecure Diagram](escapethecastle/uml_diagrams/ArchitectureDiagram.png)
 
 ## Key Design Features:
 
