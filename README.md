@@ -1,5 +1,4 @@
-
-# Backend Beasts
+# Escape The Castle
 
 ### Team Members
 
@@ -27,6 +26,11 @@
 **ScoreBoard Loosing Page**
 
 ![Start Screen](escapethecastle/images/ScoreBoard-LoosingPage.png)
+
+
+## Design Overview
+
+![Architecure Diagram](escapethecastle/uml_diagrams/ArchitecureDiagram.png)
 
 ## Key Design Features:
 
