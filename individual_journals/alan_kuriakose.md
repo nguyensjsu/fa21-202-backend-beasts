@@ -33,3 +33,16 @@
 ### Planned for Next Week
 * Implement player animation.
 * Add other required sounds to the game.
+
+## Week 4 (22/11/2021 - 28/11/2021)
+
+### Finished in This Week
+* Implemented player animation when player moves.
+* Worked on improving brick pushing logic.
+* Added game over sound when player dies.
+* Fixed player going into bricks when brick is on edge of screen.
+* Fixed gap in game screen when one full row of bricks are placed.
+
+### Planned for Next Week
+* Add documentation and class diagrams.
+* Create video and cover for the game.
