@@ -12,14 +12,14 @@
 [![IEscape The Castle](images/GameCover.jpg)](https://www.youtube.com/watch?v=AkyL6OC40k4)
 
 ### Summary of the Project
-Our project uses [Greenfoot](https://www.greenfoot.org/home) integrated development environment to build [Escape The Castle](#escape-the-castle) game from **scratch**. We have taken inspiration from [Dungeon Escape](https://www.greenfoot.org/scenarios/12920).
+Our project uses [Greenfoot](https://www.greenfoot.org/home) integrated development environment to build [Escape The Castle](#escape-the-castle) `game from scratch`. We have taken inspiration from [Dungeon Escape](https://www.greenfoot.org/scenarios/12920).
 This game is built in java. It consists of various design patterns that helps in easy maintainability as well as extensibility for adding new features or modification is the game. 
 
 The game uses a Mario character which plays the game. The mario has to escape from the castle by avoiding bricks falling from top and reach the door as soon as possible. 
 The mario has the capability to move a brick by pushing and arranging the fallen bricks to make a ladder to reach the door. The score is calculated using a [score calculator](escapethecastle/ScoreCalculator.java) which uses a `score factor`. 
 The score is inversely proportional to the number of bricks fallen. If the Mario uses a lot of bricks to reach the door, the score will be less.
 
-Game provides three level of play
+Game provides three levels of play
 * Easy
   Only one brick falls at a time, and player gets 2 lives. Score factor is less as well.
 * Medium
