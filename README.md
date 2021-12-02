@@ -20,11 +20,11 @@ Mario can move brick by pushing and arranging the fallen bricks to make a ladder
 The score is inversely proportional to the number of bricks fallen. If Mario uses a lot of bricks to reach the door, the score will be less.
 
 The game provides three levels of play
-* Easy
+* Easy  
   Only one brick falls at a time, and the player gets two lives. The scoring factor is less as well.
-* Medium
+* Medium  
   Two bricks fall simultaneously, and the player gets three lives. The scoring factor is higher than the easy level.
-* Hard
+* Hard  
   Three bricks fall simultaneously, and the player gets four lives. The scoring factor is the highest of all levels.
 
 ### Key features of the Game
