@@ -72,10 +72,15 @@ State pattern allows an object to alter its behavior when its internal state cha
 ![State Pattern](escapethecastle/uml_diagrams/Screen_Statemachine.png)
 
 ##### Screen State class diagram
+- [GameController](escapethecastle/GameController.java) class controls the screens displayed in the game. 
+- [StartScreen](escapethecastle/StartScreen.java), [GameScreen](escapethecastle/GameScreen.java) and [GameOverScreen](escapethecastle/GameOverScreen.java) are the three states of the screens. 
+- Based on the action performed by the player the transition between the three screens is managed by the [GameController](escapethecastle/GameController.java).
 
 ![Class Diagram](escapethecastle/uml_diagrams/ScreenStateClassDiagram.png)
 
 #### Player state machine
+- [Player](escapethecastle/Player.java) has three [PlayerStates](escapethecastle/PlayerState.java) i.e. [WonState](escapethecastle/WonState.java), [NotPlaying](escapethecastle/NotPlayingState.java), [Playing](escapethecastle/PlayingState.java) and [DiedState](escapethecastle/DiedState.java). 
+- Based on the PlayerState the behaviour of the [Player](escapethecastle/Player.java) is maintained.
 
 ![Player state machine](escapethecastle/uml_diagrams/PlayerStatePattern.png)
 
