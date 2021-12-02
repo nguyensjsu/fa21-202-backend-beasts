@@ -13,25 +13,25 @@
 
 ### Summary of the Project
 Our project uses [Greenfoot](https://www.greenfoot.org/home) integrated development environment to build [Escape The Castle](#escape-the-castle) `game from scratch`. We have taken inspiration from [Dungeon Escape](https://www.greenfoot.org/scenarios/12920).
-This game is built in java. It consists of various design patterns that helps in easy maintainability as well as extensibility for adding new features or modification is the game. 
+This game is built in java. It consists of various design patterns that help in easy maintainability as well as extensibility for adding new features or modification is the game.
 
-The game uses a Mario character which plays the game. The mario has to escape from the castle by avoiding bricks falling from top and reach the door as soon as possible. 
-The mario has the capability to move a brick by pushing and arranging the fallen bricks to make a ladder to reach the door. The score is calculated using a [score calculator](escapethecastle/ScoreCalculator.java) which uses a `score factor`. 
-The score is inversely proportional to the number of bricks fallen. If the Mario uses a lot of bricks to reach the door, the score will be less.
+The game uses a Mario character who plays the game. Mario has to escape from the castle by avoiding bricks falling from the top and reaching the door as soon as possible.
+Mario can move brick by pushing and arranging the fallen bricks to make a ladder to reach the door. The score is calculated using a [score calculator](escapethecastle/ScoreCalculator.java), which uses a `score factor`.
+The score is inversely proportional to the number of bricks fallen. If Mario uses a lot of bricks to reach the door, the score will be less.
 
-Game provides three levels of play
+The game provides three levels of play
 * Easy
-  Only one brick falls at a time, and player gets 2 lives. Score factor is less as well.
+  Only one brick falls at a time, and the player gets two lives. The scoring factor is less as well.
 * Medium
-  Two bricks fall at the same time, and player gets 3 lives. Score factor is higher than the easy level.
+  Two bricks fall simultaneously, and the player gets three lives. The scoring factor is higher than the easy level.
 * Hard
-  Three bricks falls at the same time, and player gets 4 lives. Score factor is the highest of all levels.
+  Three bricks fall simultaneously, and the player gets four lives. The scoring factor is the highest of all levels.
 
 ### Key features of the Game
-- The game [start screen](#start-screen) allows the player to choose any of the three different avatars such as Mario, Wario and Luigi. It also allows the player to choose the levels such as Easy, Medium or Hard.
-- After selecting the avatar and level, the player can start playing the game using start button on the game start screen. Based on the level selected the game uses strategy to change the brick falling speed, player lives etc. The score is updated on the score display consistently. 
-- If the player reaches the door the [game over screen](#scoreboard-winning-page) is displayed with a congratulation message which shows the players total score and current rank.
-- If the player dies in between the game if the brick hits the head, the [game over screen](#scoreboard-loosing-page) with a loose message which shows the players total score and current rank.
+- The game [start screen](#start-screen) allows the player to choose any of the three different avatars such as Mario, Wario, and Luigi. It also allows the player to choose the levels such as Easy, Medium, or Hard.
+- After selecting the avatar and level, the player can start playing the game using the start button on the game start screen. Based on the level selected the game uses strategy to change the brick falling speed, player lives, etc. The score is updated on the score display consistently.
+- If the player reaches the door the [game over screen](#scoreboard-winning-page) is displayed with a congratulation message which shows the player's total score and current rank.
+- If the player dies in between the game if the brick hits the head, the [game over screen](#scoreboard-loosing-page) with a loose message which shows the player's total score and current rank.
 
 #### Start Screen
 
