@@ -173,3 +173,7 @@ The `PlayerSelector` uses the singleton pattern. It allow setting and getting th
 for the current game. It is used by classes like the `GameController` and `StartScreen`.
 
 ![Singleton Player Selector](escapethecastle/uml_diagrams/SingletonPlayerSelector.png)
+
+### Agile
+
+![Burndown Chart](escapethecastle/images/Burndown.png)
