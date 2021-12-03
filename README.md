@@ -177,3 +177,8 @@ for the current game. It is used by classes like the `GameController` and `Start
 ### Agile
 
 ![Burndown Chart](escapethecastle/images/Burndown.png)
+
+### Sprint Task Sheet
+
+![Sprint Task Sheet](images/SprintTaskSheet.jpg)
+
