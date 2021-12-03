@@ -176,7 +176,7 @@ for the current game. It is used by classes like the `GameController` and `Start
 
 ### [Daily Standup Video](https://youtu.be/WXwPdFy2Z7s)
 
-### Agile
+### Burndown Chart
 
 ![Burndown Chart](escapethecastle/images/Burndown.png)
 
