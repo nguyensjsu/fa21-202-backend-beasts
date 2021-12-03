@@ -183,3 +183,13 @@ for the current game. It is used by classes like the `GameController` and `Start
 ### Sprint Task Sheet
 
 ![Sprint Task Sheet](images/SprintTaskSheet.jpg)
+
+### Areas of Contribution
+
+ - ***Mayank Garg***
+     - Factory Method Pattern for creating Players
+     - Observer Pattern for displaying score on the screen
+     - Observer Pattern for bricks for score calculation
+     - Created Game Over Screen using composite pattern
+     - Architecure Diagram
+     - Documentation and Class Diagram
