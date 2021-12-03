@@ -174,6 +174,8 @@ for the current game. It is used by classes like the `GameController` and `Start
 
 ![Singleton Player Selector](escapethecastle/uml_diagrams/SingletonPlayerSelector.png)
 
+### [Daily Standup Video](https://youtu.be/WXwPdFy2Z7s)
+
 ### Agile
 
 ![Burndown Chart](escapethecastle/images/Burndown.png)
@@ -181,5 +183,3 @@ for the current game. It is used by classes like the `GameController` and `Start
 ### Sprint Task Sheet
 
 ![Sprint Task Sheet](images/SprintTaskSheet.jpg)
-
-### [Daily Standup Video](https://youtu.be/WXwPdFy2Z7s)
