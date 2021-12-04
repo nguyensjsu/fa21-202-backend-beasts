@@ -213,11 +213,11 @@ for the current game. It is used by classes like the `GameController` and `Start
 
 - **Mayank Garg**
     - Factory Method Pattern for creating Players
-    - Observer Pattern for displaying score on the screen
+    - Observer Pattern for displaying score on ScoreDisplay component on the screen
     - Observer Pattern for bricks for score calculation
-    - Created Game Over Screen using composite pattern
+    - Composite Pattern for creation of Game Over Screen
     - Architecture Diagram
-    - Documentation and Class Diagram
+    - Project Documentation and Class Diagram
 
 - **Alan Kuriakose**
     - Factory Method Pattern for creating Buttons
