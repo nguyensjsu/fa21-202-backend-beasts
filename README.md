@@ -58,7 +58,11 @@ The game provides three levels of play
 
 ## Design Overview
 
+### High Level Architecture Diagram
+
 ![Architecure Diagram](escapethecastle/images/HighLevelArchitectureDiagram.png)
+
+### Architecture Diagram
 
 All main components and interactions between components are shown below. Eight design pattern are implemented (Composite, Command, Strategy, Decorator, State, Observer, Factory Method, Singleton).
 
