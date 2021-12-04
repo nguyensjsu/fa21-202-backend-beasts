@@ -58,11 +58,7 @@ The game provides three levels of play
 
 ## Design Overview
 
-### High Level Architecture Diagram
-
 ![Architecure Diagram](escapethecastle/images/HighLevelArchitectureDiagram.png)
-
-### Architecture Diagram
 
 All main components and interactions between components are shown below. Eight design pattern are implemented (Composite, Command, Strategy, Decorator, State, Observer, Factory Method, Singleton).
 
@@ -225,4 +221,12 @@ for the current game. It is used by classes like the `GameController` and `Start
     - Sounds for the game
     - Animation of player
     - Video for game trailer
+    - Documentation and Class Diagram
+
+- **Het Jagani**
+    - Created base composite pattern for all screens and components in a screen.
+    - Command Patttern Invoker and Receiver
+    - Support landing on brick and not go inside a brick
+    - Support pushing bricks and avoid bricks overlapping
+    - Setup of brick size according to the screen size
     - Documentation and Class Diagram
