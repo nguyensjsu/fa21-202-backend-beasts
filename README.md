@@ -184,12 +184,25 @@ for the current game. It is used by classes like the `GameController` and `Start
 
 ![Sprint Task Sheet](images/SprintTaskSheet.jpg)
 
+### [Project Task Board](https://github.com/nguyensjsu/fa21-202-backend-beasts/projects/1)
+
+![Task Board](images/Task_Board.png)
+
 ### Areas of Contribution
 
- - ***Mayank Garg***
-     - Factory Method Pattern for creating Players
-     - Observer Pattern for displaying score on the screen
-     - Observer Pattern for bricks for score calculation
-     - Created Game Over Screen using composite pattern
-     - Architecure Diagram
-     - Documentation and Class Diagram
+- **Poonam Yadav**
+  - Strategy pattern for selecting the game level
+  - State pattern for managing the player lives 
+  - State pattern for managing the screens of the game
+  - Decorator pattern for decorating the player with an option of changing the avatar on the start screen
+  - Decorator pattern for showing the player lives at the game screen
+  - Observer pattern for score calculation 
+  - Singleton pattern for providing the game strategy and chosen player
+
+- **Mayank Garg**
+    - Factory Method Pattern for creating Players
+    - Observer Pattern for displaying score on the screen
+    - Observer Pattern for bricks for score calculation
+    - Created Game Over Screen using composite pattern
+    - Architecture Diagram
+    - Documentation and Class Diagram
