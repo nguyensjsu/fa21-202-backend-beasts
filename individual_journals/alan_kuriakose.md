@@ -11,6 +11,9 @@
 * Discussed about CRC diagram for the game and divided game into different screens.
 * Start code implementation.
 
+### XP Core Value
+* Courage - During today's meeting, we discussed about the high level arcitecture of the game. I did research on the platform to use and finalized to use Greenfoot eventhough we were new to the platform. To confirm the usabality of the platform for our game, I also made some dummy games using Greenfoot.
+
 ## Week 2 (08/11/2021 - 14/11/2021)
 
 ### Finished in This Week
@@ -21,6 +24,9 @@
 
 ### Planned for Next Week
 * Implementation of code.
+
+### XP Core Value
+* Respect - During todays meeting, we discussed about the the patterns to use. Everyone suggested ideas and we finalized the basic patterns to use for each functionality based on everyone's suggestions.
 
 ## Week 3 (15/11/2021 - 21/11/2021)
 
@@ -34,6 +40,9 @@
 * Implement player animation.
 * Add other required sounds to the game.
 
+### XP Core Value
+* Feedback - During the meeting, I gave my ideas about the game start screen, and I took feedback from my team members on the look and feel of the screen and designed the screen accordingly.
+
 ## Week 4 (22/11/2021 - 28/11/2021)
 
 ### Finished in This Week
@@ -46,3 +55,7 @@
 ### Planned for Next Week
 * Add documentation and class diagrams.
 * Create video and cover for the game.
+
+### XP Core Value
+* Communication - We discussed the pending features and existing bugs in the game. I communicated with my team mates to fix different bugs and helped each other out while implementing features.
+
