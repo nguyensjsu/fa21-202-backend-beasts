@@ -15,6 +15,11 @@
 * Code implementation
 * Graphic design
 
+### XP core value
+#### Communication
+In today's meeting everyone discussed on the project idea. 
+Due to effective communication we were able to finalize the game and started on the design discussion.
+
 ## Week 2 (08/11/2021 - 14/11/2021)
 
 ### Tasks completed this week
@@ -23,12 +28,27 @@
 * Created issues for code development
 * Divide the development task
 
+#### Tasks planned for next week
+* Starting the development of the game based on the design completed
+
+### XP core value
+#### Feedback
+In today's meeting we finalized our design. 
+I gave my feedback on few design components and did the refactoring based on the feedback.
+
 ## Week 3 (15/11/2021 - 21/11/2021)
 
 ### Finished This Week
 * Implemented strategy pattern for starting the game at easy, medium and difficult level.
 * Implemented player decorator for decorating the player for choosing an avatar.
 * Created bricks randomly based on strategy
+
+### Task planned for next week 
+* Focusing on the implementing the game.
+
+### XP core value
+#### Simplicity
+In today's meeting we divided our major tasks into smaller components. So that we can bring more quality to the code as well as features.
 
 ## Week 4 (22/11/2021 - 29/11/2021)
 
@@ -43,3 +63,7 @@
 ### Tasks Planned Next Week
 * Design documentation
 * Creating user story video
+
+### XP core value
+#### Respect
+In today's meeting we worked together and finished various tasks such as documentation and story video. 
