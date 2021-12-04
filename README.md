@@ -196,16 +196,18 @@ for the current game. It is used by classes like the `GameController` and `Start
 
 ![Task Board](images/Task_Board.png)
 
-### Areas of Contribution
+### Areas of key Contribution
 
 - **Poonam Yadav**
-  - Strategy pattern for selecting the game level
-  - State pattern for managing the player lives 
-  - State pattern for managing the screens of the game
-  - Decorator pattern for decorating the player with an option of changing the avatar on the start screen
-  - Decorator pattern for showing the player lives at the game screen
-  - Observer pattern for score calculation 
-  - Singleton pattern for providing the game strategy and chosen player
+  - Designed and implemented 
+    - Strategy pattern for selecting the game level
+    - State pattern for managing the player lives 
+    - State pattern for managing the screens of the game
+    - Decorator pattern for decorating the player with an option of changing the avatar on the start screen
+    - Decorator pattern for showing the player lives at the game screen
+    - Observer pattern for score calculation 
+    - Singleton pattern for providing the game strategy and chosen player
+  - Contributed to the project documentation, class diagram, logic of brick falling, player jump, and brick push to the left or right and also built the score repository.
 
 - **Mayank Garg**
     - Factory Method Pattern for creating Players
@@ -225,7 +227,7 @@ for the current game. It is used by classes like the `GameController` and `Start
 
 - **Het Jagani**
     - Created base composite pattern for all screens and components in a screen.
-    - Command Patttern Invoker and Receiver
+    - Command Pattern Invoker and Receiver
     - Support landing on brick and not go inside a brick
     - Support pushing bricks and avoid bricks overlapping
     - Setup of brick size according to the screen size
