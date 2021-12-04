@@ -11,6 +11,12 @@
 
 [![IEscape The Castle](images/GameCover.jpg)](https://www.youtube.com/watch?v=AkyL6OC40k4)
 
+### Individual Journal
+- [Alan Kuriakose](individual_journals/alan_kuriakose.md)
+- [Het Jagani](individual_journals/het_jagani.md)
+- [Mayank Garg](individual_journals/mayank_garg.md)
+- [Poonam Yadav](individual_journals/poonam_yadav.md)
+
 ### Summary of the Project
 Our project uses [Greenfoot](https://www.greenfoot.org/home) integrated development environment to build [Escape The Castle](#escape-the-castle) `game from scratch`. We have taken inspiration from [Dungeon Escape](https://www.greenfoot.org/scenarios/12920).
 This game is built in java. It consists of various design patterns that help in easy maintainability as well as extensibility for adding new features or modification is the game.
