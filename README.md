@@ -212,3 +212,11 @@ for the current game. It is used by classes like the `GameController` and `Start
     - Created Game Over Screen using composite pattern
     - Architecture Diagram
     - Documentation and Class Diagram
+
+- **Alan Kuriakose**
+    - Factory Method Pattern for creating Buttons
+    - Command pattern for game start screen
+    - Sounds for the game
+    - Animation of player
+    - Video for game trailer
+    - Documentation and Class Diagram
