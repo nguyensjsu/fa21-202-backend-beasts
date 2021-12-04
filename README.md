@@ -196,6 +196,8 @@ for the current game. It is used by classes like the `GameController` and `Start
 
 ![Task Board](images/Task_Board.png)
 
+### [Game Demo Video](https://youtu.be/XNBSRouYZ30)
+
 ### Areas of key Contribution
 
 - **Poonam Yadav**
